@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <Navbar className={styles.NavBar} expand="lg">
+    <Navbar className={styles.NavBar} expand="md">
     <NavLink to="/">
     <Navbar.Brand href="#home">
       <img className={styles.Logo} src={logo}/>
@@ -21,7 +21,7 @@ const NavBar = () => {
       <Nav.Link href="#link">Feed</Nav.Link>
       <Nav.Link href="#link">PokéDex</Nav.Link>
     </Nav>
-    <Nav className={styles.NavRight}>
+    <Nav className="ml-auto">
       <NavLink className={styles.NavLink} to="/signup">Sign Up</NavLink>
       <NavLink className={styles.NavLink} to="/signin">Log In</NavLink>
     </Nav>

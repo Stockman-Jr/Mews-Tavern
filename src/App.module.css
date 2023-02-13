@@ -5,3 +5,15 @@
 * {
   box-sizing: border-box;
 }
+
+a {
+  color: rgb(70, 70, 70);
+  font-weight: 600;
+ 
+}
+
+a:hover {
+  text-decoration: none;
+  color: #773a6d;
+  border-bottom: 2px solid #fff;
+}

@@ -5,6 +5,10 @@
     padding-bottom: 10px;
 }
 
+.NavLink {
+    padding: 5px;
+}
+
 .NavRight {
     float: right;
 }

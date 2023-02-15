@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Dhurjati&family=DotGothic16&family=Press+Start+2P&display=swap');
+
+.Row {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.FormContainer {
+
+    margin: 0 auto;
+    width: 100%;
+}
+
+input[type="text"],
+input[type="password"] {
+    border-radius: 20px;
+    padding: 20px 12px;
+  }
+
+label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-transform: uppercase;
+    padding: 5px;
+    margin-left: 2px;
+    color: #7f4485;
+    float: left;
+    clear: both;
+}
+
+.Content {
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 0;
+    padding-left: 0px;
+    z-index: -1;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 10px;
+}
+
+.SignUp{
+    padding: 30px;
+}
+
+.FormInput {
+    border-radius: 20px;
+}
+
+.Link {
+    text-decoration: none;
+    color: #5a5461;
+    margin-top: 50px;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #7f4485;
+
+}
+
+.GradHeader {
+    font-family: 'Press Start 2P', cursive;
+    border-bottom: 3px solid rgba(61, 59, 59, 0.1);
+    height: 60px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 0;
+    width: 100%;
+    z-index: 1000;
+    background-image: linear-gradient(260deg, #98d7f4 0%, #f5c5e9 100%);
+}
+
+.H4Text {
+    text-transform: uppercase;
+    padding-top: 10px;
+    line-height: 50px;
+    color: #5a5461;
+}

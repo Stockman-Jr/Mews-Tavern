@@ -6,6 +6,11 @@
   box-sizing: border-box;
 }
 
+.Main {
+  margin-top: 80px;
+}
+
+
 a {
   color: rgb(70, 70, 70);
   font-weight: 600;

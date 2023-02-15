@@ -1,0 +1,23 @@
+.FormBtn {
+    margin-top: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 15px;
+    text-transform: uppercase;
+    background-color: #7fb9d4;
+    border: 1px solid rgb(44, 44, 44);
+    border-bottom: 2px solid rgb(44, 44, 44);
+    border-right: 2px solid rgb(44, 44, 44);
+    width: 60%;
+}
+
+.Button:hover {
+    
+    border-top: none;
+    border-left: none;
+}
+
+.Dark:hover {
+    background-color: #50829b;
+    cursor: pointer;
+    border-color: #4f3457;
+}

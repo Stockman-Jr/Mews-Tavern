@@ -17,7 +17,7 @@ const SignInForm = () => {
     const setCurrentUser = useSetCurrentUser();
     const [signInData, setSignInData] = useState({
         username: '',
-        password: ''
+        password: '',
     });
 
     const {username, password} = signInData;
@@ -43,11 +43,10 @@ const SignInForm = () => {
       };
   return (
     <Row className={styles.Row}>
-    <h1 className="mb-5">Join The Fun!</h1>
     <Col className={` ${styles.FormContainer} my-auto `} md={8}>
       <Container className={styles.Content}>
         <div className={styles.GradHeader}>
-          <h4 className={styles.H4Text}>Sign Up</h4>
+          <h4 className={styles.H4Text}>Log In</h4>
         </div>
         <Form onSubmit={handleSubmit} className={styles.SignUp}>
           <Form.Group className="mb-3" controlId="username">
@@ -55,7 +54,7 @@ const SignInForm = () => {
             <Form.Control
               className={styles.FormInput}
               type="text"
-              placeholder="Choose username"
+              placeholder="Username"
               name="username"
               value={username}
               onChange={handleChange}
@@ -87,7 +86,7 @@ const SignInForm = () => {
             className={`${btnStyles.FormBtn} ${btnStyles.Dark}`}
             type="submit"
           >
-            Submit
+            Log in
           </Button>
           {errors.non_field_errors?.map((message, idx) => (
             <Alert key={idx} variant="warning" className="mt-3">

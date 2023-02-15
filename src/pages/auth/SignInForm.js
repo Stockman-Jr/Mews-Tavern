@@ -11,8 +11,10 @@ import {
   import btnStyles from "../../styles/Buttons.module.css";
   import styles from "../../styles/SignInUpForm.module.css";
   import axios from 'axios';
+  import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
+    const setCurrentUser = useSetCurrentUser();
     const [signInData, setSignInData] = useState({
         username: '',
         password: ''
@@ -25,17 +27,18 @@ const SignInForm = () => {
     const handleChange = (event) => {
         setSignInData({
             ...signInData,
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
         });
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post('/dj-rest-auth/login/', signInData)
-            history.push('/')
+        const { data } = await axios.post('/dj-rest-auth/login/', signInData);
+        setCurrentUser(data.user);
+        history.push('/');
         }catch(err){
-            setErrors(err.response?.data)
+            setErrors(err.response?.data);
         }
       };
   return (

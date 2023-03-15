@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import styles from '../styles/NavBar.module.css';
+import btnStyles from '../styles/Buttons.module.css';
 import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
@@ -23,16 +24,16 @@ const NavBar = () => {
   };
 
   const loggedInAuthLinks = <>
-    <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>Log out</NavLink>
+    <NavLink className={btnStyles.AuthBtn} to="/" onClick={handleSignOut}>Log out</NavLink>
   </>;
 
   const loggedInLinks = <>
-    <Nav.Link href="#link">Add Post</Nav.Link>
+    <NavLink to="/posts/create">Add Post</NavLink>
   </>;
 
   const loggedOutAuthLinks = <>
-      <NavLink className={styles.NavLink} to="/signup">Sign Up</NavLink>
-      <NavLink className={styles.NavLink} to="/signin">Log In</NavLink>
+      <NavLink className={btnStyles.AuthBtn} to="/signup">Sign Up</NavLink>
+      <NavLink className={btnStyles.AuthBtn} to="/signin">Log In</NavLink>
   </>;
 
 
@@ -45,13 +46,13 @@ const NavBar = () => {
     </NavLink>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <NavLink className={styles.NavLink} to="/">Home</NavLink>
-      <Nav.Link href="#link">Feed</Nav.Link>
-      <Nav.Link href="#link">PokéDex</Nav.Link>
+    <Nav className={`${styles.NavLeft} mr-auto`}>
+      <NavLink to="/" activeClassName={styles.Active} >Home</NavLink>
+      <NavLink to="/posts">Feed</NavLink>
+      <NavLink to="/pokedex">PokéDex</NavLink>
       {currentUser ? loggedInLinks : loggedOutAuthLinks}
     </Nav>
-    <Nav className="ml-auto">
+    <Nav className={`${styles.NavLeft} ml-auto`}>
       {currentUser ? loggedInAuthLinks : loggedOutAuthLinks}
     </Nav>
   </Navbar.Collapse>

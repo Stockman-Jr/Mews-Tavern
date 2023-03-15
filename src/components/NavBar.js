@@ -22,11 +22,15 @@ const NavBar = () => {
     }
   };
 
-  const loggedInLinks = <>
+  const loggedInAuthLinks = <>
     <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>Log out</NavLink>
   </>;
 
-  const loggedOutLinks = <>
+  const loggedInLinks = <>
+    <Nav.Link href="#link">Add Post</Nav.Link>
+  </>;
+
+  const loggedOutAuthLinks = <>
       <NavLink className={styles.NavLink} to="/signup">Sign Up</NavLink>
       <NavLink className={styles.NavLink} to="/signin">Log In</NavLink>
   </>;
@@ -45,9 +49,10 @@ const NavBar = () => {
       <NavLink className={styles.NavLink} to="/">Home</NavLink>
       <Nav.Link href="#link">Feed</Nav.Link>
       <Nav.Link href="#link">PokéDex</Nav.Link>
+      {currentUser ? loggedInLinks : loggedOutAuthLinks}
     </Nav>
     <Nav className="ml-auto">
-      {currentUser ? loggedInLinks : loggedOutLinks}
+      {currentUser ? loggedInAuthLinks : loggedOutAuthLinks}
     </Nav>
   </Navbar.Collapse>
 </Navbar>

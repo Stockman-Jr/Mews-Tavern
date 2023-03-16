@@ -1,0 +1,13 @@
+.Loader {
+    background-image: url("../assets/loader.png");
+    animation: rotate-center 1.4s ease-in-out 0.6s infinite both;
+}
+
+@keyframes rotate-center {
+0% {
+      transform: rotate(0);
+}
+100% {
+      transform: rotate(360deg);
+}
+}

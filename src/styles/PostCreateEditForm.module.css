@@ -1,0 +1,16 @@
+.Container {
+    min-height: 343px;
+  }
+
+.FormFieldDiv {
+    height: 100%;
+}
+
+.FormFieldDiv textarea {
+    min-height: 120px;
+}
+
+.FormFieldDiv div, .FormFieldDiv label, .FormFieldDiv .Button {
+    margin-top: 10px;
+    color: #2c2525;
+}

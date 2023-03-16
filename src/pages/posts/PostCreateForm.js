@@ -21,7 +21,7 @@ function PostCreateForm() {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
-    game_filter: "",
+    game_filter: [],
     image: "",
   });
   const { title, content, game_filter, image } = postData;
@@ -45,6 +45,11 @@ function PostCreateForm() {
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Post:", postData);
+  };
+
   const formFields = (
     <div className="text-center">
       <Form.Group>
@@ -66,7 +71,20 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-
+{/* 
+      <Form.Group>
+                <Form.Label>Choose game:</Form.Label>
+                <Form.Select
+                  name="game_filter"
+                  value={game_filter}
+                  onChange={handleChange}
+                />
+                {postData.map(game_filter => (
+                <option key={game_filter} value={game_filter}>{game_filter}</option>
+                ))}
+                <Form.Select />
+              </Form.Group>
+ */}
 
       <Button
         className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
@@ -88,15 +106,54 @@ function PostCreateForm() {
         </Link>
       </div>
 
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
             <Container>
               <Form.Group>
-                <figure>
-                  <Image className={appStyles.Image} src={image} />
-                </figure>
+                {image ? (
+                  <>
+                    <figure>
+                      <Image className={appStyles.Image} src={image} />
+                    </figure>
+                    <div>
+                      <Form.Label
+                        className={`${btnStyles.FormButton} ${btnStyles.Dark} btn`}
+                        htmlFor="image-upload"
+                      >
+                        Change the image
+                      </Form.Label>
+                    </div>
+                  </>
+                ) : (
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  >
+                    <Asset
+                      src={Upload}
+                      message="Click or tap to upload image"
+                    />
+                  </Form.Label>
+                )}
+
+                <Form.Control
+                  id="image-upload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  ref={imageInput}
+                />
               </Form.Group>
+              <div className={` ${styles.FormFieldDiv} d-md-none `}>
+                {formFields}
+              </div>
+            </Container>
+          </Col>
+          
+          <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+            <Container className={` ${styles.FormFieldDiv} `}>
+              {formFields}
             </Container>
           </Col>
         </Row>

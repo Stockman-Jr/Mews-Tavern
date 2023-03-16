@@ -1,10 +1,14 @@
 .App {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
   min-height: 100vh;
 }
 
-* {
+*, html, body {
+  box-sizing: border-box;
+  margin: 0;
   box-sizing: border-box;
 }
+
 
 .Main {
   margin-top: 80px;
@@ -14,6 +18,27 @@
 a {
   color: rgb(41, 39, 37);
   font-weight: 600;
- 
 }
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.FillerImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+figure {
+  text-align: center;
+  display: inline-block;
+}
+
 

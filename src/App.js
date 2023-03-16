@@ -15,11 +15,12 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-         <Route exact path="/" render={() => <h1>Home Page</h1>} />
-         <Route exact path="/signin" render={() =>  <SignInForm/>} />
+          <Route exact path="/" render={() => <h1>Home Page</h1>} />
+          <Route exact path="/signin" render={() =>  <SignInForm/>} />
           <Route exact path="/signup" render={() =>  <SignUpForm />} />
           <Route exact path="/pokedex" render={() =>  <PokemonListPage />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
+          <Route exact path="/posts/create/build" render={() => <h1>Pokémon build</h1>} />
           <Route exact path="/posts" render={() => <PostFeedPage />} />
         </Switch>
       </Container>

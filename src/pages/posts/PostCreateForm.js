@@ -7,6 +7,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Alert from "react-bootstrap/Alert";
 
 import btnStyles from "../../styles/Buttons.module.css";
 import appStyles from "../../App.module.css";
@@ -15,7 +16,7 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import { Link } from "react-router-dom";
 import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 
 
 
@@ -28,12 +29,13 @@ function PostCreateForm() {
     post_type: "Game Related",
   });
   const [gameFilterChoices, setGameFilterChoices] = useState([]);
-  const { title, content, game_filter, image } = postData;
+  const { title, content, game_filter, image, post_type } = postData;
   const imageInput = useRef(null);
   const history = useHistory();
 
+  const [errors, setErrors] = useState({});
 
-  
+
   useEffect(() => {
     const fetchGameFilterChoices = async () => {
       const response = await axiosReq.options("/posts/post/");
@@ -63,9 +65,27 @@ function PostCreateForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Post:", postData);
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("game_filter", game_filter);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append("post_type", post_type);
+
+    try {
+      const { data } = await axiosReq.post("/posts/post/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+    
   };
 
   const formFields = (
@@ -79,6 +99,11 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.title?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
       <Form.Group>
         <Form.Label>Description</Form.Label>
@@ -89,6 +114,11 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors.content?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
       <Form.Group>
         <Form.Label>Choose game:</Form.Label>
@@ -104,6 +134,11 @@ function PostCreateForm() {
           ))}
         </Form.Control>
       </Form.Group>
+      {errors.game_filter?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
 
       <Button
         className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
@@ -164,6 +199,11 @@ function PostCreateForm() {
                   ref={imageInput}
                 />
               </Form.Group>
+              {errors.image?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
               <div className={` ${styles.FormFieldDiv} d-md-none `}>
                 {formFields}
               </div>

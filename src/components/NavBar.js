@@ -41,7 +41,7 @@ const NavBar = () => {
     <Navbar className={styles.NavBar} expand="md">
     <NavLink to="/">
     <Navbar.Brand href="#home">
-      <img className={styles.Logo} src={logo}/>
+      <img className={styles.Logo} src={logo} alt="logo"/>
     </Navbar.Brand>
     </NavLink>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />

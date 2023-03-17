@@ -7,14 +7,14 @@ import Container from "react-bootstrap/Container";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function PostFeedPage() {
+function PostDetailPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
   useEffect(() => {
     const handleMount = async () => {
       try {
         const [{ data: post }] = await Promise.all([
-          axiosReq.get(`/posts/post/`),
+          axiosReq.get(`/posts/post/${id}/`),
         ]);
         setPost({ results: [post] });
         console.log(post);
@@ -33,4 +33,4 @@ function PostFeedPage() {
   )
 }
 
-export default PostFeedPage;
+export default PostDetailPage;

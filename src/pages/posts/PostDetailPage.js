@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+import Post from "./Post";
+
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -28,6 +30,7 @@ function PostDetailPage() {
   return (
     <Row>
       <Col>
+      <Post {...post.results[0]} setPosts={setPost} postPage />
       </Col>
     </Row>
   )

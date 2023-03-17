@@ -26,7 +26,7 @@ const Post = (props) => {
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
-    
+
   return (
     <Card>
         <Card.Header>{owner}</Card.Header>

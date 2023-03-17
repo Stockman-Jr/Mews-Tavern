@@ -2,6 +2,20 @@
     min-height: 343px;
   }
 
+.ImgBox {
+    background-color: rgba(252, 247, 242, 0.37);
+    margin-top: 15px;
+    border: 2px solid #977c02;
+}
+
+
+.FormContent {
+    background-color: #dacfc4;
+    padding: 10px;
+    border: solid 5px #977c02;
+    border-radius: 20px;
+}
+
 .FormFieldDiv {
     height: 100%;
 }
@@ -12,5 +26,5 @@
 
 .FormFieldDiv div, .FormFieldDiv label, .FormFieldDiv .Button {
     margin-top: 10px;
-    color: #2c2525;
+    color: #35322b;
 }

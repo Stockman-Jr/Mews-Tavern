@@ -4,30 +4,41 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-import { useParams } from "react-router";
+import Post from "./Post";
+
+import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostFeedPage() {
-  const { id } = useParams();
+  const { pathname } = useLocation();
+  const [hasLoaded, setHasLoaded] = useState(false);
   const [posts, setPosts] = useState({ results: [] });
   useEffect(() => {
-    const handleMount = async () => {
+    const fetchPosts = async () => {
       try {
-        const [{ data: post }] = await Promise.all([
-          axiosReq.get(`/posts/post/`),
-        ]);
-        setPost({ results: [post] });
-        console.log(post);
+        const { data } = await axiosReq.get("/posts/post/");
+        setPosts(data);
+        setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
 
-    handleMount();
-  }, [id]);
+    setHasLoaded(false);
+    const timer = setTimeout(() => {
+      fetchPosts();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [pathname]);
   return (
     <Row>
       <Col>
+      {posts.results.map((post) => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))}
       </Col>
     </Row>
   )

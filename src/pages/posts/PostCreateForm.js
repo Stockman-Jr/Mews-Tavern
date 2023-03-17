@@ -130,7 +130,7 @@ function PostCreateForm() {
         >
           <option value="">--Choose game--</option>
           {gameFilterChoices.map((choice) => (
-            <option key={choice.value} value={choice.value}>{choice.display_name}</option>
+            <option key={choice.value} value={choice.display_name}>{choice.display_name}</option>
           ))}
         </Form.Control>
       </Form.Group>
@@ -161,13 +161,13 @@ function PostCreateForm() {
       </div>
 
       <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col>
-            <Container>
+        <Row className={styles.FormContent}>
+          <Col className={styles.Beige}>
+            <Container >
               <Form.Group>
                 {image ? (
                   <>
-                    <figure>
+                    <figure className={styles.ImgBox}>
                       <Image className={appStyles.Image} src={image} />
                     </figure>
                     <div>
@@ -181,7 +181,7 @@ function PostCreateForm() {
                   </>
                 ) : (
                   <Form.Label
-                    className="d-flex justify-content-center"
+                    className="d-flex justify-content-between align-self-center"
                     htmlFor="image-upload"
                   >
                     <Asset
@@ -204,13 +204,13 @@ function PostCreateForm() {
                 {message}
               </Alert>
             ))}
-              <div className={` ${styles.FormFieldDiv} d-md-none `}>
+              <div className={` ${styles.FormFieldDiv} d-lg-none `}>
                 {formFields}
               </div>
             </Container>
           </Col>
           
-          <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+          <Col md={5} lg={4} className="d-none d-lg-block p-0 p-md-2">
             <Container className={` ${styles.FormFieldDiv} `}>
               {formFields}
             </Container>

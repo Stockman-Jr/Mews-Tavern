@@ -3,11 +3,21 @@
   }
 
 .ImgBox {
+    display: flex;
+    justify-content: center;
     background-color: rgba(252, 247, 242, 0.37);
     margin-top: 15px;
     border: 2px solid #977c02;
 }
 
+.PostForm label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 5px;
+    color: #48b4c2;
+}
 
 .FormContent {
     background-color: #dacfc4;

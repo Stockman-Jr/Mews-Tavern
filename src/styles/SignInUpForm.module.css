@@ -20,7 +20,7 @@ input[type="password"] {
     padding: 20px 12px;
   }
 
-label {
+.AuthForm label {
     font-family: 'Press Start 2P', cursive;
     font-size: 12px;
     text-transform: uppercase;
@@ -41,7 +41,7 @@ label {
     border-radius: 10px;
 }
 
-.SignUp{
+.AuthForm{
     padding: 30px;
 }
 

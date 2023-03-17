@@ -1,8 +1,12 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import Badge from 'react-bootstrap/Badge';
+
+import appStyles from "../../App.module.css";
 
 import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import Avatar from '../../components/Avatar';
 
 
 const Post = (props) => {
@@ -29,7 +33,7 @@ const Post = (props) => {
 
   return (
     <Card>
-        <Card.Header>{owner}</Card.Header>
+        <Card.Header><Avatar src={profile_image} text={owner} />  <Badge className={appStyles.Badge}>{post_type}</Badge></Card.Header>
         <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />
             </Link>

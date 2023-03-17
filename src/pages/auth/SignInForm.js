@@ -48,7 +48,7 @@ const SignInForm = () => {
         <div className={styles.GradHeader}>
           <h4 className={styles.H4Text}>Log In</h4>
         </div>
-        <Form onSubmit={handleSubmit} className={styles.SignUp}>
+        <Form onSubmit={handleSubmit} className={styles.AuthForm}>
           <Form.Group className="mb-3" controlId="username">
             <Form.Label>Username</Form.Label>
             <Form.Control

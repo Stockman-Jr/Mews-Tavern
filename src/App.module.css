@@ -42,4 +42,13 @@ figure {
   display: inline-block;
 }
 
+.Badge {
+  background-color: rgb(107, 221, 221);
+  padding: 5px;
+  border-bottom: 2px solid darkgoldenrod;
+  border-right: 2px solid darkgoldenrod;
+  color: rgb(54, 48, 41);
+  float: right;
+}
+
 

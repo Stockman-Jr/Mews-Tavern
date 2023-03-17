@@ -121,7 +121,7 @@ function PostCreateForm() {
             ))}
 
       <Form.Group>
-        <Form.Label>Choose game:</Form.Label>
+        
         <Form.Control
           as="select"
           name="game_filter"
@@ -160,17 +160,19 @@ function PostCreateForm() {
         </Link>
       </div>
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className={styles.PostForm}>
         <Row className={styles.FormContent}>
-          <Col className={styles.Beige}>
+          <Col >
             <Container >
               <Form.Group>
                 {image ? (
                   <>
-                    <figure className={styles.ImgBox}>
+                  <div className={styles.ImgBox}>
+                    <figure >
                       <Image className={appStyles.Image} src={image} />
                     </figure>
-                    <div>
+                    </div>
+                    <div className="text-center">
                       <Form.Label
                         className={`${btnStyles.FormButton} ${btnStyles.Dark} btn`}
                         htmlFor="image-upload"
@@ -181,7 +183,7 @@ function PostCreateForm() {
                   </>
                 ) : (
                   <Form.Label
-                    className="d-flex justify-content-between align-self-center"
+                    className="d-flex justify-content-center align-items-center"
                     htmlFor="image-upload"
                   >
                     <Asset

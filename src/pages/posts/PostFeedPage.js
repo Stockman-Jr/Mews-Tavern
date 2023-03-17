@@ -9,7 +9,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 function PostFeedPage() {
   const { id } = useParams();
-  const [post, setPost] = useState({ results: [] });
+  const [posts, setPosts] = useState({ results: [] });
   useEffect(() => {
     const handleMount = async () => {
       try {

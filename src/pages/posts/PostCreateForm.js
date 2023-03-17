@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Button from "react-bootstrap/Button";
@@ -15,24 +15,42 @@ import styles from "../../styles/PostCreateEditForm.module.css";
 import { Link } from "react-router-dom";
 import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+
 
 
 function PostCreateForm() {
   const [postData, setPostData] = useState({
     title: "",
     content: "",
-    game_filter: [],
+    game_filter: "",
     image: "",
+    post_type: "Game Related",
   });
+  const [gameFilterChoices, setGameFilterChoices] = useState([]);
   const { title, content, game_filter, image } = postData;
   const imageInput = useRef(null);
   const history = useHistory();
+
+
+  
+  useEffect(() => {
+    const fetchGameFilterChoices = async () => {
+      const response = await axiosReq.options("/posts/post/");
+      const choices = response.data.actions.POST.game_filter.choices;
+      console.log(choices);
+      setGameFilterChoices(choices);
+    };
+
+    fetchGameFilterChoices();
+  }, []);
 
   const handleChange = (event) => {
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
     });
+
   };
 
   const handleChangeImage = (event) => {
@@ -71,20 +89,21 @@ function PostCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-{/* 
+
       <Form.Group>
-                <Form.Label>Choose game:</Form.Label>
-                <Form.Select
-                  name="game_filter"
-                  value={game_filter}
-                  onChange={handleChange}
-                />
-                {postData.map(game_filter => (
-                <option key={game_filter} value={game_filter}>{game_filter}</option>
-                ))}
-                <Form.Select />
-              </Form.Group>
- */}
+        <Form.Label>Choose game:</Form.Label>
+        <Form.Control
+          as="select"
+          name="game_filter"
+          value={game_filter}
+          onChange={handleChange}
+        >
+          <option value="">--Choose game--</option>
+          {gameFilterChoices.map((choice) => (
+            <option key={choice.value} value={choice.value}>{choice.display_name}</option>
+          ))}
+        </Form.Control>
+      </Form.Group>
 
       <Button
         className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}

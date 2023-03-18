@@ -9,8 +9,12 @@ import PostCreateForm from './pages/posts/PostCreateForm';
 import PokemonListPage from './pages/pokedex/PokemonListPage';
 import PostFeedPage from './pages/posts/PostFeedPage';
 import PostDetailPage from './pages/posts/PostDetailPage';
+import PostEditForm from './pages/posts/PostEditForm';
+import { useCurrentUser } from './contexts/CurrentUserContext';
 
 function App() {
+  const currentUser = useCurrentUser();
+  
   return (
     <div className={styles.App}>
       <NavBar />
@@ -23,6 +27,7 @@ function App() {
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/create/build" render={() => <h1>Pokémon build</h1>} />
           <Route exact path="/posts/:id" render={() => <PostDetailPage />} />
+          <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/posts" render={() => <PostFeedPage />} />
         </Switch>
       </Container>

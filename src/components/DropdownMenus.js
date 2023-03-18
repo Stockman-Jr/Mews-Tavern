@@ -6,21 +6,24 @@ import { CgMore } from "react-icons/cg";
 import { HiPencilAlt, HiTrash } from "react-icons/hi";
 
 const Dots = React.forwardRef(({ onClick }, ref) => (
-    <CgMore 
-    className={styles.Toggle} 
-    ref={ref}
-    onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
+    <div
+      className={styles.Toggle}
+      ref={ref}
+      onClick={(e) => {
+      e.preventDefault();
+      onClick(e);
     }}
-    />
-));
+    >
+        <CgMore />
+        </div>
+  ));
 
 
-export const ConfigDropdown = ({ handleEdit, handleDelete }) => {
+export const ConfigDropdown = ({handleEdit, handleDelete}) => {
+
     return (
         <Dropdown className="ml-auto" drop="left">
-            <Dropdown.Toggle as={Dots} className={styles.Toggle} />
+            <Dropdown.Toggle as={Dots} />
             <Dropdown.Menu
                 className="text-center"
                 popperConfig={{ strategy: "fixed" }}

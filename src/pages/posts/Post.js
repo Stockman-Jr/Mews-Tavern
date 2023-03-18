@@ -55,8 +55,8 @@ const Post = (props) => {
         <Badge className={appStyles.Badge}>{post_type}</Badge>
         {is_owner && postPage && (
           <ConfigDropdown
-          handleDelete={handleDelete}
           handleEdit={handleEdit}
+          handleDelete={handleDelete}
           />
         )}
         </div>  

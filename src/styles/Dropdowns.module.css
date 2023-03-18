@@ -1,0 +1,12 @@
+.DropdownItem {
+    display: inline-block;
+    max-width: 50%;
+    padding: 0px;
+  }
+  
+
+  .Toggle {
+    color: rgb(100, 183, 204);
+    font-size: 30px;
+    cursor: pointer;
+  }

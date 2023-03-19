@@ -1,9 +1,22 @@
 import React from 'react';
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import PokemonCard from './PokemonCard';
 
 function PokemonListPage() {
   return (
-    <div>PokemonListPage</div>
-  )
+    <div className="mt-5">
+    <Row >
+      <Col lg={12}>
+        <Container >
+          <PokemonCard />
+        </Container>
+      </Col>
+
+    </Row>
+  </div>
+  );
 }
 
 export default PokemonListPage;

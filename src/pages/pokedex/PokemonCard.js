@@ -4,35 +4,40 @@ import Card from "react-bootstrap/Card";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const PokemonCard = () => {
-    const [pokemons, setPokemons] = useState([]);
+    const [pokemons, setPokemons] = useState({ results: [] });
 
     useEffect(() => {
         axiosReq
-        .get("/api/pokemons/")
-        .then((response) => {
-          setPokemons(response.data);
-          console.log(respone.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-
-    }, []);
+          .get("/api/pokemons/")
+          .then((response) => {
+            setPokemons(response.data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
   return (
     <>
-    {pokemons.map((pokemon) => (
-        <Card>
-            <Card.Img src={pokemon.sprite} alt={pokemon.name}/>
+    {pokemons.results.map((pokemon) => (
+        <div className={styles.PokemonContainer}>
+        <Card className={styles.PokemonCard}>
+        <div className={styles.CardFront}>
+            <Card.Img 
+            className={styles.PokemonCardImage}
+            src={pokemon.sprite} 
+            alt={pokemon.name}/>
             <Card.Body>
                 <Card.Title className="text-center">
                   {pokemon.name}
                 </Card.Title>
 
-                <Card.Text>
+                <Card.Text className={styles.TextTypes}>
                   {pokemon.types.join("/")}
                 </Card.Text>
                 </Card.Body>
+                </div>
         </Card>
+        </div>
     ))}
     </>
   );

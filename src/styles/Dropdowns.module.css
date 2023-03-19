@@ -10,5 +10,6 @@
     color: rgb(100, 183, 204);
     font-size: 30px;
     cursor: pointer;
-    border: 1px solid #3b3b3b21;
+    float: right;
+    margin-top: 0px;
   }

@@ -1,6 +1,8 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import styles from "../../styles/PostCards.module.css";
 import appStyles from "../../App.module.css";
@@ -50,25 +52,33 @@ const Post = (props) => {
 
   return (
     <Card>
-        <Card.Header><Avatar src={profile_image} text={owner} />
-        <div className={styles.Right}>
-        <Badge className={appStyles.Badge}>{post_type}</Badge>
+        <Card.Header>
+        <Row className={styles.HeaderContent}>
+          <Col>
+          <Avatar src={profile_image} text={owner} />
+          </Col>
+        <Col className={styles.Right}>
         {is_owner && postPage && (
           <ConfigDropdown
           handleEdit={handleEdit}
           handleDelete={handleDelete}
           />
         )}
-        </div>  
+        <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
+        </Col>
+        </Row>  
         
         </Card.Header>
+        <div className={styles.CardImg}>
+        <Badge className={`${appStyles.Badge} ml-auto`}>{game_filter
+        }</Badge>
         <Link to={`/posts/${id}`}>
                 <Card.Img src={image} alt={title} />
             </Link>
+            </div>
         <Card.Body>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
+        {title && <Card.Title className="text-left">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
-        {game_filter && <Card.Text>{game_filter}</Card.Text>}
         </Card.Body>
 
     </Card>

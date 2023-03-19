@@ -27,6 +27,13 @@ a {
   object-fit: contain;
 }
 
+.PContainer {
+  display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+
 .FillerImage {
   object-fit: cover;
   height: 100%;

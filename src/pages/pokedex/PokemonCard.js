@@ -1,24 +1,55 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/PokemonCard.module.css";
 import Card from "react-bootstrap/Card";
+import Pagination from "react-bootstrap/Pagination";
+import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
 import { axiosReq } from "../../api/axiosDefaults";
 
+function PokemonTypes({ types }) {
+    return (
+      <>
+        {types.map((type) => (
+          <div
+            key={type}
+            className={styles.Circle}
+            style={{
+              background: getGradientForTypes(types),
+            }}
+          ></div>
+        ))}
+      </>
+    );
+  }
+
 const PokemonCard = () => {
-    const [pokemons, setPokemons] = useState({ results: [] });
+    const [pokemons, setPokemons] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pokemonsPerPage, setPokemonsPerPage] = useState(66);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        axiosReq
-          .get("/api/pokemons/")
-          .then((response) => {
-            setPokemons(response.data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      }, []);
+      const fetchPokemonData = async () => {
+          try {
+          const {data} = await axiosReq.get(`/api/pokemons/?page=${currentPage}`);
+          
+          setPokemons(data.results);
+          setTotalPages(Math.ceil(data.count / pokemonsPerPage));
+      } catch (error) {
+        console.log(error);
+      }
+  };
+   fetchPokemonData();
+  }, [currentPage]);
+
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+
   return (
     <>
-    {pokemons.results.map((pokemon) => (
+    {pokemons.map((pokemon) => (
         <div className={styles.PokemonContainer}>
         <Card className={styles.PokemonCard}>
         <div className={styles.CardFront}>
@@ -26,9 +57,10 @@ const PokemonCard = () => {
             className={styles.PokemonCardImage}
             src={pokemon.sprite} 
             alt={pokemon.name}/>
+            <PokemonTypes types={pokemon.types} />
             <Card.Body>
                 <Card.Title className="text-center">
-                  {pokemon.name}
+                {capitalizeFirstLetter(pokemon.name)}
                 </Card.Title>
 
                 <Card.Text className={styles.TextTypes}>
@@ -39,6 +71,20 @@ const PokemonCard = () => {
         </Card>
         </div>
     ))}
+
+      <div className="d-flex justify-content-center mt-3">
+        <Pagination>
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+            <Pagination.Item
+              key={pageNumber}
+              active={pageNumber === currentPage}
+              onClick={() => handlePageChange(pageNumber)}
+            >
+              {pageNumber}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      </div>
     </>
   );
 }

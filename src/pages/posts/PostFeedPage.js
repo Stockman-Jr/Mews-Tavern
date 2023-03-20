@@ -35,7 +35,7 @@ function PostFeedPage() {
   }, [pathname]);
   return (
     <Row>
-      <Col>
+      <Col className="mb-3">
       {posts.map((post) => (
                   <Post key={post.id} {...post} setPosts={setPosts} />
                 ))}

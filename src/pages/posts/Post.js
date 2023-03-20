@@ -78,6 +78,7 @@ const Post = (props) => {
     };
 
   return (
+    <>
     <Card className={styles.Card}>
       <Card.Header>
         <Row className={styles.HeaderContent}>
@@ -135,11 +136,15 @@ const Post = (props) => {
               </span>
             </OverlayTrigger>
           )}
-          {likes_count}
+
+          {postLikesCount}
+
         </div>
       </Card.Body>
 
     </Card>
+    <hr className={appStyles.HrDeco}/>
+    </>
   )
 };
 

@@ -22,10 +22,9 @@
 
 .Liked, .UnLiked {
     font-size: 25px;
-    border: 1px solid darkgoldenrod;
-    border-radius: 25%;
     padding: 3px;
     cursor: pointer;
+    transition: ease-in-out;
 }
 
 .UnLiked {

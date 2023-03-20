@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "../../styles/PokemonCard.module.css";
+import appStyles from "../../App.module.css";
 import Card from "react-bootstrap/Card";
 import Pagination from "react-bootstrap/Pagination";
 import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 function PokemonTypes({ types }) {
     return (
@@ -28,13 +30,13 @@ const PokemonCard = () => {
     const [pokemonsPerPage] = useState(66);
     const [totalPages, setTotalPages] = useState(0);
     const [hasLoaded, setHasLoaded] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
       const fetchPokemonData = async () => {
         try {
-          const offset = (currentPage - 1) * pokemonsPerPage;
-          const { data } = await axiosReq.get(`/api/pokemons/?limit=${pokemonsPerPage}&offset=${offset}`);
-
+          const { data } = await axiosReq.get(`/api/pokemons/?limit=${pokemonsPerPage}`);
+          console.log(data.results)
           setPokemons(data.results);
           setTotalPages(Math.ceil(data.count / pokemonsPerPage));
           setHasLoaded(true);
@@ -50,58 +52,59 @@ const PokemonCard = () => {
   return () => {
     clearTimeout(timer);
   };
-  }, [currentPage, pokemonsPerPage]);
+  }, [pokemonsPerPage]);
 
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const loadMoreData = async () => {
+    const nextPage = currentPage + 1;
+    try {
+      const { data } = await axiosReq.get(
+        `/api/pokemons/?limit=10&offset=${(nextPage - 1) * 9}`
+      );
+      setPokemons((prevPokemons) => [...prevPokemons, ...data.results]);
+      setCurrentPage(nextPage);
+      setHasMore(nextPage <= totalPages);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
 
 
   return (
     <>
-    {hasLoaded ? (
-      <> 
-    {pokemons.map((pokemon) => (
-        <div key={pokemon.id} className={styles.PokemonContainer}>
-        <Card className={styles.PokemonCard}>
-        <div className={styles.CardFront}>
-            <Card.Img 
-            className={styles.PokemonCardImage}
-            src={pokemon.sprite} 
-            alt={pokemon.name}/>
-            <PokemonTypes types={pokemon.types} />
-            <Card.Body>
-                <Card.Title className="text-center">
-                {capitalizeFirstLetter(pokemon.name)}
-                </Card.Title>
-
-                <Card.Text className={styles.TextTypes}>
-                  {pokemon.types.join("/")}
-                </Card.Text>
-                </Card.Body>
-                </div>
-        </Card>
-        </div>
-    ))}
-
       <div className="d-flex justify-content-center mt-3">
-        <Pagination>
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
-            <Pagination.Item
-              key={pageNumber}
-              active={pageNumber === currentPage}
-              onClick={() => handlePageChange(pageNumber)}
-            >
-              {pageNumber}
-            </Pagination.Item>
+        <InfiniteScroll
+          className={appStyles.PContainer}
+          dataLength={pokemons.length}
+          loader={<Asset loader />}
+          hasMore={hasMore}
+          next={loadMoreData}
+        >
+
+          {pokemons.map((pokemon) => (
+            <div key={pokemon.id} className={styles.PokemonContainer}>
+              <Card className={styles.PokemonCard}>
+                <div className={styles.CardFront}>
+                  <Card.Img
+                    className={styles.PokemonCardImage}
+                    src={pokemon.sprite}
+                    alt={pokemon.name} />
+                  <PokemonTypes types={pokemon.types} />
+                  <Card.Body>
+                    <Card.Title className="text-center">
+                      {capitalizeFirstLetter(pokemon.name)}
+                    </Card.Title>
+
+                    <Card.Text className={styles.TextTypes}>
+                      {pokemon.types.join("/")}
+                    </Card.Text>
+                  </Card.Body>
+                </div>
+              </Card>
+            </div>
           ))}
-        </Pagination>
+        </InfiniteScroll>
       </div>
-      </>
-      ) : (
-          <Asset loader />
-        )}
     </>
   );
 }

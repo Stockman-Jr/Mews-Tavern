@@ -60,3 +60,12 @@ figure {
 }
 
 
+.HrDeco {
+  height: 55px;
+  background: url("./assets/divider-gold2.png") no-repeat center;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  border: none;
+}
+
+

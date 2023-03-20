@@ -43,7 +43,6 @@ const SignUpForm = () => {
 
   return (
     <Row className={styles.Row}>
-      <h1 className="mb-5">Join The Fun!</h1>
       <Col className={` ${styles.FormContainer} my-auto `} md={8}>
         <Container className={styles.Content}>
           <div className={styles.GradHeader}>

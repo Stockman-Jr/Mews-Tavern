@@ -5,8 +5,8 @@
     justify-content: right;
 }
 
-.Right {
-
+.GradHeader {
+    background-image: linear-gradient(260deg, #8ED8F5 0%, #76c8d4 100%);
 }
 
 .Card {

@@ -80,7 +80,7 @@ const Post = (props) => {
   return (
     <>
     <Card className={styles.Card}>
-      <Card.Header>
+      <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
           <Col>
             <Avatar src={profile_image} text={owner} />

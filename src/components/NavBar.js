@@ -50,7 +50,7 @@ const NavBar = () => {
       <NavLink to="/" activeClassName={styles.Active} >Home</NavLink>
       <NavLink to="/posts">Feed</NavLink>
       <NavLink to="/pokedex">PokéDex</NavLink>
-      {currentUser ? loggedInLinks : loggedOutAuthLinks}
+      {currentUser ? loggedInLinks : ''}
     </Nav>
     <Nav className={`${styles.NavLeft} ml-auto`}>
       {currentUser ? loggedInAuthLinks : loggedOutAuthLinks}

@@ -20,7 +20,7 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home Page</h1>} />
+          <Route exact path="/" render={() => <h1>Mew's Tavern</h1>} />
           <Route exact path="/signin" render={() =>  <SignInForm/>} />
           <Route exact path="/signup" render={() =>  <SignUpForm />} />
           <Route exact path="/pokedex" render={() =>  <PokemonListPage />} />

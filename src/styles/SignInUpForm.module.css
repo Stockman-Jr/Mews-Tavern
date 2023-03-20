@@ -9,7 +9,6 @@
 }
 
 .FormContainer {
-
     margin: 0 auto;
     width: 100%;
 }
@@ -24,14 +23,15 @@ input[type="password"] {
     font-family: 'Press Start 2P', cursive;
     font-size: 12px;
     text-transform: uppercase;
-    padding: 5px;
+    padding: 3px;
     margin-left: 2px;
-    color: #7f4485;
+    color: #50a4aa;
     float: left;
     clear: both;
 }
 
 .Content {
+    background-color: #ece6d6;
     margin-left: 0;
     margin-right: 0;
     padding-right: 0;
@@ -51,14 +51,14 @@ input[type="password"] {
 
 .Link {
     text-decoration: none;
-    color: #5a5461;
+    color: #967406;
     margin-top: 50px;
     text-align: center;
 }
 
 a:hover {
     text-decoration: none;
-    color: #7f4485;
+    color: #4eb7be;
 
 }
 
@@ -73,12 +73,12 @@ a:hover {
     padding: 0;
     width: 100%;
     z-index: 1000;
-    background-image: linear-gradient(260deg, #98d7f4 0%, #f5c5e9 100%);
+    background-image: linear-gradient(260deg, #8ED8F5 0%, #76c8d4 100%);
 }
 
 .H4Text {
     text-transform: uppercase;
     padding-top: 10px;
     line-height: 50px;
-    color: #5a5461;
+    color: #615a54;
 }

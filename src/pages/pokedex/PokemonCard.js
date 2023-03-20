@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import Pagination from "react-bootstrap/Pagination";
 import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
 import { axiosReq } from "../../api/axiosDefaults";
+import Asset from "../../components/Asset";
 
 function PokemonTypes({ types }) {
     return (
@@ -26,20 +27,30 @@ const PokemonCard = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonsPerPage, setPokemonsPerPage] = useState(66);
     const [totalPages, setTotalPages] = useState(0);
+    const [hasLoaded, setHasLoaded] = useState(false);
 
     useEffect(() => {
       const fetchPokemonData = async () => {
-          try {
-          const {data} = await axiosReq.get(`/api/pokemons/?page=${currentPage}`);
-          
+        try {
+          const offset = (currentPage - 1) * pokemonsPerPage;
+          const { data } = await axiosReq.get(`/api/pokemons/?limit=${pokemonsPerPage}&offset=${offset}`);
+
           setPokemons(data.results);
           setTotalPages(Math.ceil(data.count / pokemonsPerPage));
-      } catch (error) {
-        console.log(error);
-      }
+          setHasLoaded(true);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+  setHasLoaded(false);
+  const timer = setTimeout(() => {
+    fetchPokemonData();
+  }, 2000);
+
+  return () => {
+    clearTimeout(timer);
   };
-   fetchPokemonData();
-  }, [currentPage]);
+  }, [currentPage, pokemonsPerPage]);
 
 
   const handlePageChange = (pageNumber) => {
@@ -49,8 +60,10 @@ const PokemonCard = () => {
 
   return (
     <>
+    {hasLoaded ? (
+      <> 
     {pokemons.map((pokemon) => (
-        <div className={styles.PokemonContainer}>
+        <div key={pokemon.id} className={styles.PokemonContainer}>
         <Card className={styles.PokemonCard}>
         <div className={styles.CardFront}>
             <Card.Img 
@@ -85,6 +98,10 @@ const PokemonCard = () => {
           ))}
         </Pagination>
       </div>
+      </>
+      ) : (
+          <Asset loader />
+        )}
     </>
   );
 }

@@ -53,6 +53,39 @@ const Post = (props) => {
       }
     };
 
+
+    const handleLike = async () => {
+      try {
+        const { data } = await axiosRes.post("/likes/", { post: id});
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.map((post) => {
+            return post.id === id
+              ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+              : post;
+          }),
+        }));
+      } catch(err) {
+        console.log(err);
+      }
+    };
+
+    const handleUnlike = async () => {
+      try {
+        await axiosRes.delete(`/likes/${like_id}/`);
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.map((post) => {
+            return post.id === id
+              ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+              : post;
+          }),
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
   return (
     <Card className={styles.Card}>
       <Card.Header>
@@ -84,12 +117,13 @@ const Post = (props) => {
       <Card.Body>
         {content && <Card.Text className="text-center">{content}</Card.Text>}
         <div>
-          <span className={styles.Liked}>
+          <span className={styles.Liked} onClick={handleLike}>
             <TiHeartFullOutline  />
           </span>
           <span className={styles.UnLiked}>
             <TiHeartFullOutline />
           </span>
+          {likes_count}
         </div>
       </Card.Body>
 

@@ -11,7 +11,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 function PostDetailPage() {
   const { id } = useParams();
-  const [post, setPost] = useState({ results: [] });
+  const [post, setPost] = useState({results: []});
   useEffect(() => {
     const handleMount = async () => {
       try {

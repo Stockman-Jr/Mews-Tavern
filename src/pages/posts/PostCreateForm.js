@@ -130,7 +130,7 @@ function PostCreateForm() {
         >
           <option value="">--Choose game--</option>
           {gameFilterChoices.map((choice) => (
-            <option key={choice.value} value={choice.display_name}>{choice.display_name}</option>
+            <option key={choice.value} value={choice.value}>{choice.display_name}</option>
           ))}
         </Form.Control>
       </Form.Group>

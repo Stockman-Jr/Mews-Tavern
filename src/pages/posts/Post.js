@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Col from 'react-bootstrap/Col';
@@ -36,6 +36,9 @@ const Post = (props) => {
         setPosts,
     } = props;
 
+    const [postLikesCount, setPostLikesCount] = useState(likes_count);
+    const [postLikeId, setPostLikeId] = useState(like_id);
+
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
@@ -56,31 +59,19 @@ const Post = (props) => {
 
     const handleLike = async () => {
       try {
-        const { data } = await axiosRes.post("/likes/", { post: id});
-        setPosts((prevPosts) => ({
-          ...prevPosts,
-          results: prevPosts.map((post) => {
-            return post.id === id
-              ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
-              : post;
-          }),
-        }));
-      } catch(err) {
+        const { data } = await axiosRes.post("/likes/", { post: id });
+        setPostLikesCount(postLikesCount + 1);
+        setPostLikeId(data.id);
+      } catch (err) {
         console.log(err);
       }
     };
 
     const handleUnlike = async () => {
       try {
-        await axiosRes.delete(`/likes/${like_id}/`);
-        setPosts((prevPosts) => ({
-          ...prevPosts,
-          results: prevPosts.map((post) => {
-            return post.id === id
-              ? { ...post, likes_count: post.likes_count - 1, like_id: null }
-              : post;
-          }),
-        }));
+        await axiosRes.delete(`/likes/${postLikeId}/`);
+        setPostLikesCount(postLikesCount - 1);
+        setPostLikeId(null);
       } catch (err) {
         console.log(err);
       }
@@ -117,12 +108,33 @@ const Post = (props) => {
       <Card.Body>
         {content && <Card.Text className="text-center">{content}</Card.Text>}
         <div>
-          <span className={styles.Liked} onClick={handleLike}>
-            <TiHeartFullOutline  />
-          </span>
-          <span className={styles.UnLiked}>
-            <TiHeartFullOutline />
-          </span>
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't like your own post!</Tooltip>}
+            >
+              <span className={styles.UnLiked}>
+                <TiHeartFullOutline />
+              </span>
+            </OverlayTrigger>
+          ) : postLikeId ? (
+            <span className={styles.Liked} onClick={handleUnlike}>
+              <TiHeartFullOutline />
+            </span>
+          ) : currentUser ? (
+            <span className={styles.UnLiked} onClick={handleLike}>
+              <TiHeartFullOutline />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to like posts!</Tooltip>}
+            >
+              <span className={styles.UnLiked}>
+                <TiHeartFullOutline />
+              </span>
+            </OverlayTrigger>
+          )}
           {likes_count}
         </div>
       </Card.Body>

@@ -3,9 +3,12 @@ import Card from 'react-bootstrap/Card';
 import Badge from 'react-bootstrap/Badge';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 import styles from "../../styles/PostCards.module.css";
 import appStyles from "../../App.module.css";
+import { TiHeartFullOutline} from "react-icons/ti";
 
 import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -51,35 +54,44 @@ const Post = (props) => {
     };
 
   return (
-    <Card>
-        <Card.Header>
+    <Card className={styles.Card}>
+      <Card.Header>
         <Row className={styles.HeaderContent}>
           <Col>
-          <Avatar src={profile_image} text={owner} />
+            <Avatar src={profile_image} text={owner} />
           </Col>
-        <Col className={styles.Right}>
-        {is_owner && postPage && (
-          <ConfigDropdown
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}
-          />
-        )}
-        <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
-        </Col>
-        </Row>  
-        
-        </Card.Header>
-        <div className={styles.CardImg}>
+          <Col>
+            {title && <Card.Title className="text-center">{title}</Card.Title>}
+          </Col>
+          <Col>
+            {is_owner && postPage && (
+              <ConfigDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
+          </Col>
+        </Row>
+      </Card.Header>
+      <div className={styles.CardImg}>
         <Badge className={`${appStyles.Badge} ml-auto`}>{game_filter
         }</Badge>
+        <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
         <Link to={`/posts/${id}`}>
-                <Card.Img src={image} alt={title} />
-            </Link>
-            </div>
-        <Card.Body>
-        {title && <Card.Title className="text-left">{title}</Card.Title>}
-        {content && <Card.Text>{content}</Card.Text>}
-        </Card.Body>
+          <Card.Img src={image} alt={title} />
+        </Link>
+      </div>
+      <Card.Body>
+        {content && <Card.Text className="text-center">{content}</Card.Text>}
+        <div>
+          <span className={styles.Liked}>
+            <TiHeartFullOutline  />
+          </span>
+          <span className={styles.UnLiked}>
+            <TiHeartFullOutline />
+          </span>
+        </div>
+      </Card.Body>
 
     </Card>
   )

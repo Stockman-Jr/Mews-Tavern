@@ -25,7 +25,7 @@ function PokemonTypes({ types }) {
 const PokemonCard = () => {
     const [pokemons, setPokemons] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [pokemonsPerPage, setPokemonsPerPage] = useState(66);
+    const [pokemonsPerPage] = useState(66);
     const [totalPages, setTotalPages] = useState(0);
     const [hasLoaded, setHasLoaded] = useState(false);
 
@@ -45,7 +45,7 @@ const PokemonCard = () => {
   setHasLoaded(false);
   const timer = setTimeout(() => {
     fetchPokemonData();
-  }, 2000);
+  }, 1000);
 
   return () => {
     clearTimeout(timer);

@@ -6,7 +6,7 @@
 }
 
 .Right {
-    display: grid;
+
 }
 
 .Card {
@@ -16,4 +16,20 @@
 .CardImg {
     padding: 20px;
     background-color: rgb(207, 198, 186);
+}
+
+.Liked, .UnLiked {
+    font-size: 25px;
+    border: 1px solid darkgoldenrod;
+    border-radius: 25%;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.UnLiked {
+    color: rgb(204, 197, 188);
+}
+
+.Liked {
+    color: red;
 }

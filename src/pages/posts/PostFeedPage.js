@@ -12,12 +12,12 @@ import { axiosReq } from "../../api/axiosDefaults";
 function PostFeedPage() {
   const { pathname } = useLocation();
   const [hasLoaded, setHasLoaded] = useState(false);
-  const [posts, setPosts] = useState({ results: [] });
+  const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const { data } = await axiosReq.get("/posts/post/");
-        setPosts(data);
+        setPosts(data.results);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -36,7 +36,7 @@ function PostFeedPage() {
   return (
     <Row>
       <Col>
-      {posts.results.map((post) => (
+      {posts.map((post) => (
                   <Post key={post.id} {...post} setPosts={setPosts} />
                 ))}
       </Col>

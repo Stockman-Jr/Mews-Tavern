@@ -74,7 +74,7 @@ const PokemonCard = () => {
                       <Card.Text className={styles.TextTypes}>
                         {pokemon.types.join("/")}
                       </Card.Text>
-                      <CatchPokemon />
+                      <CatchPokemon pokemon={pokemon} />
                     </Card.Body>
 
                   </div>

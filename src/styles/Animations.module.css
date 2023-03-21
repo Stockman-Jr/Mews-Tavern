@@ -33,6 +33,15 @@
       background: url("../assets/ball-caught.png") no-repeat; 
 }
 
+.Caught {
+      background: url("../assets/ball-caught.png");
+      margin: 0 auto;
+      width: 48px;
+      height: 48px;
+      position: relative;
+      cursor: pointer;
+}
+
 
 
 @keyframes catch {

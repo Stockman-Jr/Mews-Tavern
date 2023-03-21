@@ -12,7 +12,7 @@ function PokemonListPage() {
     <div className="mt-5">
     <Row >
       <Col lg={12}>
-        <Container className={appStyles.PContainer} >
+        <Container>
 
             <PokemonCard  />
 

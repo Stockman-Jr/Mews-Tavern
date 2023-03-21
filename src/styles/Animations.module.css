@@ -11,3 +11,31 @@
       transform: rotate(360deg);
 }
 }
+
+.PokeBall {
+      display: contents;
+      position: absolute;
+      margin: 0 auto;
+    }
+
+.UnCaught {
+      background: url("../assets/ball-uncaught.png");
+      margin: 0 auto;
+      width: 48px;
+      height: 48px;
+      position: relative;
+      cursor: pointer;
+      transition: background .8s;
+}
+
+.UnCaught:hover {
+      animation: catch .8s;
+      background: url("../assets/ball-caught.png") no-repeat; 
+}
+
+
+
+@keyframes catch {
+      0% { background: url("../assets/ball-uncaught.png") no-repeat; }
+      100% { background: url("../assets/ball-caught.png") no-repeat; }
+    }

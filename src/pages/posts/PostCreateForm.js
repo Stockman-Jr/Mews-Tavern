@@ -150,7 +150,8 @@ function PostCreateForm() {
   );
 
   return (
-    <div>
+    <Container>
+   
       <div>
         <Link
           to="/posts/create/build"
@@ -219,7 +220,7 @@ function PostCreateForm() {
           </Col>
         </Row>
       </Form>
-    </div>
+      </Container>
   )
 }
 

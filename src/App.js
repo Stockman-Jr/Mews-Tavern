@@ -19,9 +19,10 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-      <Container fluid className={styles.Main}>
+      <div className={styles.Main}>
         <Switch>
           <Route exact path="/" render={() => <HomePage />} />
+          
           <Route exact path="/signin" render={() =>  <SignInForm/>} />
           <Route exact path="/signup" render={() =>  <SignUpForm />} />
           <Route exact path="/pokedex" render={() =>  <PokemonListPage />} />
@@ -31,7 +32,7 @@ function App() {
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/posts" render={() => <PostFeedPage />} />
         </Switch>
-      </Container>
+      </div>
 
     </div>
   );

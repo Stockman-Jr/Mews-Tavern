@@ -34,6 +34,7 @@ function PostFeedPage() {
     };
   }, [pathname]);
   return (
+    <Container>
     <Row>
       <Col className="mb-3">
       {posts.map((post) => (
@@ -41,6 +42,7 @@ function PostFeedPage() {
                 ))}
       </Col>
     </Row>
+    </Container>
   )
 }
 

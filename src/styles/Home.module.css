@@ -26,15 +26,14 @@
 
 
 .GameUpdates, .GameEvents {
-    padding-top: 15px;
-    padding-bottom: 8px;
     font-size: 16px;
     color: #181414;
     line-height: 1.5em;
+    margin-top: 20px;
 
 }
 
-.LeftInfo h4, .GameEvents h4 {
+.LeftInfo h4 {
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
 }
@@ -76,3 +75,51 @@
     border-image-slice: 1;
     width:100%;
 }
+
+
+
+/* MEDIA QUERIES */
+
+@media screen and (min-width: 992px) {
+    .InfoWrapper {
+        flex-direction: column;
+    
+    }
+
+    .LeftInfo h4 {
+        font-size: 100%;
+     }
+
+    .GameUpdates, .GameEvents, .SiteLink {
+        font-size: 15px;
+        line-height: 1.5em;
+    
+    } 
+    }
+
+    @media screen and (max-width: 600px) {
+        .GameUpdates, .GameEvents, .SiteLink {
+            font-size: 15px;
+            line-height: 1.5em;
+        
+        } 
+        .LeftInfo h4 {
+           font-size: 100%;
+        }
+
+        .RightImg {
+            display: none;
+            visibility: hidden;
+            width: 0px;
+        }
+
+        .LeftInfo {
+            border: none;
+            padding: 12px;
+            max-width: 100%;
+        }
+
+        h1 {
+            font-size: 180%;
+        }
+        }

@@ -1,0 +1,33 @@
+
+.LeftCol, .RightCol {
+    margin: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    padding-right: 0px;
+    padding-left: 0px;
+    max-height: 300px;
+}
+
+.LeftCol {
+    background-color: #afaa9d;
+}
+
+.RightCol {
+    background-color:rgba(96, 166, 184, 0.788) ;
+}
+
+.InfoWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
+.BorderStyle {
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
+    border-image-slice: 1;
+    width:100%;
+}

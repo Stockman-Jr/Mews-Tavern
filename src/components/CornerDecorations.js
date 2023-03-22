@@ -1,24 +1,24 @@
 import React from "react";
 import styles from "../styles/CornerDecorations.module.css";
 
-const Corners = () => {
+const CornerDecorations = () => {
   return (
     <>
-      <div
-        className={`${styles.Corner} ${styles.Corner3} ${styles.TopLeft}`}
-      ></div>
-      <div
-        className={`${styles.Corner} ${styles.Corner3} ${styles.TopRight}`}
-      ></div>
+          <div
+              className={`${styles.Corner} ${styles.CornerStyle} ${styles.TopLeft}`}
+          ></div>
+          <div
+              className={`${styles.Corner} ${styles.CornerStyle} ${styles.TopRight}`}
+          ></div>
 
-      <div
-        className={`${styles.Corner} ${styles.Corner3} ${styles.BottomLeft}`}
-      ></div>
-      <div
-        className={`${styles.Corner} ${styles.Corner3} ${styles.BottomRight}`}
-      ></div>
+          <div
+              className={`${styles.Corner} ${styles.CornerStyle} ${styles.BottomLeft}`}
+          ></div>
+          <div
+              className={`${styles.Corner} ${styles.CornerStyle} ${styles.BottomRight}`}
+          ></div>
     </>
   );
 };
 
-export default Corners;
+export default CornerDecorations;

@@ -11,6 +11,7 @@ import PostFeedPage from './pages/posts/PostFeedPage';
 import PostDetailPage from './pages/posts/PostDetailPage';
 import PostEditForm from './pages/posts/PostEditForm';
 import { useCurrentUser } from './contexts/CurrentUserContext';
+import HomePage from './pages/home/HomePage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -18,9 +19,9 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-      <Container className={styles.Main}>
+      <Container fluid className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Mew's Tavern</h1>} />
+          <Route exact path="/" render={() => <HomePage />} />
           <Route exact path="/signin" render={() =>  <SignInForm/>} />
           <Route exact path="/signup" render={() =>  <SignUpForm />} />
           <Route exact path="/pokedex" render={() =>  <PokemonListPage />} />

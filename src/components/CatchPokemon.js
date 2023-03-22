@@ -1,49 +1,91 @@
-import React, { useState } from "react";
-import { axiosReq } from "../api/axiosDefaults";
+import React, { useEffect, useState } from "react";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 import aniStyles from "../styles/Animations.module.css";
 
-const CatchPokemon = ({ pokemon }) => {
+const CatchPokemon = (props) => {
+  const {
+    id,
+    owner,
+    profile_id,
+    profile_image,
+    pokemon,
+    setCaughtPokemons
+
+  } = props;
+
     const [isCaught, setIsCaught] = useState(false);
+    const [caughtPokemonId, setCaughtPokemonId] = useState(id);
     const currentUser = useCurrentUser();
-    const owner = currentUser?.username;
+    const is_owner = currentUser?.username === owner;
 
     const handleCatch = async () => {
-        const data = {
-          owner: currentUser.id, 
-          pokemon: pokemon.id,
-        };
         try {
-          const response = await axiosReq.post("/api/caught/", data);
+          const { data } = await axiosReq.post("/api/caught/", {pokemon: pokemon.id});
           console.log("Caught!");
-          console.log(response.data); 
+          console.log(data);
+          console.log(data.id);
+          setCaughtPokemonId(data.id);
           setIsCaught(true);
         } catch (error) {
           console.log(error);
         }
+        console.log("Caught!");
       };
 
 
       const handleRelease = async () => {
         try {
-          const response = await axiosReq.delete(`/api/caught/${pokemon.id}/`);
-          console.log(response.data); 
+          await axiosRes.delete(`/api/caught/${caughtPokemonId}/`);
           console.log("Released!");
+          setCaughtPokemonId(null);
           setIsCaught(false);
         } catch (error) {
           console.log(error);
         }
   };
 
+  //const isPokemonCaught = caughtPokemon.some((p) => p.pokemon.id === pokemon.id);
+
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete("/api/caught/4/");
+      console.log("Released!");
+    } catch (error) {
+      console.log(error);
+    }
+};
+
+const infoClick = () => {
+ console.log(isCaught);
+};
+
+
   return (
-    <div className={aniStyles.PokeBall} onClick={isCaught ? handleRelease : handleCatch}>
-        {isCaught ?  (
-        
-            <div className={aniStyles.Caught}></div>
+      <>
+      {is_owner && caughtPokemonId ?  (
+    <div className={aniStyles.PokeBall} onClick={handleRelease}>
+      <div className={aniStyles.Caught}></div>
+      </div>
+            ) : currentUser ? (
+              <div className={aniStyles.PokeBall} onClick={handleCatch}>
+              <div className={aniStyles.UnCaught}></div>
+              </div>
             ) : (
-            <div className={aniStyles.UnCaught}></div>      
+              <div className={aniStyles.PokeBall}>
+              <div className={aniStyles.UnCaught}></div>
+              </div>  
         )}
+       
+   
+    <div>
+
+         <button onClick={infoClick}>info</button>
+
     </div>
+    </>
+
   );
 }
 

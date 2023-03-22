@@ -34,6 +34,15 @@ a {
 }
 
 
+.CornerBox {
+  position:relative; 
+  display:inline-block; 
+  width:100%; 
+  height:auto; 
+
+}
+
+
 .FillerImage {
   object-fit: cover;
   height: 100%;
@@ -50,7 +59,7 @@ figure {
 }
 
 .Badge {
-  background-color: rgb(107, 221, 221);
+  background-color: rgb(76, 166, 182);
   padding: 5px;
   margin: 5px;
   border-bottom: 2px solid darkgoldenrod;

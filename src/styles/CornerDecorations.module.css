@@ -1,0 +1,64 @@
+.Corner {
+    position: absolute;
+    background:none;
+    width:6em;
+    height:6em;
+    font-size:2px;
+    font-size:10px;
+    opacity: 1.0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .Corner:after {
+    position: absolute;
+    content: '';
+    display: block;
+    width:0.2em;
+    height:0.2em;
+  }
+  .TopLeft {
+    top:1em;
+    left:1em; 
+    -webkit-transform:rotate(360deg); transform:rotate(360deg); 
+  }
+  .TopRight {  
+    top:1em; right:1em; -webkit-transform:rotate(90deg); transform:rotate(90deg); 
+  }
+  .BottomLeft { 
+    bottom:1em; left:1em; -webkit-transform:rotate(270deg); transform:rotate(270deg); 
+  }
+  .BottomRight { 
+    bottom:1em; right:1em; -webkit-transform:rotate(180deg); transform:rotate(180deg); 
+  }         
+
+
+.Corner3:after {
+    box-shadow:
+    0.2em 0.2em darkgoldenrod, 0.4em 0.2em darkgoldenrod, 0.6em 0.2em darkgoldenrod, 0.8em 0.2em darkgoldenrod, 1.0em 0.2em darkgoldenrod, 1.2em 0.2em darkgoldenrod, 1.4em 0.2em darkgoldenrod, 2.0em 0.2em darkgoldenrod, 2.2em 0.2em darkgoldenrod, 2.4em 0.2em darkgoldenrod, 2.6em 0.2em darkgoldenrod, 2.8em 0.2em darkgoldenrod, 3.0em 0.2em darkgoldenrod, 3.2em 0.2em darkgoldenrod, 3.4em 0.2em darkgoldenrod, 3.6em 0.2em darkgoldenrod, 3.8em 0.2em darkgoldenrod, 4.0em 0.2em darkgoldenrod, 4.2em 0.2em darkgoldenrod, 4.4em 0.2em darkgoldenrod, 4.6em 0.2em darkgoldenrod, 4.8em 0.2em darkgoldenrod, 5.0em 0.2em darkgoldenrod, 5.2em 0.2em darkgoldenrod, 5.4em 0.2em darkgoldenrod, 5.8em 0.2em darkgoldenrod, 
+    0.2em 0.4em darkgoldenrod, 1.4em 0.4em darkgoldenrod, 2.0em 0.4em darkgoldenrod, 
+    0.2em 0.6em darkgoldenrod, 1.4em 0.6em darkgoldenrod, 
+    0.2em 0.8em darkgoldenrod, 0.8em 0.8em darkgoldenrod, 1.0em 0.8em darkgoldenrod, 1.4em 0.8em darkgoldenrod, 1.8em 0.8em darkgoldenrod, 2.0em 0.8em darkgoldenrod, 2.2em 0.8em darkgoldenrod, 2.4em 0.8em darkgoldenrod, 2.6em 0.8em darkgoldenrod, 2.8em 0.8em darkgoldenrod, 3.0em 0.8em darkgoldenrod, 3.2em 0.8em darkgoldenrod, 3.4em 0.8em darkgoldenrod, 3.6em 0.8em darkgoldenrod, 3.8em 0.8em darkgoldenrod, 4.0em 0.8em darkgoldenrod, 4.2em 0.8em darkgoldenrod, 4.6em 0.8em darkgoldenrod, 
+    0.2em 1.0em darkgoldenrod, 0.8em 1.0em darkgoldenrod, 1.4em 1.0em darkgoldenrod, 3.6em 1.0em darkgoldenrod, 3.8em 1.0em darkgoldenrod, 
+    0.2em 1.2em darkgoldenrod, 0.8em 1.2em darkgoldenrod, 2.0em 1.2em darkgoldenrod, 3.2em 1.2em darkgoldenrod, 3.4em 1.2em darkgoldenrod, 
+    0.2em 1.4em darkgoldenrod, 0.4em 1.4em darkgoldenrod, 0.8em 1.4em darkgoldenrod, 1.2em 1.4em darkgoldenrod, 1.4em 1.4em darkgoldenrod, 1.6em 1.4em darkgoldenrod, 2.0em 1.4em darkgoldenrod, 2.4em 1.4em darkgoldenrod, 2.6em 1.4em darkgoldenrod, 2.8em 1.4em darkgoldenrod, 3.0em 1.4em darkgoldenrod, 
+    0.8em 1.6em darkgoldenrod, 2.0em 1.6em darkgoldenrod, 
+    1.4em 1.8em darkgoldenrod, 2.0em 1.8em darkgoldenrod, 
+    0.2em 2.0em darkgoldenrod, 0.4em 2.0em darkgoldenrod, 0.6em 2.0em darkgoldenrod, 0.8em 2.0em darkgoldenrod, 1.0em 2.0em darkgoldenrod, 1.4em 2.0em darkgoldenrod, 1.8em 2.0em darkgoldenrod, 2.0em 2.0em darkgoldenrod, 
+    0.2em 2.2em darkgoldenrod, 1.4em 2.2em darkgoldenrod, 
+    0.2em 2.4em darkgoldenrod, 0.8em 2.4em darkgoldenrod, 1.4em 2.4em darkgoldenrod, 
+    0.2em 2.6em darkgoldenrod, 0.8em 2.6em darkgoldenrod, 1.4em 2.6em darkgoldenrod, 
+    0.2em 2.8em darkgoldenrod, 0.8em 2.8em darkgoldenrod, 1.4em 2.8em darkgoldenrod, 
+    0.2em 3.0em darkgoldenrod, 0.8em 3.0em darkgoldenrod, 1.4em 3.0em darkgoldenrod, 
+    0.2em 3.2em darkgoldenrod, 0.8em 3.2em darkgoldenrod, 1.2em 3.2em darkgoldenrod, 
+    0.2em 3.4em darkgoldenrod, 0.8em 3.4em darkgoldenrod, 1.2em 3.4em darkgoldenrod, 
+    0.2em 3.6em darkgoldenrod, 0.8em 3.6em darkgoldenrod, 1.0em 3.6em darkgoldenrod, 
+    0.2em 3.8em darkgoldenrod, 0.8em 3.8em darkgoldenrod, 1.0em 3.8em darkgoldenrod, 
+    0.2em 4.0em darkgoldenrod, 0.8em 4.0em darkgoldenrod, 
+    0.2em 4.2em darkgoldenrod, 0.8em 4.2em darkgoldenrod, 
+    0.2em 4.4em darkgoldenrod,  
+    0.2em 4.6em darkgoldenrod, 0.8em 4.6em darkgoldenrod, 
+    0.2em 4.8em darkgoldenrod,
+    0.2em 5.0em darkgoldenrod, 
+    0.2em 5.2em darkgoldenrod, 
+    0.2em 5.4em darkgoldenrod, 
+    0.2em 5.8em darkgoldenrod;
+}

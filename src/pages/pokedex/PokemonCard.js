@@ -6,7 +6,8 @@ import ReactPaginate from 'react-paginate';
 import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
-import CatchPokemon from "../../components/CatchPokemon";
+import aniStyles from "../../styles/Animations.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PokemonTypes({ types }) {
     return (
@@ -30,12 +31,13 @@ const PokemonCard = () => {
     const [pokemonsPerPage] = useState(15);
     const [totalPages, setTotalPages] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [caughtPokemons, setCaughtPokemons] = useState([]);
+    const currentUser = useCurrentUser();
 
-  useEffect(() => {
+
     const fetchPokemonData = async () => {
       try {
         const { data } = await axiosReq.get(`/api/pokemons/?page=${currentPage}&page_size=${pokemonsPerPage}`);
-        console.log(data.results)
         setPokemons(data.results);
         setTotalPages(Math.ceil(data.count / pokemonsPerPage));
         setIsLoaded(true);
@@ -43,9 +45,59 @@ const PokemonCard = () => {
         console.log(error);
       }
     };
-    setIsLoaded(false);
-    fetchPokemonData();
-  }, [currentPage, pokemonsPerPage]);
+
+    const fetchCaughtPokemons = async () => {
+      try{
+        const { data } = await axiosReq.get(`/api/caught/`);
+        console.log(data.results);
+        setCaughtPokemons(data.results);
+        
+      }catch(err) {
+        console.log(err);
+      }
+    };
+
+    useEffect(() => {
+
+      setIsLoaded(false);
+      fetchPokemonData();
+      fetchCaughtPokemons();
+    }, [currentPage, pokemonsPerPage]);
+
+
+    const handleCatch = async (pokemon) => {
+      try {
+        const { data } = await axiosReq.post(`/api/caught/`, {
+          pokemon: pokemon.id,
+        });
+        setCaughtPokemons([...caughtPokemons, data]);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+
+    const CatchButton = ({ pokemon }) => {
+      const isPokemonCaught = caughtPokemons.some(
+        (caughtPokemon) => caughtPokemon.pokemon === pokemon.id
+      );
+  
+      if (isPokemonCaught) {
+        return (
+           <div className={aniStyles.PokeBall} >
+        <div className={aniStyles.Caught}></div>
+        </div>
+        );
+      } else {
+        return (
+                 <div className={aniStyles.PokeBall} onClick={handleCatch}>
+                <div className={aniStyles.UnCaught}></div>
+                </div>
+        );
+      }
+    };
+
+ 
 
 
   const handlePageChange = (selectedPage) => {
@@ -74,7 +126,10 @@ const PokemonCard = () => {
                       <Card.Text className={styles.TextTypes}>
                         {pokemon.types.join("/")}
                       </Card.Text>
-                      <CatchPokemon pokemon={pokemon} />
+          
+                       <CatchButton pokemon={pokemon.id} />
+              
+   
                     </Card.Body>
 
                   </div>

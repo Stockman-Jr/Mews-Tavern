@@ -8,6 +8,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import aniStyles from "../../styles/Animations.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function PokemonTypes({ types }) {
     return (
@@ -25,7 +26,7 @@ function PokemonTypes({ types }) {
     );
   }
 
-const PokemonCard = () => {
+const PokemonCard = ({ page }) => {
     const [pokemons, setPokemons] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [pokemonsPerPage] = useState(15);
@@ -33,12 +34,15 @@ const PokemonCard = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [caughtPokemons, setCaughtPokemons] = useState([]);
     const currentUser = useCurrentUser();
-    const owner = currentUser?.pk;
+    const owner = currentUser;
+    const is_owner = currentUser?.username === owner;
+    const history = useHistory();
 
 
     const fetchPokemonData = async () => {
+      setCurrentPage(1);
       try {
-        const { data } = await axiosReq.get(`/api/pokemons/?page=${currentPage}&page_size=${pokemonsPerPage}`);
+        const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}`);
         setPokemons(data.results);
         setTotalPages(Math.ceil(data.count / pokemonsPerPage));
         setIsLoaded(true);
@@ -49,7 +53,7 @@ const PokemonCard = () => {
 
     const fetchCaughtPokemons = async () => {
       try{
-        const { data } = await axiosReq.get(`/api/caught/?owner=${owner}`);
+        const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
         console.log(data.results);
         setCaughtPokemons(data.results);
         
@@ -59,17 +63,17 @@ const PokemonCard = () => {
     };
 
     useEffect(() => {
-
+      setCurrentPage(page);
+      console.log(page);
       setIsLoaded(false);
       fetchPokemonData();
       fetchCaughtPokemons();
-    }, [currentPage, pokemonsPerPage]);
+    }, [page, pokemonsPerPage, owner]);
 
 
     const handleCatch = async (pokemon) => {
       try {
         const { data } = await axiosReq.post(`/api/caught/`, {
-          owner: currentUser.pk,
           pokemon: pokemon.id,
         });
         setCaughtPokemons([...caughtPokemons, data]);
@@ -103,7 +107,9 @@ const PokemonCard = () => {
 
 
   const handlePageChange = (selectedPage) => {
-    setCurrentPage(selectedPage.selected + 1);
+    const newPage = selectedPage.selected + 1;
+  setCurrentPage(newPage);
+  history.push(`/pokedex/${newPage}`);
   };
 
   return (
@@ -151,7 +157,7 @@ const PokemonCard = () => {
               nextClassName={'page-item'}
               previousLinkClassName={'page-link'}
               nextLinkClassName={'page-link'}
-              forcePage={currentPage - 1}
+              forcePage={page - 1}
             />
           </>
         ) : (

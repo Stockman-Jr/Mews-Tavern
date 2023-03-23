@@ -25,7 +25,7 @@ function App() {
           
           <Route exact path="/signin" render={() =>  <SignInForm/>} />
           <Route exact path="/signup" render={() =>  <SignUpForm />} />
-          <Route exact path="/pokedex" render={() =>  <PokemonListPage />} />
+          <Route exact path="/pokedex/:page" render={() =>  <PokemonListPage />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/create/build" render={() => <h1>Pokémon build</h1>} />
           <Route exact path="/posts/:id" render={() => <PostDetailPage />} />

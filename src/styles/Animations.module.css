@@ -42,6 +42,18 @@
       cursor: pointer;
 }
 
+.Caught:hover {
+      animation: wiggle 1s infinite;
+}
+
+@keyframes wiggle {
+      0% { transform: rotate(0deg); }
+      80% { transform: rotate(0deg); }
+      85% { transform: rotate(8deg); }
+      95% { transform: rotate(-8deg); }
+     100% { transform: rotate(0deg); }
+    }
+
 
 
 @keyframes catch {

@@ -70,7 +70,7 @@ function PokemonBuildCreateForm() {
   return (
     <div className={`${styles.BuildForm} mt-5 py-4`}>
         <Form>
-            <Row >
+            <Row className={appStyles.Row}>
                 <Col>
                 <Container>
                           <Form.Group controlId="pokemon-select">
@@ -90,7 +90,7 @@ function PokemonBuildCreateForm() {
                               </Form.Control>
                           </Form.Group>
 
-                          <Form.Group>
+                          <Form.Group className={styles.SelectWrapper}>
 
                               <div className={styles.SpriteBox}>
                                   {selectedPokemonSprite && (
@@ -100,11 +100,13 @@ function PokemonBuildCreateForm() {
                                       />
                                   )}
                               </div>
+                              <div className={styles.SelectBox}>
                           {selectedPokemon && (
-                            <>
+                 
                             <PokeBuildFields selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} />
-                            </>
+                  
                           )}
+                          </div>
                           </Form.Group>
                   
 

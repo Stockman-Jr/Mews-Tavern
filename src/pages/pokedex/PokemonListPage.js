@@ -10,7 +10,7 @@ function PokemonListPage() {
 
   return (
     <div className="mt-5">
-    <Row >
+    <Row className='m-0' >
       <Col lg={12}>
         <Container>
 

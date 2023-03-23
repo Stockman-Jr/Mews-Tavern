@@ -33,6 +33,7 @@ const PokemonCard = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [caughtPokemons, setCaughtPokemons] = useState([]);
     const currentUser = useCurrentUser();
+    const owner = currentUser?.pk;
 
 
     const fetchPokemonData = async () => {
@@ -48,7 +49,7 @@ const PokemonCard = () => {
 
     const fetchCaughtPokemons = async () => {
       try{
-        const { data } = await axiosReq.get(`/api/caught/`);
+        const { data } = await axiosReq.get(`/api/caught/?owner=${owner}`);
         console.log(data.results);
         setCaughtPokemons(data.results);
         
@@ -68,6 +69,7 @@ const PokemonCard = () => {
     const handleCatch = async (pokemon) => {
       try {
         const { data } = await axiosReq.post(`/api/caught/`, {
+          owner: currentUser.pk,
           pokemon: pokemon.id,
         });
         setCaughtPokemons([...caughtPokemons, data]);
@@ -84,15 +86,15 @@ const PokemonCard = () => {
   
       if (isPokemonCaught) {
         return (
-           <div className={aniStyles.PokeBall} >
-        <div className={aniStyles.Caught}></div>
-        </div>
+          <div className={aniStyles.PokeBall} >
+            <div className={aniStyles.Caught}></div>
+          </div>
         );
       } else {
         return (
-                 <div className={aniStyles.PokeBall} onClick={handleCatch}>
-                <div className={aniStyles.UnCaught}></div>
-                </div>
+          <div className={aniStyles.PokeBall} onClick={handleCatch}>
+            <div className={aniStyles.UnCaught}></div>
+          </div>
         );
       }
     };
@@ -127,9 +129,7 @@ const PokemonCard = () => {
                         {pokemon.types.join("/")}
                       </Card.Text>
           
-                       <CatchButton pokemon={pokemon.id} />
-              
-   
+                       <CatchButton pokemon={pokemon} />  
                     </Card.Body>
 
                   </div>

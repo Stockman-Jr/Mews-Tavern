@@ -34,7 +34,7 @@ function PostFeedPage() {
     };
   }, [pathname]);
   return (
-    <Container>
+    <Container className="mt-5">
     <Row>
       <Col className="mb-3">
       {posts.map((post) => (

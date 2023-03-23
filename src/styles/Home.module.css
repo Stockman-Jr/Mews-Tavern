@@ -6,7 +6,6 @@
     flex-direction: row;
     padding-right: 0px;
     padding-left: 0px;
-    max-height: 300px;
 }
 
 .LeftCol {
@@ -21,13 +20,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px;
+    margin: 10px 12px 40px 12px;
+    white-space: pre-line;
 }
 
 
 .GameUpdates, .GameEvents {
     font-size: 16px;
-    color: #181414;
+    color: #2c2724;
+    font-weight: 600;
     line-height: 1.5em;
     margin-top: 20px;
 
@@ -36,11 +37,12 @@
 .LeftInfo h4 {
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
+    font-size: 140%;
 }
 
 .LeftInfo {
     border-right: 4px solid darkgoldenrod;
-    padding: 12px;
+    padding: 10px;
     max-width: 45%;
 }
 
@@ -58,8 +60,8 @@
 }
 
 .SiteLink {
-    font-size: 18px;
-    color: #3b3b3b;
+    font-size: 16px;
+    color: #292222;
 }
 
 .SiteLink a:hover {
@@ -70,7 +72,7 @@
 
 .BorderStyle {
     border-bottom: 4px solid transparent;
-    border-top: 4px solid transparent;
+    /*border-top: 4px solid transparent;*/
     border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
     border-image-slice: 1;
     width:100%;
@@ -79,15 +81,9 @@
 
 
 /* MEDIA QUERIES */
-
-@media screen and (min-width: 992px) {
-    .InfoWrapper {
-        flex-direction: column;
-    
-    }
-
+@media screen and (max-width: 992px) {
     .LeftInfo h4 {
-        font-size: 100%;
+        font-size: 120%;
      }
 
     .GameUpdates, .GameEvents, .SiteLink {
@@ -96,6 +92,37 @@
     
     } 
     }
+
+    @media screen and (max-width: 830px) {
+        .LeftInfo h4 {
+            font-size: 110%;
+         }
+    
+        .GameUpdates, .GameEvents, .SiteLink {
+            font-size: 15px;
+            line-height: 1.3em;
+        
+        } 
+
+        .LeftCol, .RightCol {
+
+            max-height: 320px;
+        }
+        }
+
+        @media screen and (max-width: 660px) {
+            .LeftInfo h4 {
+                font-size: 100%;
+             }
+        
+            .GameUpdates, .GameEvents, .SiteLink {
+                font-size: 15px;
+                line-height: 1.2em;
+            
+            }
+
+
+            }
 
     @media screen and (max-width: 600px) {
         .GameUpdates, .GameEvents, .SiteLink {

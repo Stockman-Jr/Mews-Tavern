@@ -40,7 +40,6 @@ const PokemonCard = ({ page }) => {
 
 
     const fetchPokemonData = async () => {
-      setCurrentPage(1);
       try {
         const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}`);
         setPokemons(data.results);
@@ -64,7 +63,6 @@ const PokemonCard = ({ page }) => {
 
     useEffect(() => {
       setCurrentPage(page);
-      console.log(page);
       setIsLoaded(false);
       fetchPokemonData();
       fetchCaughtPokemons();

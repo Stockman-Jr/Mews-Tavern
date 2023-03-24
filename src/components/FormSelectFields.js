@@ -2,6 +2,19 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
 
+const fetchAllData = async (url) => {
+  let allData = [];
+  let nextPage = url;
+
+  while (nextPage) {
+    const response = await await axiosReq.get(nextPage);
+    allData = allData.concat(response.data.results);
+    console.log(allData);
+    nextPage = response.data.next;
+  }
+  return allData;
+};
+
 export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleChange }) => {
     const [options] = useState([]);
 
@@ -152,9 +165,73 @@ export const FieldOptions = ({handleChange}) => {
           />
         ))}     
       </Form.Group>
-
-      <button onClick={getInfo}>click</button>
     </>
   );
 
 };
+
+export const FormFields = () => {
+  const [nature, setNature] = useState([]);
+  const [heldItem, setHeldItem] = useState([]);
+  const fetchNatures = async () => {
+    const url = '/api/natures/';
+    const data = await fetchAllData(url);
+    console.log(data.name);
+    setHeldItem(data);
+  };
+
+  const fetchHeldItems = async () => {
+    const url = '/api/held-items/';
+    const data = await fetchAllData(url);
+    console.log(data.name);
+    setNature(data);
+  };
+  useEffect(() => {
+    fetchHeldItems();
+    fetchNatures();
+
+  }, [])
+
+  return (
+    <>
+    <div>
+    <Form.Label htmlFor="nature">Select nature:</Form.Label>
+    <Form.Control
+      as="select"
+      name="nature"
+
+
+    >
+      <option value="">--Select nature--</option>
+      {nature.map((n) => (
+        <option key={n.id} value={n.name}>
+          {n.name}
+        </option>
+      ))}
+    </Form.Control>
+    </div>
+    {/*
+
+     {nature.map((n) => ( 
+        <p key={n.id}>{n.name}</p>
+      ))}
+    <Form.Label htmlFor="nature">Select nature:</Form.Label>
+    <Form.Control
+      as="select"
+      name="nature"
+      value={nature}
+      onChange={handleChange}
+    >
+      <option value="">--Select nature--</option>
+      {natures.map((n) => (
+        <option key={n.id} value={n.name}>
+          {name}
+        </option>
+      ))}
+    </Form.Control>
+    */}
+    </>
+  );
+
+
+}

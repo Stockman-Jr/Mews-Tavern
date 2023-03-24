@@ -13,7 +13,7 @@ import appStyles from "../../App.module.css";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { PokeBuildFields, FieldOptions } from "../../components/FormSelectFields";
+import { PokeBuildFields, FieldOptions, FormFields } from "../../components/FormSelectFields";
 
 
 function PokemonBuildCreateForm() {
@@ -168,6 +168,7 @@ function PokemonBuildCreateForm() {
                           )}
                           </div>
                           </Form.Group>
+                          <FormFields />
 
                   
 

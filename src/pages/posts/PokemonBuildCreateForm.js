@@ -13,7 +13,7 @@ import appStyles from "../../App.module.css";
 
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { PokeBuildFields } from "../../components/FormSelectFields";
+import { PokeBuildFields, FieldOptions } from "../../components/FormSelectFields";
 
 
 function PokemonBuildCreateForm() {
@@ -21,6 +21,7 @@ function PokemonBuildCreateForm() {
     const [selectedPokemon, setSelectedPokemon] = useState("");
     const [pokeName, setPokeName] = useState("");
     const [pokeId, setPokeId] = useState(null);
+    const [fieldOptions, setGetFieldOptions] = useState([]);
     const [options] = useState([]);
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
     const [pokeBuildData, setPokeBuildData] = useState({
@@ -75,10 +76,25 @@ function PokemonBuildCreateForm() {
 
 
       const handleChange = (event) => {
+        const { name, value, type, checked } = event.target;
+
+        setPokeBuildData(prevState => {
+          if (type === 'checkbox' && prevState[name].length >= 2) {
+            return prevState;
+          } else if (type === 'checkbox') {
+            const updatedEvStats = [...prevState[name], value];
+            return { ...prevState, [name]: updatedEvStats };
+          } else {
+            return { ...prevState, [name]: value };
+          }
+        });
+    
+        {/*
         setPokeBuildData((prevState) => ({
           ...prevState,
           [event.target.name]: event.target.value,
         }));
+        */}
         console.log(pokeBuildData);
       };
 
@@ -145,10 +161,14 @@ function PokemonBuildCreateForm() {
                             handleChange={handleChange}
               
                             />
-                  
+      
+                          )}
+                          {selectedPokemon && (
+                          <FieldOptions handleChange={handleChange} />
                           )}
                           </div>
                           </Form.Group>
+
                   
 
                           <Form.Group>
@@ -172,6 +192,7 @@ function PokemonBuildCreateForm() {
                           >
                               Info
                           </Button>
+             
         
                 </Container>
                 </Col>
@@ -181,4 +202,4 @@ function PokemonBuildCreateForm() {
   )
 }
 
-export default PokemonBuildCreateForm
+export default PokemonBuildCreateForm;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
 
@@ -13,7 +13,7 @@ export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleCha
                 <Form.Label htmlFor="move_one">Select move 1:</Form.Label>
                 <Form.Control
                   as="select"
-                  id="move_one"
+                 
                   name="move_one"     
                   value={options[0]}
                   onChange={handleChange}
@@ -92,23 +92,46 @@ export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleCha
               </Form.Control>
             </>
           )}
-
-      <Form.Group className="mb-3" controlId="formBasicCheckbox">
-        <Form.Check type="checkbox" label="Check me out" />
-        
-      </Form.Group>
         </div>
       );
 };
 
-export const FieldOptions = () => {
+export const FieldOptions = ({handleChange}) => {
   const [fieldOptions, setGetFieldOptions] = useState([]);
+  const [options] = useState([]);
+
+  useEffect(() => {
+    const getOptions = async () => {
+      const { data } = await axiosReq.options("/posts/pokebuild/");
+      const choices = data.actions.POST.ev_stats.choices;
+      setGetFieldOptions(choices);
+    };
+    getOptions();
+  }, []);
+
+  const [checkedCount, setCheckedCount] = useState(0);
+
+  const handleCheckboxChange = (event) => {
+    const { checked } = event.target;
+
+    if (checked) {
+      if (checkedCount < 2) {
+        setCheckedCount((count) => count + 1);
+        handleChange(event);
+      } else {
+        event.preventDefault();
+        alert("first");
+      }
+    } else {
+      setCheckedCount((count) => count - 1);
+      handleChange(event);
+    }
+  };
 
   const getInfo = async (e) => {
     e.preventDefault();
     const { data } = await axiosReq.options("/posts/pokebuild/");
     const choices = data.actions.POST.ev_stats.choices;
-    setGetFieldOptions(choices);
     console.log(choices[0]);
     console.log(data.actions.POST.ev_stats);
   };
@@ -116,9 +139,21 @@ export const FieldOptions = () => {
   return (
     <>
       <Form.Group className="mb-3" controlId="evStats">
-        <Form.Check type="radio" label="Check me out" />
-        
+        {fieldOptions.map((option) => (
+          <Form.Check
+          key={option.value}
+          type="checkbox" 
+          label={option.display_name}
+          name="ev_stats"
+          value={option.value}
+          onChange={handleCheckboxChange}
+          disabled={checkedCount >= 2 && !option.value}
+  
+          />
+        ))}     
       </Form.Group>
+
+      <button onClick={getInfo}>click</button>
     </>
   );
 

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon }) => {
     const [selectedMoves, setSelectedMoves] = useState([]);
     const [selectedAbilities, setSelectedAbilities] = useState("");
-  
+
     const handleMoveChange = (e) => {
       const move = e.target.value;
       if (selectedMoves.includes(move)) {
@@ -12,6 +12,10 @@ export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon }) => {
       } else {
         setSelectedMoves([...selectedMoves, move]);
       }
+      
+      {/*
+    setSelectedMoves([...selectedMoves, move]);
+      */ }
     };
   
     const handleAbilityChange = (e) => {
@@ -27,6 +31,7 @@ export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon }) => {
                 <Form.Control
                   as="select"
                   id="move1-select"
+      
                   value={selectedMoves[0]}
                   onChange={handleMoveChange}
                 >

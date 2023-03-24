@@ -23,6 +23,26 @@ function PokemonBuildCreateForm() {
     const [selectedMoves, setSelectedMoves] = useState([]);
     const [selectedAbilities, setSelectedAbilities] = useState("");
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
+    const [pokeBuildData, setPokeBuildData] = useState({
+      pokemon: "",
+      move_one: "",
+      move_two: "",
+      move_three: "",
+      move_four: "",
+      ability: "",
+      ev_stats: "",
+      content: "",
+      post_type: "",
+    });
+    const {
+      pokemon, 
+      move_one, 
+      move_two, 
+      move_three,
+      move_four, 
+      ability, 
+      ev_stats, 
+      content} = pokeBuildData;
     const currentUser = useCurrentUser();
     const owner = currentUser;
 
@@ -43,30 +63,38 @@ function PokemonBuildCreateForm() {
 
     }, [owner, pokeId]);
 
-      const getSelectPokemon = async (id) => {
-        try {
-          const { data } = await axiosReq.get(`/api/caught/${id}`);
-          setSelectedPokemon(data.pokemon);
-          setSelectedPokemonSprite(data.pokemon.sprite);
-          console.log(data.pokemon);
-        } catch (error) {
-          console.log(error);
-        }
-        
+    const handlePokemonSelect = async (event) => {
+      const id = event.target.value;
+      const { data } = await axiosReq.get(`/api/caught/${id}`);
+      //const pokemon = data.pokemon;
+    
+      setSelectedPokemon(data.pokemon);
+      setSelectedPokemonSprite(data.pokemon.sprite);
+    
+     // setPokeBuildData({
+     //   ...pokeBuildData,
+      //  pokemon: pokemon.name
+     // });
+     // console.log(pokeBuildData);
+    };
+
+
+      const handleChange = (event) => {
+        setPokeBuildData((prevState) => ({
+          ...prevState,
+          [event.target.name]: event.target.value,
+        }));
+        console.log(pokeBuildData);
       };
 
-
-      const handlePokemonSelect = (e) => {
-        const id = e.target.value; 
-        console.log(id);
-        getSelectPokemon(id);
-      };
-
-      const getInfo = (e) => {
+      const getInfo = async (e) => {
         e.preventDefault();
+        const response = await axiosReq.options("/posts/pokebuild/");
+        console.log(response.data.actions.POST);
         console.log(selectedPokemon);
         console.log(selectedPokemon.name);
         console.log(caughtPokemons.find((p) => p.pokemon === selectedPokemon.id));
+        console.log(selectedMoves);
       };
   return (
     <div className={`${styles.BuildForm} mt-5 py-4`}>
@@ -78,8 +106,9 @@ function PokemonBuildCreateForm() {
                               <Form.Label>Select a Pokémon:</Form.Label>
                               <Form.Control
                                   as="select"
-                                  value={pokeId}
-                                  onChange={handlePokemonSelect}
+                                  name="pokemon"
+                                  value={pokemon}
+                                  onChange={(event) => {handlePokemonSelect(event); handleChange(event);}}
                               >
                                   <option value="">--Select a Pokémon--</option>
                                   {caughtPokemons.map((p) => (
@@ -95,16 +124,26 @@ function PokemonBuildCreateForm() {
 
                               <div className={styles.SpriteBox}>
                                   {selectedPokemonSprite && (
+                                    <>
+                                    <span>{selectedPokemon.name}</span>
                                       <Image
                                           src={selectedPokemonSprite}
                                           alt={`${selectedPokemon} sprite`}
                                       />
+                                      </>
                                   )}
                               </div>
                               <div className={styles.SelectBox}>
                           {selectedPokemon && (
                  
-                            <PokeBuildFields selectedPokemon={selectedPokemon} setSelectedPokemon={setSelectedPokemon} />
+                            <PokeBuildFields 
+                            selectedPokemon={selectedPokemon} 
+                            setSelectedPokemon={setSelectedPokemon}
+                            selectedMoves={selectedMoves}
+                            setSelectedMoves={setSelectedMoves}
+                            selectedAbilities={selectedAbilities}
+                            setSelectedAbilities={setSelectedAbilities}
+                            />
                   
                           )}
                           </div>
@@ -124,6 +163,13 @@ function PokemonBuildCreateForm() {
                               type="submit"
                           >
                               Share
+                          </Button>
+
+                          <Button
+                              className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+                              onClick={getInfo}
+                          >
+                              Info
                           </Button>
         
                 </Container>

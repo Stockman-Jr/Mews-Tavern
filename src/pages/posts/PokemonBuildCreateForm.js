@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Image from "react-bootstrap/Image";
 
 import styles from "../../styles/BuildCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
@@ -94,7 +95,7 @@ function PokemonBuildCreateForm() {
 
                               <div className={styles.SpriteBox}>
                                   {selectedPokemonSprite && (
-                                      <img
+                                      <Image
                                           src={selectedPokemonSprite}
                                           alt={`${selectedPokemon} sprite`}
                                       />

@@ -19,9 +19,9 @@ import { PokeBuildFields } from "../../components/FormSelectFields";
 function PokemonBuildCreateForm() {
     const [caughtPokemons, setCaughtPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState("");
+    const [pokeName, setPokeName] = useState("");
     const [pokeId, setPokeId] = useState(null);
-    const [selectedMoves, setSelectedMoves] = useState([]);
-    const [selectedAbilities, setSelectedAbilities] = useState("");
+    const [options] = useState([]);
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
     const [pokeBuildData, setPokeBuildData] = useState({
       pokemon: "",
@@ -30,9 +30,9 @@ function PokemonBuildCreateForm() {
       move_three: "",
       move_four: "",
       ability: "",
-      ev_stats: "",
+      ev_stats: [],
       content: "",
-      post_type: "",
+      post_type: "Pokémon Build",
     });
     const {
       pokemon, 
@@ -42,7 +42,9 @@ function PokemonBuildCreateForm() {
       move_four, 
       ability, 
       ev_stats, 
-      content} = pokeBuildData;
+      content,
+      post_type,
+    } = pokeBuildData;
     const currentUser = useCurrentUser();
     const owner = currentUser;
 
@@ -65,17 +67,10 @@ function PokemonBuildCreateForm() {
 
     const handlePokemonSelect = async (event) => {
       const id = event.target.value;
-      const { data } = await axiosReq.get(`/api/caught/${id}`);
-      //const pokemon = data.pokemon;
-    
+      const { data } = await axiosReq.get(`/api/caught/${id}`);   
       setSelectedPokemon(data.pokemon);
+      setPokeName(data.pokemon.name);
       setSelectedPokemonSprite(data.pokemon.sprite);
-    
-     // setPokeBuildData({
-     //   ...pokeBuildData,
-      //  pokemon: pokemon.name
-     // });
-     // console.log(pokeBuildData);
     };
 
 
@@ -87,6 +82,15 @@ function PokemonBuildCreateForm() {
         console.log(pokeBuildData);
       };
 
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        pokeBuildData.pokemon = selectedPokemon.name;
+        console.log("Pokemon Build:", pokeBuildData);
+
+        console.log(pokemon);
+      };
+
       const getInfo = async (e) => {
         e.preventDefault();
         const response = await axiosReq.options("/posts/pokebuild/");
@@ -94,11 +98,10 @@ function PokemonBuildCreateForm() {
         console.log(selectedPokemon);
         console.log(selectedPokemon.name);
         console.log(caughtPokemons.find((p) => p.pokemon === selectedPokemon.id));
-        console.log(selectedMoves);
       };
   return (
     <div className={`${styles.BuildForm} mt-5 py-4`}>
-        <Form>
+        <Form onSubmit={handleSubmit}>
             <Row className={appStyles.Row}>
                 <Col>
                 <Container>
@@ -139,10 +142,8 @@ function PokemonBuildCreateForm() {
                             <PokeBuildFields 
                             selectedPokemon={selectedPokemon} 
                             setSelectedPokemon={setSelectedPokemon}
-                            selectedMoves={selectedMoves}
-                            setSelectedMoves={setSelectedMoves}
-                            selectedAbilities={selectedAbilities}
-                            setSelectedAbilities={setSelectedAbilities}
+                            handleChange={handleChange}
+              
                             />
                   
                           )}

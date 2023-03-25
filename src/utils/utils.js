@@ -1,3 +1,6 @@
+import { axiosReq } from "../api/axiosDefaults";
+
+
 const typeColors = {
     normal: "#ACA498",
     water: "#418DC6",
@@ -32,3 +35,26 @@ const typeColors = {
   export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+
+  /* Data fetching */
+
+  export const fetchAllData = async (url) => {
+    let allData = [];
+    let nextPage = url;
+  
+    while (nextPage) {
+      const response = await axiosReq.get(nextPage);
+      allData = allData.concat(response.data.results);
+      nextPage = response.data.next;
+    }
+    return allData;
+  };
+
+  export const fetchDataChoices = async (url) => {
+     let choices = [];
+     const response = await axiosReq.options(url);
+     choices = response.data.actions.POST;
+
+     return choices;
+  };

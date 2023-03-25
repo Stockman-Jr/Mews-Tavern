@@ -1,19 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
-
-const fetchAllData = async (url) => {
-  let allData = [];
-  let nextPage = url;
-
-  while (nextPage) {
-    const response = await await axiosReq.get(nextPage);
-    allData = allData.concat(response.data.results);
-    console.log(allData);
-    nextPage = response.data.next;
-  }
-  return allData;
-};
+import { fetchAllData, fetchDataChoices } from "../utils/utils";
 
 export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleChange }) => {
     const [options] = useState([]);
@@ -133,7 +121,7 @@ export const FieldOptions = ({handleChange}) => {
         handleChange(event);
       } else {
         event.preventDefault();
-        alert("first");
+        alert("Please select two stats!");
       }
     } else {
       setCheckedCount((count) => count - 1);
@@ -170,21 +158,20 @@ export const FieldOptions = ({handleChange}) => {
 
 };
 
-export const FormFields = () => {
-  const [nature, setNature] = useState([]);
-  const [heldItem, setHeldItem] = useState([]);
+export const FormFields = ({ handleChange, nature, held_item }) => {
+  const [natureList, setNatureList] = useState([]);
+  const [heldItemList, setHeldItemList] = useState([]);
+
   const fetchNatures = async () => {
     const url = '/api/natures/';
     const data = await fetchAllData(url);
-    console.log(data.name);
-    setHeldItem(data);
+    setNatureList(data);
   };
 
   const fetchHeldItems = async () => {
     const url = '/api/held-items/';
     const data = await fetchAllData(url);
-    console.log(data.name);
-    setNature(data);
+    setHeldItemList(data);
   };
   useEffect(() => {
     fetchHeldItems();
@@ -194,44 +181,63 @@ export const FormFields = () => {
 
   return (
     <>
-    <div>
     <Form.Label htmlFor="nature">Select nature:</Form.Label>
     <Form.Control
       as="select"
-      name="nature"
-
-
-    >
-      <option value="">--Select nature--</option>
-      {nature.map((n) => (
-        <option key={n.id} value={n.name}>
-          {n.name}
-        </option>
-      ))}
-    </Form.Control>
-    </div>
-    {/*
-
-     {nature.map((n) => ( 
-        <p key={n.id}>{n.name}</p>
-      ))}
-    <Form.Label htmlFor="nature">Select nature:</Form.Label>
-    <Form.Control
-      as="select"
+      id="nature"
       name="nature"
       value={nature}
       onChange={handleChange}
     >
       <option value="">--Select nature--</option>
-      {natures.map((n) => (
+      {natureList.map((n) => (
         <option key={n.id} value={n.name}>
-          {name}
+          {n.name}
         </option>
       ))}
     </Form.Control>
-    */}
+
+    <Form.Label htmlFor="held_item">Select held item:</Form.Label>
+    <Form.Control
+      as="select"
+      id="held_item"
+      name="held_item"
+      value={held_item}
+      onChange={handleChange}
+    >
+      <option value="">--Select held item--</option>
+      {heldItemList.map((n) => (
+        <option key={n.id} value={n.name}>
+          {n.name}
+        </option>
+      ))}
+    </Form.Control>
     </>
   );
+}
+
+
+export const GameFilterChoices = ({ handleChange }) => {
+  const [options] = useState([]);
+
+  return (
+    <div>
+    <Form.Label htmlFor="game_filter">Select nature:</Form.Label>
+    <Form.Control
+      as="select"
+      name="game_filter"
+    >
+      <option value="">--Select nature--</option>
+ 
+        <option >
+        
+        </option>
+ 
+    </Form.Control>
+    </div>
+  );
+
+
 
 
 }

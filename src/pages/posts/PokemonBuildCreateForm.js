@@ -11,6 +11,7 @@ import styles from "../../styles/BuildCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import appStyles from "../../App.module.css";
 
+import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { PokeBuildFields, FieldOptions, FormFields } from "../../components/FormSelectFields";
@@ -49,6 +50,8 @@ function PokemonBuildCreateForm() {
     } = pokeBuildData;
     const currentUser = useCurrentUser();
     const owner = currentUser;
+    const history = useHistory();
+    const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const fetchCaughtPokemons = async () => {
@@ -89,10 +92,34 @@ function PokemonBuildCreateForm() {
   };
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     pokeBuildData.pokemon = selectedPokemon.name;
     console.log("Pokemon Build:", pokeBuildData);
+
+    const formData = new FormData();
+
+    formData.append("pokemon", pokemon);
+    formData.append("move_one", move_one);
+    formData.append("move_two", move_two);
+    formData.append("move_three", move_three);
+    formData.append("move_four", move_four);
+    formData.append("ability", ability);
+    //formData.append("ev_stats", JSON.stringify(ev_stats));
+    formData.append("nature", nature);
+    formData.append("held_item", held_item);
+    formData.append("content", content);
+    formData.append("post_type", post_type);
+
+    try {
+      const { data } = await axiosReq.post("/posts/pokebuild/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
   };
 
   const getInfo = async (e) => {

@@ -191,7 +191,7 @@ export const FormFields = ({ handleChange, nature, held_item }) => {
     >
       <option value="">--Select nature--</option>
       {natureList.map((n) => (
-        <option key={n.id} value={n.name}>
+        <option key={n.id} value={n.id}>
           {n.name}
         </option>
       ))}
@@ -207,7 +207,7 @@ export const FormFields = ({ handleChange, nature, held_item }) => {
     >
       <option value="">--Select held item--</option>
       {heldItemList.map((n) => (
-        <option key={n.id} value={n.name}>
+        <option key={n.id} value={n.id}>
           {n.name}
         </option>
       ))}

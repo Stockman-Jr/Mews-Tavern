@@ -139,7 +139,7 @@ export const FieldOptions = ({handleChange}) => {
 
   return (
     <>
-      <Form.Group className="mb-3" controlId="evStats">
+      <Form.Group className="mb-3 d-flex flex-row" controlId="evStats">
         {fieldOptions.map((option) => (
           <Form.Check
           key={option.value}

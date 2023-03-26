@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import Post from "./Post";
+import Build from "./Build";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -17,6 +18,7 @@ function PostDetailPage() {
       try {
         const [{ data: post }] = await Promise.all([
           axiosReq.get(`/posts/post/${id}/`),
+          axiosReq.get(`/posts/pokebuild/${id}/`),
         ]);
         setPost({ results: [post] });
         console.log(post);
@@ -31,6 +33,7 @@ function PostDetailPage() {
     <Row>
       <Col>
       <Post {...post.results[0]} setPosts={setPost} postPage />
+      <Build {...post.results[0]} setBuilds={setPost} postPage />
       </Col>
     </Row>
   )

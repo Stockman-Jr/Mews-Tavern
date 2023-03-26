@@ -105,7 +105,9 @@ function PokemonBuildCreateForm() {
     formData.append("move_three", move_three);
     formData.append("move_four", move_four);
     formData.append("ability", ability);
-    //formData.append("ev_stats", JSON.stringify(ev_stats));
+    for (let i = 0; i < ev_stats.length; i++) {
+      formData.append("ev_stats", ev_stats[i]);
+    }
     formData.append("nature", nature);
     formData.append("held_item", held_item);
     formData.append("content", content);

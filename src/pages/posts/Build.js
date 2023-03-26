@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import Table from 'react-bootstrap/Table';
+
 
 import styles from "../../styles/PostCards.module.css";
 import appStyles from "../../App.module.css";
@@ -106,25 +108,33 @@ const Build = (props) => {
           </Col>
         </Row>
       </Card.Header>
-      <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
+      
       <Row className={`${styles.CardImg} ${appStyles.Row} p-2`}>
-        <Col className={styles.SpriteContainer} lg={5}>
+        
+        <Col className={styles.SpriteContainer} sm={12} md={6} lg={4}>
         <Link to={`/posts/${id}`}>
-          <Image className={styles.SpriteImg} src={`https://img.pokemondb.net/sprites/home/normal/${pokemon}.png`} />          
+          <Image fluid className={styles.SpriteImg} src={`https://img.pokemondb.net/sprites/home/normal/${pokemon}.png`} />          
         </Link>
         </Col>
-        <Col className={styles.BuildInfo} lg={5}>
-        <span className={`${styles.InfoBadge} ml-auto`}>{move_one}</span>
-        <span className={`${styles.InfoBadge} ml-auto`}>{move_two}</span>
-        <span className={`${styles.InfoBadge} ml-auto`}> {move_three}</span>
-        <span className={`${styles.InfoBadge} ml-auto`}> {move_four}</span>
+        <Col className={styles.InfoCol} sm={12} md={6} lg={8}>
+          <div className={`${styles.BuildInfo}`}>
+        <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}`}>Moves</strong>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{capitalizeFirstLetter(move_one)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{capitalizeFirstLetter(move_two)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {capitalizeFirstLetter(move_three)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {capitalizeFirstLetter(move_four)}</span>
+        </div>
+        <hr />
+        <div className={styles.BuildInfo}>
+        <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}` }>Other</strong>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong className={`${styles.TableHeader} pt-1`}>Nature:</strong> {capitalizeFirstLetter(nature)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Held Item:</strong>  {capitalizeFirstLetter(held_item)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Ability: </strong> {capitalizeFirstLetter(ability)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>EV stats: </strong> {capitalizeFirstLetter(ability)}</span>
+        </div>
         </Col>
       </Row>
       <Card.Body>
-        <div>
-          {ability}
-
-        </div>
         {content && <Card.Text className="text-center">{content}</Card.Text>}
         <div>
           {is_owner ? (

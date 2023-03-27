@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
 
 import Post from "./Post";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { Container } from "react-bootstrap";
 
 function PostDetailPage() {
   const { id } = useParams();
@@ -27,11 +27,14 @@ function PostDetailPage() {
     handleMount();
   }, [id]);
   return (
-    <Row>
+    <Container>
+    <Row className={"mt-5"}>
       <Col> 
         <Post {...post.results[0]} setposts={setPost} postPage />
       </Col>
     </Row>
+    </Container>
+
   )
 }
 

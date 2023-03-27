@@ -52,9 +52,7 @@ const PokemonCard = ({ page }) => {
     const fetchCaughtPokemons = async () => {
       try{
         const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
-        console.log(data.results);
-        setCaughtPokemons(data.results);
-        
+        setCaughtPokemons(data.results);       
       }catch(err) {
         console.log(err);
       }
@@ -131,17 +129,17 @@ const PokemonCard = ({ page }) => {
                       <Card.Text className={styles.TextTypes}>
                         {pokemon.types.join("/")}
                       </Card.Text>
-          
-                       <CatchButton pokemon={pokemon} />  
+
+                      <CatchButton pokemon={pokemon} />
                     </Card.Body>
 
                   </div>
-              
+
                 </Card>
               </div>
             ))}
 
-            <ReactPaginate 
+            <ReactPaginate
               pageCount={totalPages}
               pageRangeDisplayed={5}
               marginPagesDisplayed={2}
@@ -160,9 +158,6 @@ const PokemonCard = ({ page }) => {
         ) : (
           <Asset loader />
         )}
-
-
-
 
       </div>
     </>

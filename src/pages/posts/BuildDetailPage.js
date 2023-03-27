@@ -26,11 +26,13 @@ function BuildDetailPage() {
     handleMount();
   }, [id]);
   return (
-    <Row>
+    <Container>
+    <Row className="mt-5">
       <Col> 
         <Build {...build.results[0]} setBuilds={setBuild} buildPage />
       </Col>
     </Row>
+    </Container>
   )
 }
 

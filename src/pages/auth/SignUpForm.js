@@ -10,6 +10,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/SignInUpForm.module.css";
+import appStyles from "../../App.module.css";
 import axios from 'axios';
 
 
@@ -42,7 +43,7 @@ const SignUpForm = () => {
       };
 
   return (
-    <Row className={styles.Row}>
+    <Row className={`${appStyles.Row} ${styles.FormRow}`}>
       <Col className={` ${styles.FormContainer} my-auto `} md={8}>
         <Container className={styles.Content}>
           <div className={styles.GradHeader}>

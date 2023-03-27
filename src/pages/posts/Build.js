@@ -69,7 +69,7 @@ const Build = (props) => {
 
     const handleLike = async () => {
       try {
-        const { data } = await axiosRes.post("/likes/", { build: id });
+        const { data } = await axiosRes.post("/likes/", { post: id });
         setPostLikesCount(postLikesCount + 1);
         setPostLikeId(data.id);
       } catch (err) {
@@ -127,7 +127,7 @@ const Build = (props) => {
         <hr />
         <div className={styles.BuildInfo}>
         <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}` }>Other</strong>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong className={`${styles.TableHeader} pt-1`}>Nature:</strong> {nature}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Nature:</strong> {nature}</span>
         <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Held Item:</strong>  {held_item}</span>
         <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Ability: </strong> {ability}</span>
         <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>EV stats: </strong> {ev_stats}</span>

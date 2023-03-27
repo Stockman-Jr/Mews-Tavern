@@ -4,22 +4,21 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
-import Post from "./Post";
+import Build from "./Build";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function PostDetailPage() {
+function BuildDetailPage() {
   const { id } = useParams();
-  const [post, setPost] = useState({results: []});
+  const [build, setBuild] = useState({results: []});
   useEffect(() => {
     const handleMount = async () => {
       try {
-          const [{ data: post }] = await Promise.all([
-            axiosReq.get(`/posts/post/${id}/`),
+          const [{ data: build }] = await Promise.all([
+            axiosReq.get(`/posts/pokebuild/${id}/`),
           ]);
-          setPost({ results: [post] });
-          console.log(post);
+          setBuild({ results: [build] });
         } catch (err) {
         console.log(err);
       }
@@ -29,10 +28,10 @@ function PostDetailPage() {
   return (
     <Row>
       <Col> 
-        <Post {...post.results[0]} setposts={setPost} postPage />
+        <Build {...build.results[0]} setBuilds={setBuild} buildPage />
       </Col>
     </Row>
   )
 }
 
-export default PostDetailPage;
+export default BuildDetailPage;

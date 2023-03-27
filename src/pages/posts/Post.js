@@ -78,7 +78,7 @@ const Post = (props) => {
     };
 
   return (
-    <>
+      <>
     <Card className={styles.Card}>
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
@@ -102,7 +102,7 @@ const Post = (props) => {
         <Badge className={`${appStyles.Badge} ml-auto`}>{game_filter
         }</Badge>
         <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
-        <Link to={`/posts/${id}`}>
+        <Link to={`/posts/${id}`} >
           <Card.Img src={image} alt={title} />
         </Link>
       </div>

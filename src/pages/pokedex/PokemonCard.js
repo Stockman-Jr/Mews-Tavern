@@ -35,7 +35,6 @@ const PokemonCard = ({ page }) => {
     const [caughtPokemons, setCaughtPokemons] = useState([]);
     const currentUser = useCurrentUser();
     const owner = currentUser;
-    const is_owner = currentUser?.username === owner;
     const history = useHistory();
 
 

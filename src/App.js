@@ -13,6 +13,7 @@ import PostEditForm from './pages/posts/PostEditForm';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import HomePage from './pages/home/HomePage';
 import PokemonBuildCreateForm from './pages/posts/PokemonBuildCreateForm';
+import BuildDetailPage from './pages/posts/BuildDetailPage';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -30,6 +31,7 @@ function App() {
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/create/build" render={() => <PokemonBuildCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostDetailPage />} />
+          <Route exact path="/posts/pokebuild/:id" render={() => <BuildDetailPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/posts" render={() => <PostFeedPage />} />
         </Switch>

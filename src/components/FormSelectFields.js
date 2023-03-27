@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
-import { fetchAllData, fetchDataChoices } from "../utils/utils";
+import { fetchAllData } from "../utils/utils";
 
 export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleChange }) => {
     const [options] = useState([]);
@@ -99,7 +99,6 @@ export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleCha
 
 export const FieldOptions = ({handleChange}) => {
   const [fieldOptions, setGetFieldOptions] = useState([]);
-  const [options] = useState([]);
 
   useEffect(() => {
     const getOptions = async () => {
@@ -127,14 +126,6 @@ export const FieldOptions = ({handleChange}) => {
       setCheckedCount((count) => count - 1);
       handleChange(event);
     }
-  };
-
-  const getInfo = async (e) => {
-    e.preventDefault();
-    const { data } = await axiosReq.options("/posts/pokebuild/");
-    const choices = data.actions.POST.ev_stats.choices;
-    console.log(choices[0]);
-    console.log(data.actions.POST.ev_stats);
   };
 
   return (
@@ -222,12 +213,12 @@ export const GameFilterChoices = ({ handleChange }) => {
 
   return (
     <div>
-    <Form.Label htmlFor="game_filter">Select nature:</Form.Label>
+    <Form.Label htmlFor="game_filter">Select game:</Form.Label>
     <Form.Control
       as="select"
       name="game_filter"
     >
-      <option value="">--Select nature--</option>
+      <option value="">--Select game--</option>
  
         <option >
         

@@ -6,7 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Image from 'react-bootstrap/Image';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
-import Table from 'react-bootstrap/Table';
 
 
 import styles from "../../styles/PostCards.module.css";
@@ -38,11 +37,12 @@ const Build = (props) => {
         ability,
         nature,
         held_item,
+        ev_stats,
         content,
         game_filter,
         post_type,
         updated_at,
-        postPage,
+        buildPage,
         setBuilds,
     } = props;
 
@@ -69,7 +69,7 @@ const Build = (props) => {
 
     const handleLike = async () => {
       try {
-        const { data } = await axiosRes.post("/likes/", { post: id });
+        const { data } = await axiosRes.post("/likes/", { build: id });
         setPostLikesCount(postLikesCount + 1);
         setPostLikeId(data.id);
       } catch (err) {
@@ -88,7 +88,7 @@ const Build = (props) => {
     };
 
   return (
-    <>
+      <>
     <Card className={styles.Card}>
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
@@ -96,10 +96,10 @@ const Build = (props) => {
             <Avatar src={profile_image} text={owner} />
           </Col>
           <Col>
-            {pokemon && <Card.Title className="text-center">{capitalizeFirstLetter(pokemon)} Build</Card.Title>}
+            {pokemon && <Card.Title className="text-center">{pokemon} Build</Card.Title>}
           </Col>
           <Col>
-            {is_owner && postPage && (
+            {is_owner && buildPage && (
               <ConfigDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
@@ -108,29 +108,29 @@ const Build = (props) => {
           </Col>
         </Row>
       </Card.Header>
-      
+      <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
       <Row className={`${styles.CardImg} ${appStyles.Row} p-2`}>
         
         <Col className={styles.SpriteContainer} sm={12} md={6} lg={4}>
-        <Link to={`/posts/${id}`}>
-          <Image fluid className={styles.SpriteImg} src={`https://img.pokemondb.net/sprites/home/normal/${pokemon}.png`} />          
+        <Link to={`/posts/pokebuild/${id}`} post_type={"Game Related"}>
+          <Image fluid className={styles.SpriteImg} src={`https://img.pokemondb.net/sprites/home/normal/${pokemon}.png`} />      
         </Link>
         </Col>
         <Col className={styles.InfoCol} sm={12} md={6} lg={8}>
           <div className={`${styles.BuildInfo}`}>
         <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}`}>Moves</strong>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{capitalizeFirstLetter(move_one)}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{capitalizeFirstLetter(move_two)}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {capitalizeFirstLetter(move_three)}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {capitalizeFirstLetter(move_four)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{move_one}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{move_two}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {move_three}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {move_four}</span>
         </div>
         <hr />
         <div className={styles.BuildInfo}>
         <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}` }>Other</strong>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong className={`${styles.TableHeader} pt-1`}>Nature:</strong> {capitalizeFirstLetter(nature)}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Held Item:</strong>  {capitalizeFirstLetter(held_item)}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Ability: </strong> {capitalizeFirstLetter(ability)}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>EV stats: </strong> {capitalizeFirstLetter(ability)}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong className={`${styles.TableHeader} pt-1`}>Nature:</strong> {nature}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Held Item:</strong>  {held_item}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Ability: </strong> {ability}</span>
+        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>EV stats: </strong> {ev_stats}</span>
         </div>
         </Col>
       </Row>

@@ -160,7 +160,6 @@ function PokemonBuildCreateForm() {
                 <div className={styles.SpriteBox}>
                   {selectedPokemonSprite && (
                     <>
-                      <span>{selectedPokemon.name}</span>
                       <Image
                         src={selectedPokemonSprite}
                         alt={`${selectedPokemon} sprite`}

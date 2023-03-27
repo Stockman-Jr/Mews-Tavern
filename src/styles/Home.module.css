@@ -9,11 +9,11 @@
 }
 
 .LeftCol {
-    background-color: #afaa9d;
+    background-color: #cec5b9;
 }
 
 .RightCol {
-    background-color:rgba(96, 166, 184, 0.788) ;
+    background-color:rgba(111, 191, 211, 0.788) ;
 }
 
 .InfoWrapper {
@@ -27,10 +27,12 @@
 
 .GameUpdates, .GameEvents {
     font-size: 16px;
-    color: #2c2724;
+    color: #38302c;
     font-weight: 600;
     line-height: 1.5em;
     margin-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
 
 }
 
@@ -41,7 +43,12 @@
 }
 
 .LeftInfo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     border-right: 4px solid darkgoldenrod;
+    text-align: center;
     padding: 10px;
     max-width: 45%;
 }
@@ -65,7 +72,7 @@
 }
 
 .SiteLink a:hover {
-    color: #fff;
+    color: #e6e3da;
 
 }
 

@@ -130,7 +130,11 @@ const Build = (props) => {
         <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Nature:</strong> {nature}</span>
         <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Held Item:</strong>  {held_item}</span>
         <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Ability: </strong> {ability}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>EV stats: </strong> {ev_stats}</span>
+         {ev_stats && (
+            <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>
+              <strong>EV stats: </strong> {ev_stats.join(", ")}
+            </span>
+          )}
         </div>
         </Col>
       </Row>

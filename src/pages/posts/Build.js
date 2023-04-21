@@ -7,16 +7,16 @@ import Image from 'react-bootstrap/Image';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-
 import styles from "../../styles/PostCards.module.css";
 import appStyles from "../../App.module.css";
+import Avatar from '../../components/Avatar';
+import CornerDecorations from "../../components/CornerDecorations";
 import { TiHeartFullOutline} from "react-icons/ti";
+import { ImBubbles2 } from "react-icons/im";
 
 import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { capitalizeFirstLetter } from '../../utils/utils';
-import Avatar from '../../components/Avatar';
-import CornerDecorations from "../../components/CornerDecorations";
 import { ConfigDropdown } from '../../components/DropdownMenus';
 import { axiosRes } from '../../api/axiosDefaults';
 
@@ -48,9 +48,6 @@ const Build = (props) => {
       setPosts,
     } = props;
 
-    const [likesCount, setLikesCount] = useState(likes_count);
-    const [likeId, setLikeId] = useState(like_id);
-
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
@@ -72,8 +69,6 @@ const Build = (props) => {
     const handleLike = async () => {
       try {
         const { data } = await axiosRes.post("/likes/", { post: id });
-        setLikesCount(likesCount + 1);
-        setLikeId(data.id);
         setPosts((prevPosts) => ({
           ...prevPosts,
           results: prevPosts.results.map((post) => {
@@ -90,8 +85,6 @@ const Build = (props) => {
     const handleUnlike = async () => {
       try {
         await axiosRes.delete(`/likes/${like_id}/`);
-        setLikesCount(likesCount - 1);
-        setLikeId(null);
         setPosts((prevPosts) => ({
           ...prevPosts,
           results: prevPosts.results.map((post) => {
@@ -266,13 +259,17 @@ const Build = (props) => {
           )}
 
           {likes_count}
+          <span className={styles.CmtIcon}>
+              <ImBubbles2 />
+             
+            </span>
+            {comments_count}
           <Badge className={`${appStyles.Badge} ml-auto`}>
               {game_filter_display}
             </Badge>
             <Badge className={`${appStyles.Badge} ml-auto`}>
               <strong>{post_type}</strong>
             </Badge>
-
         </div>
 
 

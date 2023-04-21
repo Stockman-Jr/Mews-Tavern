@@ -29,14 +29,6 @@
     background-color: rgb(207, 198, 186);
 }
 
-.CardImg {
-    max-height: 45vh;
-    object-fit: contain;
-    object-position: 50% 50%;
-}
-
-/*POST COMPONENT*/
-
 .Description {
     background-color: rgb(238, 231, 222);
     border-bottom: 2px solid transparent;
@@ -45,6 +37,14 @@
     border-image-slice: 1;
     padding: 0.8rem;
     width:100%;
+}
+
+/*POST COMPONENT*/
+
+.CardImg {
+    max-height: 45vh;
+    object-fit: contain;
+    object-position: 50% 50%;
 }
 
 .IngameName {
@@ -80,7 +80,6 @@
 
 .SpriteContainer {
     max-width: 225px;
-    /*height: 225px;*/
     padding: 10px;
 }
 
@@ -141,6 +140,15 @@
     width: 2px;
     height: 100%;
 }
+
+/*ICONS*/
+
+.CmtIcon {
+    font-size: 25px;
+    color: #5c5345;
+    padding: 3px;
+}
+
 
 .Liked, .UnLiked {
     font-size: 25px;

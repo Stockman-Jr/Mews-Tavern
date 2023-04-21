@@ -37,8 +37,8 @@ const Post = (props) => {
       setPosts,
     } = props;
 
-    const [postLikesCount, setPostLikesCount] = useState(likes_count);
-    const [postLikeId, setPostLikeId] = useState(like_id);
+    const [likesCount, setLikesCount] = useState(likes_count);
+    const [likeId, setLikeId] = useState(like_id);
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
@@ -61,23 +61,38 @@ const Post = (props) => {
     const handleLike = async () => {
       try {
         const { data } = await axiosRes.post("/likes/", { post: id });
-        setPostLikesCount(postLikesCount + 1);
-        setPostLikeId(data.id);
+        setLikesCount(likesCount + 1);
+        setLikeId(data.id);
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.results.map((post) => {
+            return post.id === id
+              ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+              : post;
+          }),
+        }));
       } catch (err) {
         console.log(err);
       }
     };
-
+  
     const handleUnlike = async () => {
       try {
-        await axiosRes.delete(`/likes/${postLikeId}/`);
-        setPostLikesCount(postLikesCount - 1);
-        setPostLikeId(null);
+        await axiosRes.delete(`/likes/${like_id}/`);
+        setLikesCount(likesCount - 1);
+        setLikeId(null);
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.results.map((post) => {
+            return post.id === id
+              ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+              : post;
+          }),
+        }));
       } catch (err) {
         console.log(err);
       }
     };
-
   return (
       <>
     <Card className={styles.Card}>
@@ -119,7 +134,7 @@ const Post = (props) => {
                 <TiHeartFullOutline />
               </span>
             </OverlayTrigger>
-          ) : postLikeId ? (
+          ) : like_id ? (
             <span className={styles.Liked} onClick={handleUnlike}>
               <TiHeartFullOutline />
             </span>
@@ -138,7 +153,7 @@ const Post = (props) => {
             </OverlayTrigger>
           )}
 
-          {postLikesCount}
+          {likes_count}
 
         </div>
       </Card.Body>

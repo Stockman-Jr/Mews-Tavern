@@ -16,6 +16,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { capitalizeFirstLetter } from '../../utils/utils';
 import Avatar from '../../components/Avatar';
+import CornerDecorations from "../../components/CornerDecorations";
 import { ConfigDropdown } from '../../components/DropdownMenus';
 import { axiosRes } from '../../api/axiosDefaults';
 
@@ -47,8 +48,8 @@ const Build = (props) => {
       setPosts,
     } = props;
 
-    const [postLikesCount, setPostLikesCount] = useState(likes_count);
-    const [postLikeId, setPostLikeId] = useState(like_id);
+    const [likesCount, setLikesCount] = useState(likes_count);
+    const [likeId, setLikeId] = useState(like_id);
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
@@ -71,18 +72,34 @@ const Build = (props) => {
     const handleLike = async () => {
       try {
         const { data } = await axiosRes.post("/likes/", { post: id });
-        setPostLikesCount(postLikesCount + 1);
-        setPostLikeId(data.id);
+        setLikesCount(likesCount + 1);
+        setLikeId(data.id);
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.results.map((post) => {
+            return post.id === id
+              ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+              : post;
+          }),
+        }));
       } catch (err) {
         console.log(err);
       }
     };
-
+  
     const handleUnlike = async () => {
       try {
-        await axiosRes.delete(`/likes/${postLikeId}/`);
-        setPostLikesCount(postLikesCount - 1);
-        setPostLikeId(null);
+        await axiosRes.delete(`/likes/${like_id}/`);
+        setLikesCount(likesCount - 1);
+        setLikeId(null);
+        setPosts((prevPosts) => ({
+          ...prevPosts,
+          results: prevPosts.results.map((post) => {
+            return post.id === id
+              ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+              : post;
+          }),
+        }));
       } catch (err) {
         console.log(err);
       }
@@ -97,9 +114,6 @@ const Build = (props) => {
             <Avatar src={profile_avatar} height={55} text={owner} />
           </Col>
           <Col>
-            {pokemon && <Card.Title className="text-center">{pokemon} Build</Card.Title>}
-          </Col>
-          <Col>
             {is_owner && buildPage && (
               <ConfigDropdown
                 handleEdit={handleEdit}
@@ -110,35 +124,114 @@ const Build = (props) => {
         </Row>
       </Card.Header>
       <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
-      <Row className={`${styles.CardImg} ${appStyles.Row} p-2`}>
-        
-        <Col className={styles.SpriteContainer} sm={12} md={6} lg={4}>
-        <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
-          <Image fluid className={styles.SpriteImg} src={pokemon_sprite} />      
-        </Link>
-        </Col>
-        <Col className={styles.InfoCol} sm={12} md={6} lg={8}>
-          <div className={`${styles.BuildInfo}`}>
-        <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}`}>Moves</strong>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{move_one}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>{move_two}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {move_three}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}> {move_four}</span>
-        </div>
-        <hr />
-        <div className={styles.BuildInfo}>
-        <strong className={`text-center ${styles.BorderBottom} ${styles.TableHeader}` }>Other</strong>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Nature:</strong> {nature}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Held Item:</strong>  {held_item}</span>
-        <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}><strong>Ability: </strong> {ability}</span>
-         {ev_stats && (
-            <span className={`${styles.InfoBadge} ${styles.BorderBottom}`}>
-              <strong>EV stats: </strong> {ev_stats.join(", ")}
-            </span>
-          )}
-        </div>
-        </Col>
-      </Row>
+      <Row className={`${styles.CardImgBox} ${appStyles.Row} p-1`}>
+            <Col className={`${styles.InfoCol}`}>
+              {pokemon && (
+                <h6 className={`${styles.CardTitle} text-center`}>
+                  {capitalizeFirstLetter(pokemon)} Build
+                </h6>
+              )}
+              <div
+                className={`${styles.SpriteContainer} ${appStyles.CornerBox}`}
+              >
+                <CornerDecorations />
+                <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
+                  <Image
+                    fluid
+                    className={styles.SpriteImg}
+                    src={pokemon_sprite}
+                  />
+                </Link>
+              </div>
+
+              <div className={`${styles.BuildInfo}`}>
+                <div className={styles.MovesSection}>
+                  <strong
+                    className={`text-center ${styles.BorderBottom} ${styles.TableHeader}`}
+                  >
+                    Moves
+                  </strong>
+                  {move_one && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      {capitalizeFirstLetter(move_one)}
+                    </span>
+                  )}
+                  {move_two && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      {capitalizeFirstLetter(move_two)}
+                    </span>
+                  )}
+                  {move_three && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      {" "}
+                      {capitalizeFirstLetter(move_three)}
+                    </span>
+                  )}
+                  {move_four && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      {" "}
+                      {capitalizeFirstLetter(move_four)}
+                    </span>
+                  )}
+                </div>
+
+                <hr className={styles.Vertical} />
+
+                <div className={styles.OtherSection}>
+                  <strong
+                    className={`text-center ${styles.BorderBottom} ${styles.TableHeader}`}
+                  >
+                    Other
+                  </strong>
+                  {nature && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      <strong>Nature:</strong> {capitalizeFirstLetter(nature)}
+                    </span>
+                  )}
+                  {ability && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      <strong>Ability: </strong>{" "}
+                      {capitalizeFirstLetter(ability)}
+                    </span>
+                  )}
+                  {held_item && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      <strong>Held Item:</strong>{" "}
+                      {capitalizeFirstLetter(held_item)}
+                    </span>
+                  )}
+                  {ev_stats && (
+                    <span
+                      className={`${styles.InfoBadge} ${styles.BorderBottom}`}
+                    >
+                      <strong>EV stats: </strong>{" "}
+                      {ev_stats
+                        .map((stat) =>
+                          stat
+                            .replace(/_/g, " ")
+                            .replace(/\b\w/g, (c) => c.toUpperCase())
+                        )
+                        .join(", ")}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </Col>
+          </Row>
       <Card.Body>
         {content && <Card.Text className="text-center">{content}</Card.Text>}
         <div>
@@ -151,7 +244,7 @@ const Build = (props) => {
                 <TiHeartFullOutline />
               </span>
             </OverlayTrigger>
-          ) : postLikeId ? (
+          ) : like_id ? (
             <span className={styles.Liked} onClick={handleUnlike}>
               <TiHeartFullOutline />
             </span>
@@ -170,7 +263,7 @@ const Build = (props) => {
             </OverlayTrigger>
           )}
 
-          {postLikesCount}
+          {likes_count}
 
         </div>
       </Card.Body>

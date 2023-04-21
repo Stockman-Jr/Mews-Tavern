@@ -19,21 +19,22 @@ import { axiosRes } from '../../api/axiosDefaults';
 
 const Post = (props) => {
     const {
-        id,
-        owner,
-        profile_id,
-        profile_avatar,
-        comments_count,
-        likes_count,
-        like_id,
-        title,
-        content,
-        image,
-        game_filter,
-        post_type,
-        updated_at,
-        postPage,
-        setPosts,
+      id,
+      owner,
+      profile_id,
+      profile_avatar,
+      comments_count,
+      likes_count,
+      like_id,
+      title,
+      content,
+      image,
+      game_filter_display,
+      post_type,
+      ingame_name,
+      updated_at,
+      postPage,
+      setPosts,
     } = props;
 
     const [postLikesCount, setPostLikesCount] = useState(likes_count);
@@ -99,10 +100,10 @@ const Post = (props) => {
         </Row>
       </Card.Header>
       <div className={styles.CardImg}>
-        <Badge className={`${appStyles.Badge} ml-auto`}>{game_filter
+        <Badge className={`${appStyles.Badge} ml-auto`}>{game_filter_display
         }</Badge>
         <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
-        <Link to={`/posts/${id}`} >
+        <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
           <Card.Img src={image} alt={title} />
         </Link>
       </div>

@@ -22,28 +22,29 @@ import { axiosRes } from '../../api/axiosDefaults';
 
 const Build = (props) => {
     const {
-        id,
-        owner,
-        profile_id,
-        profile_avatar,
-        comments_count,
-        likes_count,
-        like_id,
-        pokemon, 
-        move_one, 
-        move_two, 
-        move_three,
-        move_four, 
-        ability,
-        nature,
-        held_item,
-        ev_stats,
-        content,
-        game_filter,
-        post_type,
-        updated_at,
-        buildPage,
-        setBuilds,
+      id,
+      owner,
+      profile_id,
+      profile_avatar,
+      comments_count,
+      likes_count,
+      like_id,
+      pokemon,
+      pokemon_sprite,
+      move_one,
+      move_two,
+      move_three,
+      move_four,
+      ability,
+      nature,
+      held_item,
+      ev_stats,
+      content,
+      post_type,
+      updated_at,
+      buildPage,
+      game_filter_display,
+      setPosts,
     } = props;
 
     const [postLikesCount, setPostLikesCount] = useState(likes_count);
@@ -93,7 +94,7 @@ const Build = (props) => {
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
           <Col>
-            <Avatar src={profile_avatar} text={owner} />
+            <Avatar src={profile_avatar} height={55} text={owner} />
           </Col>
           <Col>
             {pokemon && <Card.Title className="text-center">{pokemon} Build</Card.Title>}
@@ -112,8 +113,8 @@ const Build = (props) => {
       <Row className={`${styles.CardImg} ${appStyles.Row} p-2`}>
         
         <Col className={styles.SpriteContainer} sm={12} md={6} lg={4}>
-        <Link to={`/posts/pokebuild/${id}`} post_type={"Game Related"}>
-          <Image fluid className={styles.SpriteImg} src={`https://img.pokemondb.net/sprites/home/normal/${pokemon}.png`} />      
+        <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
+          <Image fluid className={styles.SpriteImg} src={pokemon_sprite} />      
         </Link>
         </Col>
         <Col className={styles.InfoCol} sm={12} md={6} lg={8}>

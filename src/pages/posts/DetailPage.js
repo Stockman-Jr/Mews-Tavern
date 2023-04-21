@@ -23,7 +23,6 @@ function DetailPage() {
     const [post, setPost] = useState({ results: [] });
 
     useEffect(() => {
-        console.log(location.state.post_type);
         const handleMount = async () => {
             try {
                 if (location.state && location.state.post_type === "Game Related") {
@@ -49,12 +48,17 @@ function DetailPage() {
         handleMount();
     }, [id, location]);
   return (
-    <Container className="mt-5">
-        <Row>
-            <Col>
-            </Col>
-        </Row>
-    </Container>
+      <Container className="mt-5">
+          <Row>
+              <Col>
+                  {post_type === "Game Related" ? (
+                      <Post {...post.results[0]} setPosts={setPost} postPage />
+                  ) : (
+                      <Build {...post.results[0]} setPosts={setPost} buildPage />
+                  )}
+              </Col>
+          </Row>
+      </Container>
   )
 }
 

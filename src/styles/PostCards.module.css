@@ -9,6 +9,13 @@
     background-image: linear-gradient(260deg, #51a4b9 0%, #6ab7c4 100%);
 }
 
+.CardFooter {
+    background-image: linear-gradient(260deg, #51a4b9 0%, #6ab7c4 100%);
+    padding: 0.8em;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+
 .Card {
     width: 70%;
     margin: 0 auto;
@@ -22,6 +29,35 @@
     max-height: 45vh;
     object-fit: contain;
     object-position: 50% 50%;
+}
+
+/*POST COMPONENT*/
+
+.Description {
+    background-color: rgb(238, 231, 222);
+    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent;
+    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
+    border-image-slice: 1;
+    padding: 0.8rem;
+    width:100%;
+}
+
+.IngameName {
+    background-color: #46403727;
+    border-radius: 3px;
+    padding: 1px;
+    color: #4fa4b9;
+    font-style: italic;
+    font-size: 13px;
+}
+
+.IngameName svg {
+    font-size: 20px;
+}
+
+.IngameName:hover {
+    color: #464037;
 }
 
 

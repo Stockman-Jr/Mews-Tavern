@@ -123,7 +123,6 @@ const Build = (props) => {
           </Col>
         </Row>
       </Card.Header>
-      <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
       <Row className={`${styles.CardImgBox} ${appStyles.Row} p-1`}>
             <Col className={`${styles.InfoCol}`}>
               {pokemon && (
@@ -232,9 +231,12 @@ const Build = (props) => {
               </div>
             </Col>
           </Row>
-      <Card.Body>
-        {content && <Card.Text className="text-center">{content}</Card.Text>}
-        <div>
+          <Card.Body className={styles.Description}>
+              <div>
+                <Card.Text className="text-center">{content}</Card.Text>
+              </div>
+            </Card.Body>
+        <div className={styles.CardFooter}>
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -264,9 +266,15 @@ const Build = (props) => {
           )}
 
           {likes_count}
+          <Badge className={`${appStyles.Badge} ml-auto`}>
+              {game_filter_display}
+            </Badge>
+            <Badge className={`${appStyles.Badge} ml-auto`}>
+              <strong>{post_type}</strong>
+            </Badge>
 
         </div>
-      </Card.Body>
+
 
     </Card>
     <hr className={appStyles.HrDeco}/>

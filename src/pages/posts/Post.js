@@ -9,6 +9,7 @@ import Tooltip from 'react-bootstrap/Tooltip';
 import styles from "../../styles/PostCards.module.css";
 import appStyles from "../../App.module.css";
 import { TiHeartFullOutline} from "react-icons/ti";
+import { IoLogoGameControllerB } from "react-icons/io";
 
 import { Link, useHistory } from "react-router-dom";
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
@@ -114,17 +115,26 @@ const Post = (props) => {
           </Col>
         </Row>
       </Card.Header>
-      <div className={styles.CardImg}>
-        <Badge className={`${appStyles.Badge} ml-auto`}>{game_filter_display
-        }</Badge>
-        <Badge className={`${appStyles.Badge} ml-auto`}>{post_type}</Badge>
-        <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
-          <Card.Img src={image} alt={title} />
-        </Link>
-      </div>
-      <Card.Body>
-        {content && <Card.Text className="text-center">{content}</Card.Text>}
-        <div>
+      <div className={styles.CardImgBox}>
+            <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
+              <Card.Img className={styles.CardImg} src={image} alt={title} />
+            </Link>
+          </div>
+          <Card.Body className={styles.Description}>
+            <div className="mt-1 text-center">
+              {title && <strong className="text-center">{title}</strong>}
+              {content && (
+                <Card.Text className="text-center">{content}</Card.Text>
+              )}
+            </div>
+            {ingame_name ? (
+              <span className={styles.IngameName}>
+                <IoLogoGameControllerB />
+                {ingame_name}
+              </span>
+            ) : null}
+          </Card.Body>
+        <div className={styles.CardFooter}>
           {is_owner ? (
             <OverlayTrigger
               placement="top"
@@ -154,9 +164,14 @@ const Post = (props) => {
           )}
 
           {likes_count}
-
+          <Badge className={`${appStyles.Badge} ml-auto`}>
+              {game_filter_display}
+            </Badge>
+            <Badge className={`${appStyles.Badge} ml-auto`}>
+              <strong>{post_type}</strong>
+            </Badge>
         </div>
-      </Card.Body>
+   
 
     </Card>
     <hr className={appStyles.HrDeco}/>

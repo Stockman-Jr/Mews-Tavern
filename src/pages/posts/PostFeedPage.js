@@ -40,7 +40,7 @@ function PostFeedPage() {
 
 
   return (
-    <Container className="mt-5">
+    <Row className="mt-5 mr-0 ml-0">
 <Container className="mt-3">
         <Col className="mb-3 mt-4" lg={12}>
           {isLoaded ? (
@@ -66,7 +66,7 @@ function PostFeedPage() {
 
       <ArrowUp />
       </Container>
-    </Container>
+    </Row>
   )
 }
 

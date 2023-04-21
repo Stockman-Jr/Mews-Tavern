@@ -21,10 +21,11 @@ function PostEditForm() {
         content: "",
         game_filter: "",
         image: "",
+        ingame_name: "",
         post_type: "Game Related",
       });
       const [gameFilterChoices, setGameFilterChoices] = useState([]);
-      const { title, content, game_filter, image, post_type } = postData;
+      const { title, content, game_filter, image, ingame_name, post_type } = postData;
       const imageInput = useRef(null);
       const history = useHistory();
       const { id } = useParams();
@@ -35,9 +36,9 @@ function PostEditForm() {
         const handleMount = async () => {
             try {
               const { data } = await axiosReq.get(`/posts/post/${id}/`);
-              const { title, content, game_filter, image, post_type, is_owner } = data;
+              const { title, content, game_filter, image, post_type, ingame_name, is_owner } = data;
       
-              is_owner ? setPostData({ title, content, game_filter, image, post_type }) : history.push("/");
+              is_owner ? setPostData({ title, content, game_filter, image, post_type, ingame_name }) : history.push("/");
             } catch (err) {
               console.log(err);
             }
@@ -81,6 +82,7 @@ function PostEditForm() {
         formData.append("title", title);
         formData.append("content", content);
         formData.append("game_filter", game_filter);
+        formData.append("ingame_name", ingame_name);
         if (imageInput?.current?.files[0]) {
             formData.append("image", imageInput.current.files[0]);
           }
@@ -88,7 +90,10 @@ function PostEditForm() {
     
         try {
             await axiosReq.put(`/posts/post/${id}/`, formData);
-            history.push(`/posts/${id}`);
+            history.push({
+              pathname: `/posts/${id}`,
+              state: { post_type: post_type },
+            });
         } catch (err) {
           console.log(err);
           if (err.response?.status !== 401) {
@@ -129,9 +134,23 @@ function PostEditForm() {
                     {message}
                   </Alert>
                 ))}
-    
+
           <Form.Group>
-            
+            <Form.Label>Ingame name</Form.Label>
+            <Form.Control
+              type="text"
+              name="ingame_name"
+              value={ingame_name}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          {errors.ingame_name?.map((message, idx) => (
+            <Alert key={idx} variant="warning">
+              {message}
+            </Alert>
+          ))}
+    
+          <Form.Group>           
             <Form.Control
               as="select"
               name="game_filter"
@@ -140,7 +159,7 @@ function PostEditForm() {
             >
               <option value="">--Choose game--</option>
               {gameFilterChoices.map((choice) => (
-                <option key={choice.value} value={choice.display_name}>{choice.display_name}</option>
+                <option key={choice.value} value={choice.value}>{choice.display_name}</option>
               ))}
             </Form.Control>
           </Form.Group>

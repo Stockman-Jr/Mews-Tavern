@@ -26,10 +26,11 @@ function PostCreateForm() {
     content: "",
     game_filter: "",
     image: "",
+    ingame_name: "",
     post_type: "Game Related",
   });
   const [gameFilterChoices, setGameFilterChoices] = useState([]);
-  const { title, content, game_filter, image, post_type } = postData;
+  const { title, content, game_filter, image, ingame_name, post_type  } = postData;
   const imageInput = useRef(null);
   const history = useHistory();
 
@@ -73,12 +74,16 @@ function PostCreateForm() {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("game_filter", game_filter);
+    formData.append("ingame_name", ingame_name);
     formData.append("image", imageInput.current.files[0]);
     formData.append("post_type", post_type);
 
     try {
       const { data } = await axiosReq.post("/posts/post/", formData);
-      history.push(`/posts/${data.id}`);
+      history.push({
+        pathname: `/posts/${data.id}`,
+        state: { post_type: post_type },
+      });
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -121,7 +126,21 @@ function PostCreateForm() {
             ))}
 
       <Form.Group>
-        
+        <Form.Label>Ingame name</Form.Label>
+        <Form.Control
+          type="text"
+          name="ingame_name"
+          value={ingame_name}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors.ingame_name?.map((message, idx) => (
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>       
         <Form.Control
           as="select"
           name="game_filter"

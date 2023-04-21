@@ -95,45 +95,42 @@ const Post = (props) => {
       }
     };
   return (
-      <>
-    <Card className={styles.Card}>
-      <Card.Header className={styles.GradHeader}>
-        <Row className={styles.HeaderContent}>
-          <Col>
-            <Avatar src={profile_avatar} text={owner} />
-          </Col>
-          <Col>
-            {title && <Card.Title className="text-center">{title}</Card.Title>}
-          </Col>
-          <Col>
-            {is_owner && postPage && (
-              <ConfigDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            )}
-          </Col>
-        </Row>
-      </Card.Header>
-      <div className={styles.CardImgBox}>
-            <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
-              <Card.Img className={styles.CardImg} src={image} alt={title} />
-            </Link>
-          </div>
-          <Card.Body className={styles.Description}>
-            <div className="mt-1 text-center">
-              {title && <strong className="text-center">{title}</strong>}
-              {content && (
-                <Card.Text className="text-center">{content}</Card.Text>
+    <>
+      <Card className={styles.Card}>
+        <Card.Header className={styles.GradHeader}>
+          <Row className={styles.HeaderContent}>
+            <Col>
+              <Avatar src={profile_avatar} text={owner} />
+            </Col>
+            <Col>
+              {is_owner && postPage && (
+                <ConfigDropdown
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
               )}
-            </div>
-            {ingame_name ? (
-              <span className={styles.IngameName}>
-                <IoLogoGameControllerB />
-                {ingame_name}
-              </span>
-            ) : null}
-          </Card.Body>
+            </Col>
+          </Row>
+        </Card.Header>
+        <div className={styles.CardImgBox}>
+          <Link to={{ pathname: `/posts/${id}`, state: { post_type } }}>
+            <Card.Img className={styles.CardImg} src={image} alt={title} />
+          </Link>
+        </div>
+        <Card.Body className={styles.Description}>
+          <div className="mt-1 text-center">
+            {title && <strong className="text-center">{title}</strong>}
+            {content && (
+              <Card.Text className="text-center">{content}</Card.Text>
+            )}
+          </div>
+          {ingame_name ? (
+            <span className={styles.IngameName}>
+              <IoLogoGameControllerB />
+              {ingame_name}
+            </span>
+          ) : null}
+        </Card.Body>
         <div className={styles.CardFooter}>
           {is_owner ? (
             <OverlayTrigger
@@ -162,19 +159,16 @@ const Post = (props) => {
               </span>
             </OverlayTrigger>
           )}
-
           {likes_count}
           <Badge className={`${appStyles.Badge} ml-auto`}>
-              {game_filter_display}
-            </Badge>
-            <Badge className={`${appStyles.Badge} ml-auto`}>
-              <strong>{post_type}</strong>
-            </Badge>
+            {game_filter_display}
+          </Badge>
+          <Badge className={`${appStyles.Badge} ml-auto`}>
+            <strong>{post_type}</strong>
+          </Badge>
         </div>
-   
-
-    </Card>
-    <hr className={appStyles.HrDeco}/>
+      </Card>
+      <hr className={appStyles.HrDeco} />
     </>
   )
 };

@@ -25,7 +25,7 @@ const Build = (props) => {
         id,
         owner,
         profile_id,
-        profile_image,
+        profile_avatar,
         comments_count,
         likes_count,
         like_id,
@@ -93,7 +93,7 @@ const Build = (props) => {
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
           <Col>
-            <Avatar src={profile_image} text={owner} />
+            <Avatar src={profile_avatar} text={owner} />
           </Col>
           <Col>
             {pokemon && <Card.Title className="text-center">{pokemon} Build</Card.Title>}

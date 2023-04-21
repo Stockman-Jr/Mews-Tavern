@@ -1,8 +1,6 @@
 .Avatar {
-    height: 60px;
-    width: 60px;
-    border: 2px solid #ad8105;;
-    border-radius: 50%;
-    margin: 0px 8px 0px 8px;
-    object-fit: cover;
-  }
+  border: 2px solid #ad8105;;
+  border-radius: 50%;
+  margin: 0px 8px 0px 8px;
+  object-fit: cover;
+}

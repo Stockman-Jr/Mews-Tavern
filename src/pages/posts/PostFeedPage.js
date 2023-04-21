@@ -6,34 +6,29 @@ import Container from "react-bootstrap/Container";
 
 import Post from "./Post";
 import Build from "./Build";
+import ArrowUp from "../../components/ArrowUp";
+import Asset from "../../components/Asset";
 
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 
 function PostFeedPage() {
-  const { pathname, postType } = useLocation();
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [builds, setBuilds] = useState([]);
-
-  const fetchData = async () => {
-    try {
-      const { data: postData } = await axiosReq.get("/posts/post/");
-      setPosts(postData.results);
-
-      const { data: buildData } = await axiosReq.get("/posts/pokebuild/");
-      setBuilds(buildData.results);
-
-      setHasLoaded(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+  const { pathname } = useLocation();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [posts, setPosts] = useState({ results: [] });
 
   useEffect(() => {
-    setHasLoaded(false);
+    const fetchData = async () => {
+      try {
+        const { data } = await axiosReq.get(`/posts/`);
+        setPosts(data);
+        setIsLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    setIsLoaded(false);
     const timer = setTimeout(() => {
       fetchData();
     }, 1000);
@@ -46,17 +41,31 @@ function PostFeedPage() {
 
   return (
     <Container className="mt-5">
-      <Row>
-        <Col className="mb-3">
-          {posts.map((post) => (
-            <Post key={post.id} {...post} setPosts={setPosts} />
-          ))}
-          {builds.map((build) => (
-            <Build key={build.id} {...build} setBuilds={setBuilds} />
-          ))}
-
+<Container className="mt-3">
+        <Col className="mb-3 mt-4" lg={12}>
+          {isLoaded ? (
+            <>
+               {posts.results.map((post) => {
+                    if (post.post_type === "Game Related") {
+                      return (
+                        <Post key={post.id} {...post} setPosts={setPosts} />
+                      );
+                    } else if (post.post_type === "Pokémon Build") {
+                      return (
+                        <Build key={post.id} {...post} setPosts={setPosts} />
+                      );
+                    }
+                  })}
+            </>
+          ) : (
+            <Container>
+              <Asset loader />
+            </Container>
+          )}
         </Col>
-      </Row>
+
+      <ArrowUp />
+      </Container>
     </Container>
   )
 }

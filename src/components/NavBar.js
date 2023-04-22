@@ -7,6 +7,7 @@ import logo from '../assets/logo.png';
 import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
+import "../index.css";
 
 
 

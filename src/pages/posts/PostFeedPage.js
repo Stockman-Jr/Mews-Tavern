@@ -9,8 +9,10 @@ import Build from "./Build";
 import ArrowUp from "../../components/ArrowUp";
 import Asset from "../../components/Asset";
 
+import InfiniteScroll from "react-infinite-scroll-component";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { fetchMoreData } from "../../utils/utils";
 
 
 function PostFeedPage() {
@@ -44,19 +46,29 @@ return (
   <Container className="mt-3">
           <Col className="mb-3 mt-4" lg={12}>
             {isLoaded ? (
-              <>
-                {posts.results.map((post) => {
-                      if (post.post_type === "Game Related") {
-                        return (
-                          <Post key={post.id} {...post} setPosts={setPosts} />
-                        );
-                      } else if (post.post_type === "Pokémon Build") {
-                        return (
-                          <Build key={post.id} {...post} setPosts={setPosts} />
-                        );
-                      }
-                    })}
-              </>
+            <>
+            {posts.results.length ? (
+              <InfiniteScroll
+                children={posts.results.map((post) => {
+                  if (post.post_type === "Game Related") {
+                    return (
+                      <Post key={post.id} {...post} setPosts={setPosts} />
+                    );
+                  } else if (post.post_type === "Pokémon Build") {
+                    return (
+                      <Build key={post.id} {...post} setPosts={setPosts} />
+                    );
+                  }
+                })}
+                dataLength={posts.results.length}
+                loader={<Asset loader />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
+              />
+            ) : (
+              <Container>No posts...</Container>
+            )}
+          </>
             ) : (
               <Container>
                 <Asset loader />

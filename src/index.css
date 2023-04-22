@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.carousel-control-next-icon {
+  width: 30px;
+  height: 30px;
+   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAACH0lEQVR4nGNgGAXEgPTISNXASSs+eSw58h+GA/uXfQSJo6tzbpn3yXTipv8w7NwyB0MdBsiMjs63OPrhv8WxT0j44//w1hmPQ0NDmZHVKU0//l9x6hEEnnb0v0/NJBR1GCArJkbFZfXZv6gWfPpvffDN//T03GZkdQZTdv5FsWDqkf/KM0/8T07NbsYfTOm5zVYHX6P54tN/kMVZcXHaMHUgg5Rnovli6pH/IIuR1WGA+vp6prCWqQ9AQYNuSWjbjOdpaWmsMHXeVX0PQEGDasnR/941E+DqsIKc+HgNbEFldfDN/+TMvGZkdViDatbx//FIQTqMgyo9OlrLZc05zKA68PJ/VnR0GLI6wym7MIJKZeZxFHVYLQjuW/bLfvuj/8jYbdnJv+gWOE9e/0vx0Of/yFhv/TUUdSgAlGESCmvv2W97gGK4w9b7/xOKau/AMhSIjihtuKd08COK4UoHPvyPLG2Eq8MAmcmpDa4rzvxFd31Q75LfyJGXnpzeoLPx1l901ztNXouiDgWAkl9w39Lf6Ia7rjz7Nz01vQ5ZnfPkdb/RDdfZdPtvampmHZ6gqbrjsJVw0EQW198BBcXgCZqsmBiVoN6lmKlm5dm/GUkp9cjqnCavw0g1uptu/01LSoOrw3R9dHS+08abeIMGpk5t90vSggbmsujK9rfBvUv+w3BMRdsr9IoE7NOanrfOk9b+h+Ggmm4MdaOAgRQAAHX7rKqtgpxPAAAAAElFTkSuQmCC);
+ }
+ 
+ .carousel-control-prev-icon {
+   width: 30px;
+   height: 30px;
+   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAACJElEQVR4nGNgGAXkgvTISNXgmu7XHr2L/8NwUE3326yYGBV0dbEVba/D2mf/h+GYyjYMdSggNDSUObK08Y7SgQ//FQ99hmO13S//Z0ZH5yOrSyiqveOw9f5/++2P4Nhp400UdRggLSmtXnfT7b/IhoOw0+R1v5BdlpGUUu+28uxfZMNBOKh3KYo6FJATH6/hPHndb3TDdTbf+ZuamlmHrC64b+lvdMNdV577m56aXoc7aIrrMYJG6cCH/+GljXdB8vCgKay647D1AYrhoKCKK66Fq8OM2OT0Bt2NN7EEzdrfWXFx2jB1mcmpDW7LT2MJmiUo6gZB0Bz8SFTQ2G97gD9osqKjw/TWX8MIGufJ63+lR0drIatzW3YSI2iC+5ahqMNqgcrM4/8Vpx5BwYZTdv1Ft8DqwMv/Fsc+oWCXNedQ1GGA+vp6Jp/qvvuK046iWjLtyH/P2skv09LSWGHqwlqm3Lc49hHVkqOf/od2zIGrwxnJBlN2/kX3hfKs4//j03ObkdW5rD77F90XVgff/E/OzIOrwwqSU7OblbEElcGUnX+Rk196em6z1cHXmEG1+iyKOuKDaurR/941E54TDKpjn/6Hts14PliC6gT2oIpBFGKgoLI++AZ7UBEqrn1qJj1GDyql6ccxiuvw1hmPMVPVB/zFNdh1kZGqzi1zPhpO3vUfhp1b537MjYtTRlcX1L/so+uac/9hOHDCcgx1o4ABFwAAJdes1Hpd5iMAAAAASUVORK5CYII=);
+ }
+ 
+ .carousel-indicators li {
+   background-color: rgb(77, 67, 57);
+   border-radius: 50%;
+   width: 10px;
+   height: 10px;
+ }
+ 
+ .carousel-indicators {
+   margin-bottom: 0px;
+ }

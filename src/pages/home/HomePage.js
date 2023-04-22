@@ -9,15 +9,18 @@ import Image from "react-bootstrap/Image";
 
 import Post from "../posts/Post";
 import Build from "../posts/Build";
+import Asset from "../../components/Asset";
+import CornerDecorations from '../../components/CornerDecorations';
 
 import styles from "../../styles/Home.module.css";
 import appStyles from "../../App.module.css";
-import CornerDecorations from '../../components/CornerDecorations';
+import "../../index.css";
 
 
 function HomePage() {
 
     const [topPosts, setTopPosts] = useState({ results: [] });
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -26,11 +29,19 @@ function HomePage() {
             "/posts/?ordering=-likes_count&page_size=5"
           );
           setTopPosts(data);
+          setIsLoaded(true);
         } catch (err) {
           console.log(err);
         }
       };
-      fetchData();
+      setIsLoaded(false);
+      const timer = setTimeout(() => {
+        fetchData();
+      }, 1000);
+  
+      return () => {
+        clearTimeout(timer);
+      };
     }, []);
 
     const [index, setIndex] = useState(0);
@@ -39,32 +50,38 @@ function HomePage() {
       setIndex(selectedIndex);
     };
 
-  return (
+return (
     <>
-          <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom}`}>
-              <CornerDecorations />
-              <h1 className="mt-4 mb-4 text-center">Mew's Tavern</h1>
-          </div>
-          <div className={`${appStyles.BorderBottom} ${appStyles.BeigeBg}`}>
-              <h2 className="text-center">Popular Posts</h2>
-              <Carousel activeIndex={index} onSelect={handleSelect}>
-          {topPosts.results.map((post) => {
-            if (post.post_type === "Game Related") {
-              return (
-                <Carousel.Item key={post.id} className="p-3">
-                  <Post {...post} setPosts={setTopPosts} homePage />
-                </Carousel.Item>
-              );
-            } else if (post.post_type === "Pokémon Build") {
-              return (
-                <Carousel.Item key={post.id} className="p-3">
-                  <Build {...post} setPosts={setTopPosts} homePage />
-                </Carousel.Item>
-              );
-            }
-          })}
-        </Carousel>
-          </div>
+    <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom} `}>
+        <CornerDecorations />
+        <h1 className="mt-4 mb-4 text-center">Mew's Tavern</h1>
+    </div>
+        <div className={`${appStyles.BorderBottom} ${appStyles.BeigeBg}`}>
+        <h2 className={`${styles.Popular} text-center`}>Popular Posts</h2>
+            {isLoaded ? (
+                <>
+                <Carousel activeIndex={index} onSelect={handleSelect}>
+                    {topPosts.results.map((post) => {
+                        if (post.post_type === "Game Related") {
+                            return (
+                                <Carousel.Item key={post.id} className="p-3">
+                                    <Post {...post} setPosts={setTopPosts} homePage />
+                                </Carousel.Item>
+                            );
+                        } else if (post.post_type === "Pokémon Build") {
+                             return (
+                                <Carousel.Item key={post.id} className="p-3">
+                                    <Build {...post} setPosts={setTopPosts} homePage />
+                                </Carousel.Item>
+                            );
+                        }
+                    })}
+                </Carousel>
+                </>
+            ) : (
+                <Asset loader />
+            )}
+        </div>
           <div className={`${appStyles.CornerBox} ${styles.BorderStyle}`}>
               <CornerDecorations />
               <Row className={styles.InfoWrapper}>
@@ -99,8 +116,7 @@ function HomePage() {
                               There is also an ongoing Tera Raid Battle Event where you can
                               battle and catch the new Pokémons Walking Wake in Scarlet and
                               Iron Leaves in Violet!
-                              <br /> Don't forget to share your builds an experiences! <br />
-                       
+                              <br /> Don't forget to share your builds an experiences! <br />                       
                           </p>
                               <span className={styles.SiteLink}>
                                   Read all about the updates and events on the: {" "}

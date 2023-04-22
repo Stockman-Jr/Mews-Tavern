@@ -39,35 +39,34 @@ function PostFeedPage() {
   }, [pathname]);
 
 
-  return (
-    <Row className="mt-5 mr-0 ml-0">
-<Container className="mt-3">
-        <Col className="mb-3 mt-4" lg={12}>
-          {isLoaded ? (
-            <>
-               {posts.results.map((post) => {
-                    if (post.post_type === "Game Related") {
-                      return (
-                        <Post key={post.id} {...post} setPosts={setPosts} />
-                      );
-                    } else if (post.post_type === "Pokémon Build") {
-                      return (
-                        <Build key={post.id} {...post} setPosts={setPosts} />
-                      );
-                    }
-                  })}
-            </>
-          ) : (
-            <Container>
-              <Asset loader />
-            </Container>
-          )}
-        </Col>
-
-      <ArrowUp />
-      </Container>
-    </Row>
-  )
+return (
+  <Row className="mt-5 mr-0 ml-0">
+  <Container className="mt-3">
+          <Col className="mb-3 mt-4" lg={12}>
+            {isLoaded ? (
+              <>
+                {posts.results.map((post) => {
+                      if (post.post_type === "Game Related") {
+                        return (
+                          <Post key={post.id} {...post} setPosts={setPosts} />
+                        );
+                      } else if (post.post_type === "Pokémon Build") {
+                        return (
+                          <Build key={post.id} {...post} setPosts={setPosts} />
+                        );
+                      }
+                    })}
+              </>
+            ) : (
+              <Container>
+                <Asset loader />
+              </Container>
+            )}
+          </Col>
+          <ArrowUp />
+        </Container>
+      </Row>
+  );
 }
 
 export default PostFeedPage;

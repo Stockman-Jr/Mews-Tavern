@@ -1,21 +1,43 @@
-import React from 'react';
-import styles from "../../styles/Home.module.css";
-import appStyles from "../../App.module.css";
-import CornerDecorations from '../../components/CornerDecorations';
+import React, { useState, useEffect } from "react";
+import { axiosReq } from "../../api/axiosDefaults";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Carousel from "react-bootstrap/Carousel";
 import Container from 'react-bootstrap/Container';
 import Image from "react-bootstrap/Image";
 
+import styles from "../../styles/Home.module.css";
+import appStyles from "../../App.module.css";
+import CornerDecorations from '../../components/CornerDecorations';
+
+
 function HomePage() {
+
+    const [topPosts, setTopPosts] = useState({ results: [] });
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const { data } = await axiosReq.get(
+            "/posts/?ordering=-likes_count&page_size=5"
+          );
+          setTopPosts(data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    }, []);
+    
   return (
     <>
-          <div className={`${appStyles.CornerBox} ${styles.BorderStyle}`}>
+          <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom}`}>
               <CornerDecorations />
               <h1 className="mt-4 mb-4 text-center">Mew's Tavern</h1>
           </div>
-          <div className={`${styles.BorderStyle} mt-4`}>
-              <h2 className="text-center">Top shared content</h2>
+          <div className={`${appStyles.BorderBottom} ${appStyles.BeigeBg}`}>
+              <h2 className="text-center">Popular Posts</h2>
           </div>
           <div className={`${appStyles.CornerBox} ${styles.BorderStyle}`}>
               <CornerDecorations />

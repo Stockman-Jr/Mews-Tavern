@@ -77,15 +77,6 @@
 }
 
 
-.BorderStyle {
-    border-bottom: 4px solid transparent;
-    /*border-top: 4px solid transparent;*/
-    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
-    border-image-slice: 1;
-    width:100%;
-}
-
-
 
 /* MEDIA QUERIES */
 @media screen and (max-width: 992px) {

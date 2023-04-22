@@ -104,7 +104,8 @@ const Build = (props) => {
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
           <Col>
-            <Avatar src={profile_avatar} height={55} text={owner} />
+            <Avatar src={profile_avatar} height={55} />
+            {owner}
           </Col>
           <Col>
             {is_owner && buildPage && (
@@ -119,7 +120,7 @@ const Build = (props) => {
       <Row className={`${styles.CardImgBox} ${appStyles.Row} p-1`}>
             <Col className={`${styles.InfoCol}`}>
               {pokemon && (
-                <h6 className={`${styles.CardTitle} text-center`}>
+                <h6 className={`${styles.BuildTitle} text-center`}>
                   {capitalizeFirstLetter(pokemon)} Build
                 </h6>
               )}

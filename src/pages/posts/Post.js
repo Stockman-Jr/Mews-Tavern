@@ -94,7 +94,10 @@ const Post = (props) => {
         <Card.Header className={styles.GradHeader}>
           <Row className={styles.HeaderContent}>
             <Col>
-              <Avatar src={profile_avatar} text={owner} />
+             <Link to="">
+                <Avatar src={profile_avatar} />
+                {owner}
+              </Link>
             </Col>
             <Col>
               {is_owner && postPage && (

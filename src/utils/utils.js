@@ -1,6 +1,5 @@
 import { axiosReq } from "../api/axiosDefaults";
 
-
 const typeColors = {
     normal: "#ACA498",
     water: "#418DC6",
@@ -38,6 +37,22 @@ const typeColors = {
 
 
   /* Data fetching */
+
+  export const fetchMoreData = async (resource, setResource) => {
+    try {
+      const { data } = await axiosReq.get(resource.next);
+      const uniqueResults = data.results.filter((result) => {
+        return !resource.results.some(
+          (prevResult) => prevResult.id === result.id
+        );
+      });
+      setResource((prevResource) => ({
+        ...prevResource,
+        next: data.next,
+        results: [...prevResource.results, ...uniqueResults],
+      }));
+    } catch (err) {}
+  };
 
   export const fetchAllData = async (url) => {
     let allData = [];

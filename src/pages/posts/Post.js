@@ -92,7 +92,7 @@ const Post = (props) => {
     };
   return (
     <>
-    <div className={styles.CarouselWrapper
+    <div className={wrapClassName
     }>
       <Card className={styles.Card}>
         <Card.Header className={styles.GradHeader}>

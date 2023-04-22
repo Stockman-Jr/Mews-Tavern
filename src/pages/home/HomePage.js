@@ -60,17 +60,17 @@ return (
         <h2 className={`${styles.Popular} text-center`}>Popular Posts</h2>
             {isLoaded ? (
                 <>
-                <Carousel activeIndex={index} onSelect={handleSelect}>
+                <Carousel activeIndex={index} onSelect={handleSelect} pause='hover'>
                     {topPosts.results.map((post) => {
                         if (post.post_type === "Game Related") {
                             return (
-                                <Carousel.Item key={post.id} className="p-3">
+                                <Carousel.Item key={post.id} className="pb-3">
                                     <Post {...post} setPosts={setTopPosts} homePage />
                                 </Carousel.Item>
                             );
                         } else if (post.post_type === "Pokémon Build") {
                              return (
-                                <Carousel.Item key={post.id} className="p-3">
+                                <Carousel.Item key={post.id} className="pb-3">
                                     <Build {...post} setPosts={setTopPosts} homePage />
                                 </Carousel.Item>
                             );

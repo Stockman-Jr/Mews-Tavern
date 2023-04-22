@@ -100,9 +100,9 @@ const Build = (props) => {
       }
     };
 
-  return (
-      <>
-      <div className={wrapClassName}>
+return (
+    <>
+    <div className={wrapClassName}>
     <Card className={styles.Card}>
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
@@ -139,7 +139,6 @@ const Build = (props) => {
                   />
                 </Link>
               </div>
-
               <div className={`${styles.BuildInfo}`}>
                 <div className={styles.MovesSection}>
                   <strong
@@ -228,11 +227,13 @@ const Build = (props) => {
               </div>
             </Col>
           </Row>
-          <Card.Body className={styles.Description}>
+          {!homePage && content && (
+            <Card.Body className={styles.Description}>
               <div>
                 <Card.Text className="text-center">{content}</Card.Text>
               </div>
             </Card.Body>
+          )}
         <div className={styles.CardFooter}>
           {is_owner ? (
             <OverlayTrigger
@@ -261,12 +262,10 @@ const Build = (props) => {
               </span>
             </OverlayTrigger>
           )}
-
-          {likes_count}
+            {likes_count}
           <span className={styles.CmtIcon}>
-              <ImBubbles2 />
-             
-            </span>
+              <ImBubbles2 />            
+          </span>
             {comments_count}
           <Badge className={`${appStyles.Badge} ml-auto`}>
               {game_filter_display}
@@ -275,8 +274,6 @@ const Build = (props) => {
               <strong>{post_type}</strong>
             </Badge>
         </div>
-
-
     </Card>
     {buildPage || homePage ? null : <hr className={appStyles.HrDeco} />}
     </div>

@@ -7,6 +7,9 @@ import Carousel from "react-bootstrap/Carousel";
 import Container from 'react-bootstrap/Container';
 import Image from "react-bootstrap/Image";
 
+import Post from "../posts/Post";
+import Build from "../posts/Build";
+
 import styles from "../../styles/Home.module.css";
 import appStyles from "../../App.module.css";
 import CornerDecorations from '../../components/CornerDecorations';
@@ -29,7 +32,13 @@ function HomePage() {
       };
       fetchData();
     }, []);
-    
+
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex, e) => {
+      setIndex(selectedIndex);
+    };
+
   return (
     <>
           <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom}`}>
@@ -38,6 +47,23 @@ function HomePage() {
           </div>
           <div className={`${appStyles.BorderBottom} ${appStyles.BeigeBg}`}>
               <h2 className="text-center">Popular Posts</h2>
+              <Carousel activeIndex={index} onSelect={handleSelect}>
+          {topPosts.results.map((post) => {
+            if (post.post_type === "Game Related") {
+              return (
+                <Carousel.Item key={post.id} className="p-3">
+                  <Post {...post} setPosts={setTopPosts} homePage />
+                </Carousel.Item>
+              );
+            } else if (post.post_type === "Pokémon Build") {
+              return (
+                <Carousel.Item key={post.id} className="p-3">
+                  <Build {...post} setPosts={setTopPosts} homePage />
+                </Carousel.Item>
+              );
+            }
+          })}
+        </Carousel>
           </div>
           <div className={`${appStyles.CornerBox} ${styles.BorderStyle}`}>
               <CornerDecorations />

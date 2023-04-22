@@ -36,12 +36,14 @@ const Post = (props) => {
       ingame_name,
       updated_at,
       postPage,
+      homePage,
       setPosts,
     } = props;
 
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
+    const wrapClassName = homePage ? styles.CarouselWrapper : null;
 
     const handleEdit = () => {
       history.push(`/posts/${id}/edit`)
@@ -90,6 +92,8 @@ const Post = (props) => {
     };
   return (
     <>
+    <div className={styles.CarouselWrapper
+    }>
       <Card className={styles.Card}>
         <Card.Header className={styles.GradHeader}>
           <Row className={styles.HeaderContent}>
@@ -170,7 +174,8 @@ const Post = (props) => {
           </Badge>
         </div>
       </Card>
-      <hr className={appStyles.HrDeco} />
+      {postPage || homePage ? null : <hr className={appStyles.HrDeco} />}
+      </div>
     </>
   )
 };

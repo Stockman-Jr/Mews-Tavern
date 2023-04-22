@@ -44,6 +44,7 @@ const Build = (props) => {
       post_type,
       updated_at,
       buildPage,
+      homePage,
       game_filter_display,
       setPosts,
     } = props;
@@ -51,6 +52,7 @@ const Build = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
+    const wrapClassName = homePage ? styles.CarouselWrapper : null;
 
     const handleEdit = () => {
       history.push(`/posts/${id}/edit`)
@@ -100,6 +102,7 @@ const Build = (props) => {
 
   return (
       <>
+      <div className={wrapClassName}>
     <Card className={styles.Card}>
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
@@ -275,7 +278,8 @@ const Build = (props) => {
 
 
     </Card>
-    <hr className={appStyles.HrDeco}/>
+    {buildPage || homePage ? null : <hr className={appStyles.HrDeco} />}
+    </div>
     </>
   )
 };

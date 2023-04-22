@@ -21,6 +21,13 @@
     border-bottom-left-radius: 0.25rem;
 }
 
+.CarouselWrapper {
+    max-width: 700px;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;   
+}
+
 .Card {
     background-color: transparent;
     border: none;

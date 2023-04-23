@@ -1,0 +1,36 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Avatar from "../../components/Avatar";
+import styles from "../../styles/Comment.module.css";
+
+const Comment = (props) => {
+  const {
+    profile_id,
+    profile_avatar,
+    owner,
+    updated_at,
+    content,
+  } = props;
+  return (
+    <>
+    <hr/>
+    <div className="d-flex flex-row">
+    <Link to={`/profile/${profile_id}`}>
+          <Avatar height={40} src={profile_avatar} />
+        </Link>
+        <span className={`d-flex flex-column align-items-center`}>
+          <Link to={`/profile/${profile_id}`} className={styles.Owner}>
+            {" "}
+            {owner}{" "}
+          </Link>{" "}
+          <small className={styles.Updated}>{updated_at}</small>
+        </span>
+        <div>
+        <p className="ml-1 mr-1">{content}</p>
+        </div>
+    </div> 
+    </>
+  );
+}
+
+export default Comment;

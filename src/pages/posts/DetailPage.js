@@ -10,6 +10,7 @@ import appStyles from "../../App.module.css";
 
 import Post from "./Post";
 import Build from "./Build";
+import CommentCreateForm from "../comments/CommentCreateForm";
 
 import { useParams, useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -21,6 +22,8 @@ function DetailPage() {
     const location = useLocation();
     const { post_type } = location.state;
     const [post, setPost] = useState({ results: [] });
+    const [comments, setComments] = useState({ results: [] });
+    const currentUser = useCurrentUser();
 
     useEffect(() => {
         const handleMount = async () => {
@@ -41,6 +44,11 @@ function DetailPage() {
                     setPost({ results: [post] });
                     console.log(post);
                 }
+                const [{ data: comments }] = await Promise.all([
+                    axiosReq.get(`/comments/?post=${id}`),
+                  ]);
+          
+                  setComments(comments);
             } catch (err) {
                 console.log(err);
             }
@@ -57,6 +65,17 @@ function DetailPage() {
                       <Build {...post.results[0]} setPosts={setPost} buildPage />
                   )}
               </Col>
+              <Container className="mt-3">
+                  {currentUser ? (
+                      <CommentCreateForm
+                          post={id}
+                          setPost={setPost}
+                          setComments={setComments}
+                      />
+                  ) : (
+                      <p className="text-white">Log In or Sign Up to leave comments!</p>
+                  )}
+              </Container>
           </Row>
       </Container>
   )

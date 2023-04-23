@@ -17,15 +17,27 @@
 }
 
 .FormBtn {
-    margin-top: 10px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 15px;
-    text-transform: uppercase;
-    background-color: #5f574b;
-    border: 1px solid rgb(161, 113, 8);
-    border-bottom: 3px solid rgb(161, 113, 8);
-    border-right: 2px solid rgb(199, 156, 14);
-    width: 60%;
+  margin-top: 10px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  text-transform: uppercase;
+  background-color: #5f574b;
+  border: 1px solid rgb(161, 113, 8);
+  border-bottom: 3px solid rgb(161, 113, 8);
+  border-right: 2px solid rgb(199, 156, 14);
+  color: #e4e0d4;   
+}
+
+.CommentBtn {
+  margin: 0 auto;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 15px;
+  text-transform: uppercase;
+  background-color: #499da8;
+  border: 1px solid rgb(161, 113, 8);
+  border-bottom: 3px solid rgb(161, 113, 8);
+  border-right: 2px solid rgb(199, 156, 14);
+  width: 20%;
 }
 
 .Button:hover {

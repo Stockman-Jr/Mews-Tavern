@@ -1,0 +1,35 @@
+.PostContainer {
+    padding: 0;
+}
+
+.CommentContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: #4d463e94;
+    border: 1px solid #4892a531;
+    border-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+}
+
+.CmtTitle {
+    color: rgb(241, 228, 211);
+    font-family: 'Press Start 2P', cursive;
+    text-align: center;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.CmtBox {
+    max-height: 400px;
+    overflow: auto;
+
+}
+
+.LoadMoreBox {
+    width: 100%;
+    bottom: 0;
+    display: block;
+    position: absolute;
+    margin: 0 auto;
+}

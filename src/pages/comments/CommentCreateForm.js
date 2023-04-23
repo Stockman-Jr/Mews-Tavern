@@ -40,12 +40,12 @@ function CommentCreateForm(props) {
           console.log(err);
         }
       };
-      
+
     return (
-    <div>
+    <div className={styles.Content}>
         <Form className="d-flex flex-column" onSubmit={handleSubmit}>
             <Form.Group>
-                <InputGroup>
+                <InputGroup className={styles.CommentWrapper}>
                 <Form.Control
                 placeholder="Add comment..."
                 as="textarea"

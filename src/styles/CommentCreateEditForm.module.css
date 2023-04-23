@@ -1,0 +1,21 @@
+.Content {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.CommentWrapper {
+
+    margin: 0 auto;
+}
+
+.CommentWrapper textarea {
+    height: 100px;
+}
+
+
+@media screen and (max-width: 540px) {
+
+    .Content {
+        width: 100%;
+    }
+}

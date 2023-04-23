@@ -66,12 +66,15 @@ const PokemonCard = ({ page }) => {
     }, [page, pokemonsPerPage, owner]);
 
 
-    const handleCatch = async (pokemon) => {
+    const handleCatch = async ({pokemon}) => {
       try {
         const { data } = await axiosReq.post(`/api/caught/`, {
           pokemon: pokemon.id,
         });
-        setCaughtPokemons([...caughtPokemons, data]);
+        setCaughtPokemons((prevCaughtPokemons) => [
+          ...prevCaughtPokemons,
+          { id: data.id, pokemon: pokemon.id },
+        ]);
       } catch (error) {
         console.log(error);
       }
@@ -80,7 +83,7 @@ const PokemonCard = ({ page }) => {
 
     const CatchButton = ({ pokemon }) => {
       const isPokemonCaught = caughtPokemons.some(
-        (caughtPokemon) => caughtPokemon.pokemon === pokemon.id
+        (caughtPokemon) => caughtPokemon.pokemon.id === pokemon.id
       );
   
       if (isPokemonCaught) {
@@ -130,7 +133,7 @@ const PokemonCard = ({ page }) => {
                         {pokemon.types.join("/")}
                       </Card.Text>
 
-                      <CatchButton pokemon={pokemon} />
+                      <CatchButton pokemon={pokemon.id} />
                     </Card.Body>
 
                   </div>

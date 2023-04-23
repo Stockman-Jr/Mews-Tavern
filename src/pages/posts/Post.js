@@ -43,7 +43,8 @@ const Post = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
     const history = useHistory();
-    const wrapClassName = homePage ? styles.CarouselWrapper : null;
+    const wrapClassName = homePage ? styles.CarouselWrapper : '';
+    const cardClassName = postPage ? styles.DetailCard : styles.Card;
 
     const handleEdit = () => {
       history.push(`/posts/${id}/edit`)
@@ -92,9 +93,8 @@ const Post = (props) => {
     };
   return (
     <>
-    <div className={wrapClassName
-    }>
-      <Card className={styles.Card}>
+    <div className={wrapClassName}>
+      <Card className={cardClassName}>
         <Card.Header className={styles.GradHeader}>
           <Row className={styles.HeaderContent}>
             <Col>

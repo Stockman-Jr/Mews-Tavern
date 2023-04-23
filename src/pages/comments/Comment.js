@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { Media } from "react-bootstrap";
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
 
@@ -25,9 +26,9 @@ const Comment = (props) => {
           </Link>{" "}
           <small className={styles.Updated}>{updated_at}</small>
         </span>
-        <div className={`${styles.CmtContent} ml-2 mb-1 mr-1`}>
+        <Media.Body  className={`${styles.CmtContent} ml-2 mb-1 mr-1`}>
           <p className="ml-1 mr-1">{content}</p>
-        </div>
+        </Media.Body >
       </div>
     </>
   );

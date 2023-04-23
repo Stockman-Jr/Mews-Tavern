@@ -37,6 +37,11 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.DetailCard {
+    background-color: transparent;
+    border: 1px solid #4892a575;
+}
+
 .CardImgBox {
     background-color: rgb(207, 198, 186);
 }

@@ -52,6 +52,25 @@
     border-color: #68490f;
 }
 
+.LoadMoreBtn {
+  padding: 5px;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  cursor: pointer;
+  font-family: 'Press Start 2P', cursive;
+  text-align: center;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #499da8;
+}
+
+.LoadMoreBtn svg {
+  font-size: 1.5em;
+  stroke-width: 1px;
+  color: #bda125;  
+}
+
 .ScrollContainer {
     position: relative;
 }

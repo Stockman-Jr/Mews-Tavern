@@ -28,7 +28,7 @@ function DetailPage() {
     const [post, setPost] = useState({ results: [] });
     const [comments, setComments] = useState({ results: [] });
     const currentUser = useCurrentUser();
-    const profile_avatar = currentUser?.profile_avatar;
+    const profileAvatar = currentUser?.profile_avatar;
 
     useEffect(() => {
         const handleMount = async () => {
@@ -69,7 +69,7 @@ function DetailPage() {
   return (
       <Container className="mt-5">
           <Row>
-              <Col>
+              <Col className={styles.PostContainer} lg={8} md={12}>
                   {post_type === "Game Related" ? (
                       <Post {...post.results[0]} setPosts={setPost} postPage />
                   ) : (
@@ -88,6 +88,8 @@ function DetailPage() {
                 children={comments.results.map((comment) => (
                   <Comment
                     key={comment.id}
+                    profile_avatar={profileAvatar}
+                    profile_id={currentUser.profile_id}
                     {...comment}
                     setPost={setPost}
                     setComments={setComments}
@@ -116,9 +118,9 @@ function DetailPage() {
               <Container className="mt-3">
                   {currentUser ? (
                       <CommentCreateForm
-                          post={id}
-                          setPost={setPost}
-                          setComments={setComments}
+                        post={id}
+                        setPost={setPost}
+                        setComments={setComments}
                       />
                   ) : (
                       <p className="text-white">Log In or Sign Up to leave comments!</p>

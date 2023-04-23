@@ -33,3 +33,14 @@
     position: absolute;
     margin: 0 auto;
 }
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 992px) {
+    .LoadMoreBox {
+        width: 100%;
+        display: block;
+        position: unset;
+        margin: 0 auto;
+     }
+
+    }

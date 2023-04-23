@@ -7,14 +7,18 @@ import Container from "react-bootstrap/Container";
 import styles from "../../styles/DetailPage.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import appStyles from "../../App.module.css";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { CgAdd } from "react-icons/cg";
 
 import Post from "./Post";
 import Build from "./Build";
 import CommentCreateForm from "../comments/CommentCreateForm";
+import Comment from "../comments/Comment";
 
 import { useParams, useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { fetchMoreData } from "../../utils/utils";
 
 
 function DetailPage() {
@@ -56,6 +60,12 @@ function DetailPage() {
         };
         handleMount();
     }, [id, location]);
+
+    const handleLoadMore = (e) => {
+        e.preventDefault();
+        fetchMoreData(comments, setComments);
+      };
+
   return (
       <Container className="mt-5">
           <Row>
@@ -66,6 +76,43 @@ function DetailPage() {
                       <Build {...post.results[0]} setPosts={setPost} buildPage />
                   )}
               </Col>
+              <Col
+          className={`${styles.CommentContainer} flex-grow-1 overflow-auto p-0`}
+          lg={4}
+          md={12}
+        >
+          <p className={`${styles.CmtTitle} mt-2 mb-0`}>Comments</p>
+          {comments.results.length ? (
+            <>
+              <InfiniteScroll
+                children={comments.results.map((comment) => (
+                  <Comment
+                    key={comment.id}
+                    {...comment}
+                    setPost={setPost}
+                    setComments={setComments}
+                  />
+                ))}
+                className={`${styles.CmtBox} ${appStyles.BorderBottom}`}
+                dataLength={comments.results.length}
+                hasMore={!!comments.next}
+              />
+              <div className={styles.LoadMoreBox}>
+                <span
+                  onClick={handleLoadMore}
+                  className={`${btnStyles.LoadMoreBtn}`}
+                >
+                  Load More{" "}
+                  <strong className={appStyles.Icons}>
+                    <CgAdd />
+                  </strong>
+                </span>
+              </div>
+            </>
+          ) : (
+            <p className="text-white text-center mt-1">No comments yet.. </p>
+          )}
+        </Col>
               <Container className="mt-3">
                   {currentUser ? (
                       <CommentCreateForm

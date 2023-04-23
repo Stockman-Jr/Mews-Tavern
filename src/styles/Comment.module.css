@@ -1,0 +1,28 @@
+.Owner {
+    font-weight: 800;
+    color: rgb(241, 228, 211);
+}
+
+.Owner a:hover {
+    color: #69cae2;
+}
+
+.Updated {
+    font-style: italic;
+    font-size: 10px;  
+    color: rgb(241, 228, 211);
+}
+
+.CmtContent {
+    background-color: #99dfdf;
+    padding: 6px 3px 3px 3px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.CmtHr {
+    background-color: #a0900449;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+

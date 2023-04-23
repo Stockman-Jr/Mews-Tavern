@@ -13,9 +13,9 @@ const Comment = (props) => {
   } = props;
   return (
     <>
-    <hr/>
-    <div className="d-flex flex-row">
-    <Link to={`/profile/${profile_id}`}>
+      <hr className={styles.CmtHr} />
+      <div className="d-flex flex-row">
+        <Link to={`/profile/${profile_id}`}>
           <Avatar height={40} src={profile_avatar} />
         </Link>
         <span className={`d-flex flex-column align-items-center`}>
@@ -25,10 +25,10 @@ const Comment = (props) => {
           </Link>{" "}
           <small className={styles.Updated}>{updated_at}</small>
         </span>
-        <div>
-        <p className="ml-1 mr-1">{content}</p>
+        <div className={`${styles.CmtContent} ml-2 mb-1 mr-1`}>
+          <p className="ml-1 mr-1">{content}</p>
         </div>
-    </div> 
+      </div>
     </>
   );
 }

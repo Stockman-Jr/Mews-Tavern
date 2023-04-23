@@ -24,6 +24,7 @@ function DetailPage() {
     const [post, setPost] = useState({ results: [] });
     const [comments, setComments] = useState({ results: [] });
     const currentUser = useCurrentUser();
+    const profile_avatar = currentUser?.profile_avatar;
 
     useEffect(() => {
         const handleMount = async () => {

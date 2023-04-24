@@ -16,12 +16,14 @@ import { NavLink } from 'react-router-dom';
 import { useCurrentUser, useSetCurrentUser } from '../contexts/CurrentUserContext';
 import axios from 'axios';
 import "../index.css";
+import { ProfileMenuDropdown } from './DropdownMenus';
 
 
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const profile_avatar = currentUser?.profile_avatar;
 
   const handleSignOut = async () => {
     try{
@@ -50,14 +52,29 @@ const NavBar = () => {
       <NavLink className={btnStyles.AuthBtn} to="/signin">Log In</NavLink>
   </>;
 
+  const logoLink = (
+    <>
+      <NavLink to="/">
+        <Navbar.Brand href="#home">
+          <img className={styles.Logo} src={logo} alt="logo" />
+        </Navbar.Brand>
+      </NavLink>
+    </>
+  );
+
 
   return (
-    <Navbar className={styles.NavBar} expand="md">
-    <NavLink to="/">
-    <Navbar.Brand href="#home">
-      <img className={styles.Logo} src={logo} alt="logo"/>
-    </Navbar.Brand>
-    </NavLink>
+    <div className={styles.NavBar}>
+      <div className="mr-auto">
+        {currentUser && (
+          <ProfileMenuDropdown
+            profileAvatar={profile_avatar}
+            id={currentUser.profile_id}
+          />
+        )}
+      </div>
+    <Navbar expand="md">
+    {currentUser ? "" : logoLink}
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className={`${styles.NavLeft} mr-auto`}>
@@ -86,8 +103,8 @@ const NavBar = () => {
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-
-  )
+</div>
+  );
 }
 
-export default NavBar
+export default NavBar;

@@ -108,8 +108,10 @@ return (
       <Card.Header className={styles.GradHeader}>
         <Row className={styles.HeaderContent}>
           <Col>
-            <Avatar src={profile_avatar} height={55} />
-            {owner}
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar src={profile_avatar} />
+                {owner}
+              </Link>
           </Col>
           <Col>
             {is_owner && buildPage && (

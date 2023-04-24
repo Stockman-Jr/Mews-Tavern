@@ -98,7 +98,7 @@ const Post = (props) => {
         <Card.Header className={styles.GradHeader}>
           <Row className={styles.HeaderContent}>
             <Col>
-             <Link to="">
+             <Link to={`/profiles/${profile_id}`}>
                 <Avatar src={profile_avatar} />
                 {owner}
               </Link>

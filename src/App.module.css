@@ -52,6 +52,13 @@ a {
   height:auto; 
 }
 
+.Avatar {
+  max-height: 100px;
+  max-width: 100%;
+  object-fit: contain;
+  border: 2px solid #ad8105;;
+  border-radius: 50%;
+}
 
 .FillerImage {
   object-fit: cover;

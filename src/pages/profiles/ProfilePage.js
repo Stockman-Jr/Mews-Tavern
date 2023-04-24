@@ -16,6 +16,7 @@ import Build from "../posts/Build";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
+import { NavLink } from 'react-router-dom';
 
 function ProfilePage() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -53,7 +54,7 @@ function ProfilePage() {
       }, [id, currentUser]);
   return (
     <>
-    <header>
+    <header className={`${styles.ProfileHeader} ${appStyles.BeigeBg} ${appStyles.BorderBottom}`}>
     {profile && (
           <>
             <Image
@@ -68,21 +69,21 @@ function ProfilePage() {
             </div>
           </>
         )}
-         <div >
-          <Nav >
-            <Nav.Item >
+         <div className={styles.MenuContent}>
+          <Nav className={styles.ProfileMenu}>
+            <Nav.Item className={styles.NavItem} >
               <Nav.Link >
                 Posts
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item className={styles.NavItem}>
               <Nav.Link >
                 Liked
               </Nav.Link>
             </Nav.Item>
-            <Nav.Item>
+            <Nav.Item className={styles.NavItem}>
               <Nav.Link >
-                Caught pokémons
+                Pokémons
               </Nav.Link>
             </Nav.Item>
           </Nav>

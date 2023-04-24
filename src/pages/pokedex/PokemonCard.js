@@ -4,7 +4,7 @@ import appStyles from "../../App.module.css";
 import Card from "react-bootstrap/Card";
 import ReactPaginate from 'react-paginate';
 import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import aniStyles from "../../styles/Animations.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -30,19 +30,36 @@ const PokemonCard = (props) => {
   const { id, pokemon, setCaughtPokemons } = props;
 
 
-    const handleCatch = async () => {
-      try {
-        const { data } = await axiosReq.post(`/api/caught/`, {
-          pokemon: pokemon.id,
-        });
-        setCaughtPokemons((prevCaughtPokemons) => [
-          ...prevCaughtPokemons,
-          { id: data.id, pokemon: pokemon.id },
-        ]);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+  const handleCatch = async () => {
+    try {
+      const { data } = await axiosReq.post("/api/caught/", {
+        pokemon: pokemon.id,
+      });
+      setCaughtPokemons((prevCaughtPokemons) => ({
+        ...prevCaughtPokemons,
+        results: [
+          ...prevCaughtPokemons.results,
+          { id: data.id, pokemon: { id: pokemon.id } },
+        ],
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleRelease = async () => {
+    try {
+      await axiosRes.delete(`/api/caught/${id}/`);
+      setCaughtPokemons((prevCaughtPokemons) => ({
+        ...prevCaughtPokemons,
+        results: prevCaughtPokemons.results.filter(
+          (caught) => caught.id !== id
+        ),
+      }));
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
 

@@ -26,44 +26,8 @@ function PokemonTypes({ types }) {
     );
   }
 
-const PokemonCard = ({ page }) => {
-    const [pokemons, setPokemons] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [pokemonsPerPage] = useState(15);
-    const [totalPages, setTotalPages] = useState(0);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [caughtPokemons, setCaughtPokemons] = useState([]);
-    const currentUser = useCurrentUser();
-    const owner = currentUser;
-    const history = useHistory();
-
-
-    const fetchPokemonData = async () => {
-      try {
-        const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}`);
-        setPokemons(data.results);
-        setTotalPages(Math.ceil(data.count / pokemonsPerPage));
-        setIsLoaded(true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    const fetchCaughtPokemons = async () => {
-      try{
-        const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
-        setCaughtPokemons(data.results);       
-      }catch(err) {
-        console.log(err);
-      }
-    };
-
-    useEffect(() => {
-      setCurrentPage(page);
-      setIsLoaded(false);
-      fetchPokemonData();
-      fetchCaughtPokemons();
-    }, [page, pokemonsPerPage, owner]);
+const PokemonCard = (props) => {
+  const { id, pokemon, setCaughtPokemons } = props;
 
 
     const handleCatch = async ({pokemon}) => {

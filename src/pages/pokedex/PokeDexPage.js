@@ -4,6 +4,10 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
+import pageStyles from "../../styles/Pagination.module.css";
+
 import PokemonCard from './PokemonCard';
 import ArrowUp from '../../components/ArrowUp';
 import Asset from "../../components/Asset";
@@ -54,15 +58,43 @@ function PokeDexPage() {
     fetchCaughtPokemons();
   }, [page, pokemonsPerPage, owner]);
 
+  
+  const handlePageChange = (selectedPage) => {
+    const newPage = selectedPage.selected + 1;
+  setCurrentPage(newPage);
+  history.push(`/pokedex/${newPage}`);
+  };
+
   return (
     <div className="mt-5">
       <Row className='m-0' >
         <Col lg={12}>
           <Container>
+          <div className={`${appStyles.PContainer} mt-3`}>
             <PokemonCard page={page} />
+            </div>
           </Container>
         </Col>
         <ArrowUp />
+
+        <Col>
+            <ReactPaginate
+              pageCount={totalPages}
+              pageRangeDisplayed={5}
+              marginPagesDisplayed={2}
+              onPageChange={handlePageChange}
+              containerClassName={"pagination justify-content-center"}
+              breakClassName={pageStyles.BreakLink}
+              pageClassName={pageStyles.PageItem}
+              pageLinkClassName={pageStyles.PageLink}
+              activeLinkClassName={pageStyles.ActivePage}
+              previousClassName={pageStyles.PageItem}
+              nextClassName={pageStyles.PageItem}
+              previousLinkClassName={pageStyles.PageLink}
+              nextLinkClassName={pageStyles.PageLink}
+              forcePage={page - 1}
+            />
+          </Col>
       </Row>
     </div>
   );

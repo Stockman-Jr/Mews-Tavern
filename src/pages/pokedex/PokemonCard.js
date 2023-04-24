@@ -30,7 +30,7 @@ const PokemonCard = (props) => {
   const { id, pokemon, setCaughtPokemons } = props;
 
 
-    const handleCatch = async ({pokemon}) => {
+    const handleCatch = async () => {
       try {
         const { data } = await axiosReq.post(`/api/caught/`, {
           pokemon: pokemon.id,
@@ -45,42 +45,15 @@ const PokemonCard = (props) => {
     };
 
 
-    const CatchButton = ({ pokemon }) => {
-      const isPokemonCaught = caughtPokemons.some(
-        (caughtPokemon) => caughtPokemon.pokemon.id === pokemon.id
-      );
-  
-      if (isPokemonCaught) {
-        return (
-          <div className={aniStyles.PokeBall} >
-            <div className={aniStyles.Caught}></div>
-          </div>
-        );
-      } else {
-        return (
-          <div className={aniStyles.PokeBall} onClick={handleCatch}>
-            <div className={aniStyles.UnCaught}></div>
-          </div>
-        );
-      }
-    };
+
 
  
 
 
-  const handlePageChange = (selectedPage) => {
-    const newPage = selectedPage.selected + 1;
-  setCurrentPage(newPage);
-  history.push(`/pokedex/${newPage}`);
-  };
 
   return (
     <>
-      <div className={`${appStyles.PContainer} mt-3`}>
-        {isLoaded ? (
-          <>
-            {pokemons.map((pokemon) => (
-              <div key={pokemon.id} className={styles.PokemonContainer}>
+              <div className={styles.PokemonContainer}>
                 <Card className={styles.PokemonCard}>
                   <div className={styles.CardFront}>
                     <Card.Img
@@ -97,36 +70,13 @@ const PokemonCard = (props) => {
                         {pokemon.types.join("/")}
                       </Card.Text>
 
-                      <CatchButton pokemon={pokemon.id} />
                     </Card.Body>
 
                   </div>
 
                 </Card>
               </div>
-            ))}
 
-            <ReactPaginate
-              pageCount={totalPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
-              onPageChange={handlePageChange}
-              containerClassName={'pagination justify-content-center'}
-              pageClassName={'page-item'}
-              pageLinkClassName={'page-link'}
-              activeClassName={'active'}
-              previousClassName={'page-item'}
-              nextClassName={'page-item'}
-              previousLinkClassName={'page-link'}
-              nextLinkClassName={'page-link'}
-              forcePage={page - 1}
-            />
-          </>
-        ) : (
-          <Asset loader />
-        )}
-
-      </div>
     </>
   );
 }

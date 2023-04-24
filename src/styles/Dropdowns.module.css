@@ -2,14 +2,33 @@
     display: inline-block;
     max-width: 50%;
     padding: 0px;
-    color: black;
+    color:rgb(46, 42, 36);
+  }
+
+  .DropMenuProfile {
+    background: linear-gradient(180deg,rgb(245, 229, 85) 30%,rgb(170, 128, 11) 100%);
+    display: flex;
+    flex-direction: column;
+    margin-right: 5px;
   }
   
-
   .Toggle {
     color: rgb(46, 42, 36);
     font-size: 35px;
     cursor: pointer;
     float: right;
     margin-top: 0px;
+  }
+
+  .ToggleArrow {
+    color: rgb(56, 48, 41);
+    font-size: 20px;
+    cursor: pointer;
+    float: left;
+    margin-top: 10px;
+  }
+
+  .Toggle:hover, .ToggleArrow:hover {
+    color: rgb(136, 94, 5);
+    transition: ease 0.5s;
   }

@@ -38,13 +38,18 @@ a {
 	justify-content: center;
 }
 
+.BtnWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+ }
 
 .CornerBox {
   position:relative; 
   display:inline-block; 
   width:100%; 
   height:auto; 
-
 }
 
 

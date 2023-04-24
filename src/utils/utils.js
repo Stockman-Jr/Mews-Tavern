@@ -18,8 +18,30 @@ const typeColors = {
     ice: "#98D6D5",
     fighting: "#BC4E41",
     bug: "#B7CE46",
-    electric: "#F7EE33",
+    electric: "#ebc921",
   };
+
+  export const pokeTypes = [
+    "normal",
+    "water",
+    "grass",
+    "fire",
+    "flying",
+    "rock",
+    "ground",
+    "ghost",
+    "psychic",
+    "dark",
+    "fairy",
+    "dragon",
+    "poison",
+    "steel",
+    "ice",
+    "fighting",
+    "bug",
+    "electric",
+  ];
+  
   
   export function getGradientForTypes(types) {
     if (types.length === 1) {

@@ -71,6 +71,23 @@
   color: #bda125;  
 }
 
+.TypeFilterBtn {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 10px;
+  min-width: 80px;
+  border: 2px solid rgb(44, 44, 44);
+}
+
+.TypeFilterBtn:hover {
+  background-color: rgba(143, 126, 107, 0.952);
+  border-color: #dad6c7;
+}
+
 .ScrollContainer {
     position: relative;
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
 
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
@@ -12,6 +13,7 @@ import PokemonCard from './PokemonCard';
 import ArrowUp from '../../components/ArrowUp';
 import Asset from "../../components/Asset";
 import ReactPaginate from "react-paginate";
+import { getGradientForTypes, pokeTypes } from "../../utils/utils";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -25,6 +27,7 @@ function PokeDexPage() {
   const [pokemonsPerPage] = useState(15);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [filter, setFilter] = useState("");
 
   const { page } = useParams();
   const history = useHistory();
@@ -33,7 +36,7 @@ function PokeDexPage() {
 
   const fetchPokemonData = async () => {
     try {
-      const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}`);
+      const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`);
       setPokemons(data);
       setTotalPages(Math.ceil(data.count / pokemonsPerPage));
       setIsLoaded(true);
@@ -51,12 +54,21 @@ function PokeDexPage() {
     }
   };
 
+  const handleTypeFilter = (type) => {
+    if (type === "") {
+      setFilter("");
+    } else {
+      setFilter(`types__name=${type}`);
+    }
+    setCurrentPage(1);
+  };
+
   useEffect(() => {
     setCurrentPage(page);
     setIsLoaded(false);
     fetchPokemonData();
     fetchCaughtPokemons();
-  }, [page, pokemonsPerPage, owner]);
+  }, [page, pokemonsPerPage, owner, filter]);
 
   
   const handlePageChange = (selectedPage) => {
@@ -67,16 +79,44 @@ function PokeDexPage() {
 
   return (
     <div className="mt-5">
+          {isLoaded ? (
       <Row className='m-0' >
         <Col lg={12}>
-          <Container>
-          <div className={`${appStyles.PContainer} mt-3`}>
-            <PokemonCard page={page} />
-            </div>
-          </Container>
+          <Container className={appStyles.BtnWrapper}>
+          {pokeTypes.map((type) => (
+                <Button
+                  key={type}
+                  variant="dark"
+                  style={{
+                    background: getGradientForTypes([type]),
+                  }}
+                  className={` ${btnStyles.TypeFilterBtn} mr-2 mb-2`}
+                  onClick={() => handleTypeFilter(type)}
+                >
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                </Button>
+              ))}
+             </Container>
+                <div className={`${appStyles.PContainer} mt-3`}>
+                  {pokemons.results.map((pokemon) => {
+                    const caughtPokemon = caughtPokemons.results.find(
+                      (caught) => caught.pokemon.id === pokemon.id
+                    );
+                    const id = caughtPokemon?.id;
+                    return (
+                      <PokemonCard
+                        key={pokemon.id}
+                        pokemon={pokemon}
+                        id={id}
+                        setCaughtPokemons={setCaughtPokemons}
+                      />
+                    );
+                  })}
+                </div>
+   
+          
         </Col>
         <ArrowUp />
-
         <Col>
             <ReactPaginate
               pageCount={totalPages}
@@ -96,6 +136,9 @@ function PokeDexPage() {
             />
           </Col>
       </Row>
+      ) : (
+        <Asset loader />
+      )}
     </div>
   );
 }

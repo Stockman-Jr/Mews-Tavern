@@ -18,9 +18,56 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 
 function ProfilePage() {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [profile, setProfile] = useState({ results: [] });
+    const [profilePosts, setProfilePosts] = useState({ results: [] });
+    const [likedPosts, setLikedPosts] = useState({ results: [] });
+    const [profilePokemons, setProfilePokemons] = useState({ results: [] });
+    const currentUser = useCurrentUser();
+    const { id } = useParams();
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const [
+              { data: profile },
+              { data: profilePosts },
+              { data: profilePokemons },
+              { data: likedPosts },
+            ] = await Promise.all([
+              axiosReq.get(`/profiles/${id}/`),
+              axiosReq.get(`/posts/?owner__trainerprofile=${id}`),
+              axiosReq.get(`/api/caught/?owner__trainerprofile=${id}`),
+              axiosReq.get(`/posts/?likes__owner__trainerprofile=${id}`),
+            ]);
+            setProfilePokemons(profilePokemons);
+            setProfile(profile);
+            setProfilePosts(profilePosts);
+            setLikedPosts(likedPosts);
+            setIsLoaded(true);
+          } catch (err) {
+            console.log(err);
+          }
+        };
+        fetchData();
+      }, [id, currentUser]);
   return (
     <>
     <header>
+    {profile && (
+          <>
+            <Image
+              className={`${appStyles.Avatar} mt-4`}
+              src={profile.avatar}
+              alt="Avatar Image"
+            />
+            <h4>{profile.owner}</h4>
+            <div>
+              <small>{profile.name}</small>
+              <small>{profile.bio}</small>
+            </div>
+          </>
+        )}
          <div >
           <Nav >
             <Nav.Item >

@@ -102,7 +102,36 @@ function ProfilePage() {
         } else if (activeLink === "liked") {
           return(
             <>
-            
+            <div className={`${appStyles.CornerBox} mt-4`}></div>
+            {likedPosts.results.length ? (
+              <InfiniteScroll
+              children={likedPosts.results.map((post) => {
+                if (post.post_type === "Game Related") {
+                  return (
+                    <Post
+                      key={post.id}
+                      {...post}
+                      setPosts={setLikedPosts}
+                      style={{ width: 50 }}
+                    />
+                  );
+                } else if (post.post_type === "Pokémon Build") {
+                  return (
+                    <Build key={post.id} {...post} setPosts={setLikedPosts} />
+                  );
+                }
+              })}
+              dataLength={likedPosts.results.length}
+              loader={<Asset loader />}
+              hasMore={!!likedPosts.next}
+              next={() => fetchMoreData(likedPosts, setLikedPosts)}
+              />
+              ) : (
+                <Asset src={NoResults}
+                message={`Aww, ${profile?.owner} has not liked any content yet! `}
+                />
+              )}
+
             </>
           );
         } else if (activeLink === "pokemons") {
@@ -139,7 +168,7 @@ function ProfilePage() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className={styles.NavItem}>
-              <Nav.Link >
+            <Nav.Link onClick={() => handleLinkClick("liked")} >
                 Liked
               </Nav.Link>
             </Nav.Item>
@@ -155,7 +184,7 @@ function ProfilePage() {
         <Container>
           {isLoaded ? (
             <>
-             {renderProfileContent()}
+            {profile && <Container>{renderProfileContent()}</Container> } 
              </>
           ) : (
             <Asset loader/>

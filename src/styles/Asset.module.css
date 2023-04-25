@@ -5,3 +5,8 @@
     align-items: center;
     min-height: 120px;
   }
+
+  .Message {
+    color: rgb(209, 197, 181);
+    font-weight: 900;
+  }

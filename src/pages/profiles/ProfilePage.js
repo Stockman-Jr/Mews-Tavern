@@ -61,12 +61,12 @@ function ProfilePage() {
       }, [id, currentUser]);
 
 
-      const handleLinkClick = (link) => {
-        setActiveLink(link);
-      };
+    const handleLinkClick = (link) => {
+      setActiveLink(link);
+    };
 
-      const caughtPokemon = (pokemon, types) => (
-        <Card
+    const caughtPokemon = (pokemon, types) => (
+      <Card
         key={pokemon.id}
         className={`${styles.CaughtPokemon} mt-2 mb-3`}
         style={{
@@ -80,7 +80,6 @@ function ProfilePage() {
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.pokemon.id}.png`}
           />
         </div>
-
         <div className={styles.PokeInfo}>
           <div className={styles.Inner}>
             <h6>{pokemon.pokemon.name}</h6>
@@ -92,10 +91,10 @@ function ProfilePage() {
           </div>
         </div>
       </Card>
-      );
+    );
 
-      const renderProfileContent = () => {
-        if (activeLink === "posts") {
+    const renderProfileContent = () => {
+      if (activeLink === "posts") {
           return (
             <>
             <div className={`${appStyles.CornerBox} mt-4`}></div>
@@ -126,11 +125,10 @@ function ProfilePage() {
                 <Asset src={NoResults}
                 message={`Aww, ${profile?.owner} has not posted any content yet! `}
                 />
-              )}
-            
+              )}  
             </>
           );
-        } else if (activeLink === "liked") {
+      } else if (activeLink === "liked") {
           return(
             <>
             <div className={`${appStyles.CornerBox} mt-4`}></div>
@@ -165,33 +163,36 @@ function ProfilePage() {
 
             </>
           );
-        } else if (activeLink === "pokemons") {
+      } else if (activeLink === "pokemons") {
           return (
             <>
             <div className={`${appStyles.CornerBox} `}></div>
+            <Row className={appStyles.PContainer}>
             {profilePokemons.results.length ? (
               <InfiniteScroll
-              children={profilePokemons.results.map((pokemon) => {
-                const types = pokemon.pokemon.types.map((type) =>
-                type.toLowerCase()
-              );
-              {caughtPokemon(pokemon, types)}   
-              })}
+            
               dataLength={profilePokemons.results.length}
               loader={<Asset loader />}
               hasMore={!!profilePokemons.next}
               next={() => fetchMoreData(profilePokemons, setProfilePokemons)}
-              />
+              >
+                 {profilePokemons.results.map((pokemon) => {
+                const types = pokemon.pokemon.types.map((type) =>
+                type.toLowerCase()
+              );
+              return caughtPokemon(pokemon, types);
+              })}
+              </InfiniteScroll>
               ) : (
                 <Asset src={NoResults}
                 message={`Aww, ${profile?.owner} has not caught any pokémon yet! `}
                 />
-              )}          
+              )}    
+              </Row>      
             </>
           );
-        }
-
-      };
+      }
+    };
   return (
     <>
     <header className={`${styles.ProfileHeader} ${appStyles.BeigeBg} ${appStyles.BorderBottom}`}>

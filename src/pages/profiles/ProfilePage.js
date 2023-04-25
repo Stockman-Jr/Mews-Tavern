@@ -9,14 +9,18 @@ import Nav from "react-bootstrap/Nav";
 
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
+import NoResults from "../../assets/no-results.png";
 
 import Post from "../posts/Post";
 import Build from "../posts/Build";
+import Asset from "../../components/Asset";
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
+import { fetchMoreData } from "../../utils/utils";
 import { NavLink } from 'react-router-dom';
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function ProfilePage() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -24,6 +28,7 @@ function ProfilePage() {
     const [profilePosts, setProfilePosts] = useState({ results: [] });
     const [likedPosts, setLikedPosts] = useState({ results: [] });
     const [profilePokemons, setProfilePokemons] = useState({ results: [] });
+    const [activeLink, setActiveLink] = useState("posts");
     const currentUser = useCurrentUser();
     const { id } = useParams();
 
@@ -52,6 +57,63 @@ function ProfilePage() {
         };
         fetchData();
       }, [id, currentUser]);
+
+
+      const handleLinkClick = (link) => {
+        setActiveLink(link);
+      };
+
+      const renderProfileContent = () => {
+        if (activeLink === "posts") {
+          return (
+            <>
+            <div className={`${appStyles.CornerBox} mt-4`}></div>
+            {profilePosts.results.length ? (
+              <InfiniteScroll
+              children={profilePosts.results.map((post) => {
+                if (post.post_type === "Game Related") {
+                  return (
+                    <Post
+                      key={post.id}
+                      {...post}
+                      setPosts={setProfilePosts}
+                      style={{ width: 50 }}
+                    />
+                  );
+                } else if (post.post_type === "Pokémon Build") {
+                  return (
+                    <Build key={post.id} {...post} setPosts={setProfilePosts} />
+                  );
+                }
+              })}
+              dataLength={profilePosts.results.length}
+              loader={<Asset loader />}
+              hasMore={!!profilePosts.next}
+              next={() => fetchMoreData(profilePosts, setProfilePosts)}
+              />
+              ) : (
+                <Asset src={NoResults}
+                message={`Aww, ${profile?.owner} has not posted any content yet! `}
+                />
+              )}
+            
+            </>
+          );
+        } else if (activeLink === "liked") {
+          return(
+            <>
+            
+            </>
+          );
+        } else if (activeLink === "pokemons") {
+          return(
+            <>
+            
+            </>
+          );
+        }
+
+      };
   return (
     <>
     <header className={`${styles.ProfileHeader} ${appStyles.BeigeBg} ${appStyles.BorderBottom}`}>
@@ -72,7 +134,7 @@ function ProfilePage() {
          <div className={styles.MenuContent}>
           <Nav className={styles.ProfileMenu}>
             <Nav.Item className={styles.NavItem} >
-              <Nav.Link >
+              <Nav.Link onClick={() => handleLinkClick("posts")} >
                 Posts
               </Nav.Link>
             </Nav.Item>
@@ -91,7 +153,13 @@ function ProfilePage() {
     </header>
     <div>
         <Container>
-            Content here
+          {isLoaded ? (
+            <>
+             {renderProfileContent()}
+             </>
+          ) : (
+            <Asset loader/>
+          )}   
         </Container>
     </div>
     </>

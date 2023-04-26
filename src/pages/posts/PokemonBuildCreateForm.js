@@ -14,7 +14,8 @@ import appStyles from "../../App.module.css";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { PokeBuildFields, FieldOptions, FormFields } from "../../components/FormSelectFields";
+import { MoveFields, FieldOptions, FormFields } from "../../components/FormSelectFields";
+import { fetchGameFilterChoices } from "../../utils/utils";
 
 
 function PokemonBuildCreateForm() {
@@ -22,6 +23,7 @@ function PokemonBuildCreateForm() {
     const [selectedPokemon, setSelectedPokemon] = useState("");
     const [pokeId, setPokeId] = useState(null);
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
+    const [gameFilterChoices, setGameFilterChoices] = useState([]);
     const [pokeBuildData, setPokeBuildData] = useState({
       pokemon: "",
       move_one: "",
@@ -32,20 +34,22 @@ function PokemonBuildCreateForm() {
       ev_stats: [],
       nature: "",
       held_item: "",
+      game_filter: "",
       content: "",
       post_type: "Pokémon Build",
     });
     const {
-      pokemon, 
-      move_one, 
-      move_two, 
+      pokemon,
+      move_one,
+      move_two,
       move_three,
-      move_four, 
-      ability, 
+      move_four,
+      ability,
       ev_stats,
       nature,
-      held_item, 
+      held_item,
       content,
+      game_filter,
       post_type,
     } = pokeBuildData;
     const currentUser = useCurrentUser();
@@ -53,20 +57,24 @@ function PokemonBuildCreateForm() {
     const history = useHistory();
     const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    const fetchCaughtPokemons = async () => {
-      try {
-        const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
-        const id = data.results.map((p) => p.id)
-        setPokeId(id);
-        setCaughtPokemons(data.results);
-      } catch (err) {
-        console.log(err);
+    useEffect(() => {
+      const fetchCaughtPokemons = async () => {
+        try {
+          const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
+          setCaughtPokemons(data.results);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      const choices = JSON.parse(localStorage.getItem("gameFilterChoices"));
+      if (choices) {
+        setGameFilterChoices(choices);
+      } else {
+        fetchGameFilterChoices().then(setGameFilterChoices);
       }
-    };
-    fetchCaughtPokemons();
-
-  }, [owner, pokeId]);
+  
+      fetchCaughtPokemons();
+    }, [owner]);
 
   const handlePokemonSelect = async (event) => {
     const id = event.target.value;
@@ -173,7 +181,7 @@ function PokemonBuildCreateForm() {
                 <div className={styles.SelectBox}>
                   {selectedPokemon && (
                     <>
-                      <PokeBuildFields
+                      <MoveFields
                         selectedPokemon={selectedPokemon}
                         setSelectedPokemon={setSelectedPokemon}
                         handleChange={handleChange}

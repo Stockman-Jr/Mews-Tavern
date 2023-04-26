@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
 import { fetchAllData } from "../utils/utils";
 
-export const PokeBuildFields = ({ selectedPokemon, setSelectedPokemon, handleChange }) => {
+export const MoveFields = ({ selectedPokemon, setSelectedPokemon, handleChange }) => {
     const [options] = useState([]);
 
     return (

@@ -80,7 +80,7 @@ export const ProfileMenuDropdown = ({ id, profileAvatar }) => {
             onClick={() => history.push(`/profiles/${id}/edit`)}
             aria-label="edit"
           >
-            <HiPencilAlt /> <small>Edit profile</small>
+           <small>Edit profile</small>
           </Dropdown.Item>
           <Dropdown.Item
             onClick={() => history.push(`/profiles/${id}/edit/account`)}

@@ -65,7 +65,7 @@ const NavBar = () => {
 
   return (
     <div className={styles.NavBar}>
-      <div className="mr-auto">
+      <div >
         {currentUser && (
           <ProfileMenuDropdown
             profileAvatar={profile_avatar}
@@ -75,9 +75,9 @@ const NavBar = () => {
       </div>
     <Navbar expand="md">
     {currentUser ? "" : logoLink}
-  <Navbar.Toggle aria-controls="basic-navbar-nav" />
-  <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className={`${styles.NavLeft} mr-auto`}>
+  <Navbar.Toggle aria-controls="basic-navbar-nav ml-auto" />
+  <Navbar.Collapse id="basic-navbar-nav" className="ml-auto">
+    <Nav className={`${styles.NavLeft} ml-auto`}>
     <NavLink to="/" activeClassName={styles.Active}>
             Home{" "}
             <span className={appStyles.Icons}>

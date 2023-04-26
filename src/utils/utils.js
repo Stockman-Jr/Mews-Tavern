@@ -88,10 +88,15 @@ const typeColors = {
     return allData;
   };
 
-  export const fetchDataChoices = async (url) => {
-     let choices = [];
-     const response = await axiosReq.options(url);
-     choices = response.data.actions.POST;
-
-     return choices;
+  export const fetchGameFilterChoices = () => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const response = await axiosReq.options("/posts/post/");
+        const choices = response.data.actions.POST.game_filter.choices;
+        localStorage.setItem("gameFilterChoices", JSON.stringify(choices));
+        resolve(choices);
+      } catch (error) {
+        reject(error);
+      }
+    });
   };

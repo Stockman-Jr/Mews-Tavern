@@ -6,6 +6,7 @@
     border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
     border-image-slice: 1;
     padding-bottom: 10px;
+    width: 100%;
 }
 
 .Logo {
@@ -35,7 +36,6 @@
     padding: 6px;
     transition: 0.5s ease-in;
     border-radius: 10px;
-
 }
 
 .Active {

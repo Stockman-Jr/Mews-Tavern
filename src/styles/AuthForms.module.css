@@ -50,7 +50,7 @@
     text-align: center;
 }
 
-a:hover {
+.Link a:hover {
     text-decoration: none;
     color: #4eb7be;
 
@@ -70,9 +70,20 @@ a:hover {
     background-image: linear-gradient(260deg, #8ED8F5 0%, #76c8d4 100%);
 }
 
+.AccordionToggle {
+    cursor: pointer;
+}
+
 .H4Text {
     text-transform: uppercase;
     padding-top: 10px;
     line-height: 50px;
     color: #615a54;
+}
+
+.H6Text {
+    font-style: italic;
+    padding-top: 10px;
+    line-height: 50px;
+    color:  #ece6d6;
 }

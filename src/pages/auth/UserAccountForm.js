@@ -33,14 +33,49 @@ const UserAccountForm = () => {
   
     const [errors, setErrors] = useState({});
 
-    const handleChange = (event) => {
-
-    };
-
-    const handleUsernameSubmit = async (event) => { };
-
-    const handlePasswordSubmit = async (event) => { };
-
+    useEffect(() => {
+        if (currentUser?.profile_id?.toString() === id) {
+          setNewUsername(currentUser.username);
+        } else {
+          history.push("/");
+        }
+      }, [currentUser, history, id]);
+    
+      const handleChange = (event) => {
+        setNewPassword({
+          ...newPassword,
+          [event.target.name]: event.target.value,
+        });
+      };
+    
+      const handleUsernameSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          await axiosRes.put("/dj-rest-auth/user/", {
+            username,
+          });
+          setCurrentUser((prevUser) => ({
+            ...prevUser,
+            username,
+          }));
+          history.goBack();
+        } catch (err) {
+          console.log(err);
+          setErrors(err.response?.data);
+        }
+      };
+    
+      const handlePasswordSubmit = async (event) => {
+        event.preventDefault();
+        try {
+          await axiosRes.post("/dj-rest-auth/password/change/", newPassword);
+          history.goBack();
+        } catch (err) {
+          console.log(err);
+          setErrors(err.response?.data);
+        }
+      };
+      
   return (
     <Container className="mt-5">
         <h6 className={` ${styles.H6Text} mb-4 text-center`}>
@@ -93,7 +128,6 @@ const UserAccountForm = () => {
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-
 
         <Card>
           <Accordion.Toggle

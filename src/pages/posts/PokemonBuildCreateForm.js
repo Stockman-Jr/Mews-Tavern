@@ -6,12 +6,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
+import Alert from "react-bootstrap/Alert";
 
 import styles from "../../styles/BuildCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import appStyles from "../../App.module.css";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoveFields, EvStatOptions, FormFields } from "../../components/FormSelectFields";
@@ -21,7 +22,6 @@ import { fetchGameFilterChoices } from "../../utils/utils";
 function PokemonBuildCreateForm() {
     const [caughtPokemons, setCaughtPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState("");
-    const [pokeId, setPokeId] = useState(null);
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
     const [gameFilterChoices, setGameFilterChoices] = useState([]);
     const [pokeBuildData, setPokeBuildData] = useState({
@@ -142,24 +142,51 @@ function PokemonBuildCreateForm() {
       <Form onSubmit={handleSubmit}>
         <Row className={appStyles.Row}>
           <Col>
-            <Container>
-              <Form.Group controlId="pokemon-select">
-                <Form.Label>Select a Pokémon:</Form.Label>
-                <Form.Control
-                  as="select"
-                  name="pokemon"
-                  value={pokemon}
-                  onChange={(event) => { handlePokemonSelect(event); handleChange(event); }}
-                >
-                  <option value="">--Select a Pokémon--</option>
-                  {caughtPokemons.map((p) => (
-                    <option key={p.pokemon} value={p.id}>
-                      {p.pokemon_name}
-                    </option>
-                  ))}
-
-                </Form.Control>
-              </Form.Group>
+         <Container>
+            {caughtPokemons.length === 0 ? (
+                  <>
+                    <Alert variant="warning">
+                      You don't have any caught pokemons yet! Please visit the{" "}
+                      <Link className={styles.Link} to="/pokedex/1">
+                        PokeDex page
+                      </Link>{" "}
+                      first to catch some pokemon.
+                    </Alert>
+                    <div className="mt-5">
+                      <Link
+                        to="/pokedex/1"
+                        className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2 p-3`}
+                      >
+                        PokeDex &#11166;
+                      </Link>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Form.Group controlId="pokemon-select">
+                      <Form.Label>Select a Pokémon:</Form.Label>
+                      <Form.Control
+                        as="select"
+                        name="pokemon"
+                        value={pokemon}
+                        onChange={(event) => {
+                          handlePokemonSelect(event);
+                          handleChange(event);
+                        }}
+                      >
+                        <option value="">--Select a Pokémon--</option>
+                        {caughtPokemons.map((p) => (
+                          <option key={p.pokemon.id} value={p.id}>
+                            {p.pokemon.name}
+                          </option>
+                        ))}
+                      </Form.Control>
+                    </Form.Group>
+                    {errors.pokemon?.map((message, idx) => (
+                      <Alert key={idx} variant="warning">
+                        {message}
+                      </Alert>
+                    ))}
 
               <Form.Group className={styles.SelectWrapper}>
                 <div className={styles.SpriteBox}>
@@ -176,22 +203,27 @@ function PokemonBuildCreateForm() {
                   {selectedPokemon && (
                     <>
                       <MoveFields
-                        selectedPokemon={selectedPokemon}
-                        setSelectedPokemon={setSelectedPokemon}
-                        handleChange={handleChange}
+                      selectedPokemon={selectedPokemon}
+                      setSelectedPokemon={setSelectedPokemon}
+                      handleChange={handleChange}
+                      pokeBuildData={pokeBuildData}
 
                       />
 
                       <Form.Group>
-                      <EvStatOptions handleChange={handleChange} />
+                      <EvStatOptions 
+                      handleChange={handleChange}
+                      pokeBuildData={pokeBuildData}
+                      />
                       </Form.Group>
                     </>
                   )}
                 </div>
               </Form.Group>
-              <FormFields handleChange={handleChange} />
-
-
+              <FormFields 
+              handleChange={handleChange}
+              pokeBuildData={pokeBuildData}
+               />
 
               <Form.Group>
                 <Form.Label>Description</Form.Label>
@@ -202,7 +234,7 @@ function PokemonBuildCreateForm() {
                   onChange={handleChange}
                 />
               </Form.Group>
-
+              <div className={appStyles.BtnWrapper}>
               <Button
                 className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
                 type="submit"
@@ -215,7 +247,9 @@ function PokemonBuildCreateForm() {
               >
                 Cancel
               </Button>
-
+              </div>
+              </>
+              )}
 
             </Container>
           </Col>

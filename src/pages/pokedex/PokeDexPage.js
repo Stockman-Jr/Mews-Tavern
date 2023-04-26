@@ -29,10 +29,11 @@ function PokeDexPage() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [filter, setFilter] = useState("");
 
+
   const { page } = useParams();
   const history = useHistory();
   const currentUser = useCurrentUser();
-  const owner = currentUser?.profile_id;
+  const owner = currentUser;
 
   const fetchPokemonData = async () => {
     try {
@@ -67,7 +68,9 @@ function PokeDexPage() {
     setCurrentPage(page);
     setIsLoaded(false);
     fetchPokemonData();
-    fetchCaughtPokemons();
+    if (currentUser) {
+      fetchCaughtPokemons();
+    }
   }, [page, pokemonsPerPage, owner, filter]);
 
   

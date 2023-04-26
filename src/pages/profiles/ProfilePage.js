@@ -52,6 +52,7 @@ function ProfilePage() {
             setProfile(profile);
             setProfilePosts(profilePosts);
             setLikedPosts(likedPosts);
+            console.log(profilePokemons.results);
             setIsLoaded(true);
           } catch (err) {
             console.log(err);
@@ -167,7 +168,7 @@ function ProfilePage() {
           return (
             <>
             <div className={`${appStyles.CornerBox} `}></div>
-            <Row className={appStyles.PContainer}>
+            <Col className={appStyles.PContainer} lg={12}>
             {profilePokemons.results.length ? (
               <InfiniteScroll
             
@@ -188,7 +189,7 @@ function ProfilePage() {
                 message={`Aww, ${profile?.owner} has not caught any pokémon yet! `}
                 />
               )}    
-              </Row>      
+              </Col>      
             </>
           );
       }

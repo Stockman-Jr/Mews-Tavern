@@ -24,6 +24,7 @@ function PostFeedPage() {
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/`);
+        console.log(data.results);
         setPosts(data);
         setIsLoaded(true);
       } catch (err) {

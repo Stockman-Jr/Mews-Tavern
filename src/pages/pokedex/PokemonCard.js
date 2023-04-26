@@ -42,7 +42,7 @@ const PokemonCard = (props) => {
         ...prevCaughtPokemons,
         results: [
           ...prevCaughtPokemons.results,
-          { id: data.id, pokemon: { id: pokemon.id } },
+          { id: data.id, pokemon: { id: pokemon.id }  },
         ],
       }));
     } catch (error) {

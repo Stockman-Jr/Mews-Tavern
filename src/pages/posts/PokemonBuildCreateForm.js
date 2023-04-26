@@ -14,7 +14,7 @@ import appStyles from "../../App.module.css";
 import { useHistory } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { MoveFields, FieldOptions, FormFields } from "../../components/FormSelectFields";
+import { MoveFields, EvStatOptions, FormFields } from "../../components/FormSelectFields";
 import { fetchGameFilterChoices } from "../../utils/utils";
 
 
@@ -118,6 +118,7 @@ function PokemonBuildCreateForm() {
     }
     formData.append("nature", nature);
     formData.append("held_item", held_item);
+    formData.append("game_filter", game_filter);
     formData.append("content", content);
     formData.append("post_type", post_type);
 
@@ -135,14 +136,7 @@ function PokemonBuildCreateForm() {
     }
   };
 
-  const getInfo = async (e) => {
-    e.preventDefault();
-    const response = await axiosReq.options("/posts/pokebuild/");
-    console.log(response.data.actions.POST);
-    console.log(selectedPokemon);
-    console.log(selectedPokemon.name);
-    console.log(caughtPokemons.find((p) => p.pokemon === selectedPokemon.id));
-  };
+
   return (
     <div className={`${styles.BuildForm} mt-5 py-4`}>
       <Form onSubmit={handleSubmit}>
@@ -189,7 +183,7 @@ function PokemonBuildCreateForm() {
                       />
 
                       <Form.Group>
-                      <FieldOptions handleChange={handleChange} />
+                      <EvStatOptions handleChange={handleChange} />
                       </Form.Group>
                     </>
                   )}
@@ -218,9 +212,8 @@ function PokemonBuildCreateForm() {
 
               <Button
                 className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
-                onClick={getInfo}
               >
-                Info
+                Cancel
               </Button>
 
 

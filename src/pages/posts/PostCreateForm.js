@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
 import { axiosReq } from "../../api/axiosDefaults";
+import { fetchGameFilterChoices } from "../../utils/utils";
 
 
 
@@ -38,14 +39,12 @@ function PostCreateForm() {
 
 
   useEffect(() => {
-    const fetchGameFilterChoices = async () => {
-      const response = await axiosReq.options("/posts/post/");
-      const choices = response.data.actions.POST.game_filter.choices;
-      console.log(choices);
+    const choices = JSON.parse(localStorage.getItem("gameFilterChoices"));
+    if (choices) {
       setGameFilterChoices(choices);
-    };
-
-    fetchGameFilterChoices();
+    } else {
+      fetchGameFilterChoices().then(setGameFilterChoices);
+    }
   }, []);
 
   const handleChange = (event) => {

@@ -3,232 +3,220 @@ import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
 import { fetchAllData } from "../utils/utils";
 
-export const MoveFields = ({ selectedPokemon, setSelectedPokemon, handleChange }) => {
-    const [options] = useState([]);
+export const MoveFields = ({  
+  selectedPokemon,
+  setSelectedPokemon,
+  handleChange,
+  pokeBuildData, }) => {
 
     return (
-        <div>
-          {selectedPokemon && (
-            <>
-              <Form.Group>
-                <Form.Label htmlFor="move_one">Select move 1:</Form.Label>
-                <Form.Control
-                  as="select"
-                 
-                  name="move_one"     
-                  value={options[0]}
-                  onChange={handleChange}
-                >
-                  <option value="">--Select a move--</option>
-                  {selectedPokemon.moves.map((move) => (
-                    <option key={move} value={move}>
-                      {move}
-                    </option>
-                  ))}
-                </Form.Control>
-    
-                <Form.Label htmlFor="move_two">Select move 2:</Form.Label>
-                <Form.Control
-                  as="select"
-                  id="move_two"
-                  name="move_two"
-                  value={options[1]}
-                  onChange={handleChange}
-                >
-                  <option value="">--Select a move--</option>
-                  {selectedPokemon.moves.map((move) => (
-                    <option key={move} value={move}>
-                      {move}
-                    </option>
-                  ))}
-                </Form.Control>
-    
-                <Form.Label htmlFor="move_three">Select move 3:</Form.Label>
-                <Form.Control
-                  as="select"
-                  id="move_three"
-                  name="move_three"
-                  value={options[2]}
-                  onChange={handleChange}
-                >
-                  <option value="">--Select a move--</option>
-                  {selectedPokemon.moves.map((move) => (
-                    <option key={move} value={move}>
-                      {move}
-                    </option>
-                  ))}
-                </Form.Control>
-    
-                <Form.Label htmlFor="move_four">Select move 4:</Form.Label>
-                <Form.Control
-                  as="select"
-                  id="move_four"
-                  name="move_four"
-                  value={options[3]}
-                  onChange={handleChange}
-                >
-                  <option value="">--Select a move--</option>
-                  {selectedPokemon.moves.map((move) => (
-                    <option key={move} value={move}>
-                      {move}
-                    </option>
-                  ))}
-                </Form.Control>
-              </Form.Group>
-    
-              <Form.Label htmlFor="abilitiy">Select an ability:</Form.Label>
-              <Form.Control
-                as="select"
-                id="ability"
-                name="ability"
-                value={options[4]}
-                onChange={handleChange}
-              >
-                <option value="">--Select an ability--</option>
-                {selectedPokemon.abilities.map((ability) => (
-                  <option key={ability} value={ability}>
-                    {ability}
-                  </option>
-                ))}
-              </Form.Control>
-            </>
-          )}
-        </div>
+      <div>
+      {setSelectedPokemon && (
+        <>
+          <Form.Group>
+            <Form.Label htmlFor="move_one">Select move 1:</Form.Label>
+            <Form.Control
+              as="select"
+              name="move_one"
+              value={pokeBuildData.move_one}
+              onChange={handleChange}
+            >
+              <option value="">--Select a move--</option>
+              {selectedPokemon.moves.map((move) => (
+                <option key={move} value={move}>
+                  {move}
+                </option>
+              ))}
+            </Form.Control>
+
+            <Form.Label htmlFor="move_two">Select move 2:</Form.Label>
+            <Form.Control
+              as="select"
+              id="move_two"
+              name="move_two"
+              value={pokeBuildData.move_two}
+              onChange={handleChange}
+            >
+              <option value="">--Select a move--</option>
+              {selectedPokemon.moves.map((move) => (
+                <option key={move} value={move}>
+                  {move}
+                </option>
+              ))}
+            </Form.Control>
+
+            <Form.Label htmlFor="move_three">Select move 3:</Form.Label>
+            <Form.Control
+              as="select"
+              id="move_three"
+              name="move_three"
+              value={pokeBuildData.move_three}
+              onChange={handleChange}
+            >
+              <option value="">--Select a move--</option>
+              {selectedPokemon.moves.map((move) => (
+                <option key={move} value={move}>
+                  {move}
+                </option>
+              ))}
+            </Form.Control>
+
+            <Form.Label htmlFor="move_four">Select move 4:</Form.Label>
+            <Form.Control
+              as="select"
+              id="move_four"
+              name="move_four"
+              value={pokeBuildData.move_four}
+              onChange={handleChange}
+            >
+              <option value="">--Select a move--</option>
+              {selectedPokemon.moves.map((move) => (
+                <option key={move} value={move}>
+                  {move}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+
+          <Form.Label htmlFor="abilitiy">Select an ability:</Form.Label>
+          <Form.Control
+            as="select"
+            id="ability"
+            name="ability"
+            value={pokeBuildData.ability}
+            onChange={handleChange}
+          >
+            <option value="">--Select an ability--</option>
+            {selectedPokemon.abilities.map((ability) => (
+              <option key={ability} value={ability}>
+                {ability}
+              </option>
+            ))}
+          </Form.Control>
+        </>
+      )}
+    </div>
       );
 };
 
-export const FieldOptions = ({handleChange}) => {
+export const EvStatOptions = ({handleChange, pokeBuildData}) => {
   const [fieldOptions, setGetFieldOptions] = useState([]);
+  const [checkedOptions, setCheckedOptions] = useState([]);
 
   useEffect(() => {
     const getOptions = async () => {
       const { data } = await axiosReq.options("/posts/pokebuild/");
       const choices = data.actions.POST.ev_stats.choices;
       setGetFieldOptions(choices);
+      setCheckedOptions(pokeBuildData.ev_stats);
     };
     getOptions();
-  }, []);
-
-  const [checkedCount, setCheckedCount] = useState(0);
+  }, [pokeBuildData.ev_stats]);
 
   const handleCheckboxChange = (event) => {
-    const { checked } = event.target;
+    const { checked, value } = event.target;
+    let updatedOptions = [...checkedOptions];
 
     if (checked) {
-      if (checkedCount < 2) {
-        setCheckedCount((count) => count + 1);
-        handleChange(event);
+      if (checkedOptions.length < 2) {
+        updatedOptions.push(value);
       } else {
         event.preventDefault();
         alert("Please select two stats!");
       }
     } else {
-      setCheckedCount((count) => count - 1);
-      handleChange(event);
+      updatedOptions = updatedOptions.filter((option) => option !== value);
     }
+
+    setCheckedOptions(updatedOptions);
+    handleChange({
+      target: {
+        name: "ev_stats",
+        value: updatedOptions,
+      },
+    });
   };
 
   return (
     <>
-      <Form.Group className="mb-3 d-flex flex-row" controlId="evStats">
-        {fieldOptions.map((option) => (
-          <Form.Check
+    <Form.Group controlId="evStats">
+      {fieldOptions.map((option) => (
+        <Form.Check
           key={option.value}
-          type="checkbox" 
+          type="checkbox"
           label={option.display_name}
           name="ev_stats"
           value={option.value}
+          checked={checkedOptions.includes(option.value)}
           onChange={handleCheckboxChange}
-          disabled={checkedCount >= 2 && !option.value}
-  
-          />
-        ))}     
-      </Form.Group>
-    </>
+        />
+      ))}
+    </Form.Group>
+  </>
   );
 
 };
 
-export const FormFields = ({ handleChange, nature, held_item }) => {
+export const FormFields = ({
+  handleChange,
+  nature,
+  held_item,
+  pokeBuildData,
+}) => {
   const [natureList, setNatureList] = useState([]);
   const [heldItemList, setHeldItemList] = useState([]);
 
   const fetchNatures = async () => {
-    const url = '/api/natures/';
+    const url = "/api/natures/";
     const data = await fetchAllData(url);
     setNatureList(data);
   };
 
   const fetchHeldItems = async () => {
-    const url = '/api/held-items/';
+    const url = "/api/held-items/";
     const data = await fetchAllData(url);
     setHeldItemList(data);
   };
   useEffect(() => {
     fetchHeldItems();
     fetchNatures();
-
-  }, [])
+    console.log(pokeBuildData.nature);
+  }, []);
 
   return (
     <>
-    <Form.Label htmlFor="nature">Select nature:</Form.Label>
-    <Form.Control
-      as="select"
-      id="nature"
-      name="nature"
-      value={nature}
-      onChange={handleChange}
-    >
-      <option value="">--Select nature--</option>
-      {natureList.map((n) => (
-        <option key={n.id} value={n.id}>
-          {n.name}
-        </option>
-      ))}
-    </Form.Control>
+      <Form.Label htmlFor="nature">Select nature:</Form.Label>
+      <Form.Control
+        as="select"
+        id="nature"
+        name="nature"
+        value={pokeBuildData.nature}
+        onChange={handleChange}
+      >
+        <option value="">--Select nature--</option>
 
-    <Form.Label htmlFor="held_item">Select held item:</Form.Label>
-    <Form.Control
-      as="select"
-      id="held_item"
-      name="held_item"
-      value={held_item}
-      onChange={handleChange}
-    >
-      <option value="">--Select held item--</option>
-      {heldItemList.map((n) => (
-        <option key={n.id} value={n.id}>
-          {n.name}
-        </option>
-      ))}
-    </Form.Control>
+        {natureList.map((n) => (
+          <option key={n.id} value={n.name}>
+            {n.name}
+          </option>
+        ))}
+      </Form.Control>
+
+      <Form.Label htmlFor="held_item">Select held item:</Form.Label>
+      <Form.Control
+        as="select"
+        id="held_item"
+        name="held_item"
+        value={pokeBuildData.held_item}
+        onChange={handleChange}
+      >
+        <option value="">--Select held item--</option>
+        {heldItemList.map((n) => (
+          <option key={n.id} value={n.name}>
+            {n.name}
+          </option>
+        ))}
+      </Form.Control>
     </>
   );
-}
-
-
-export const GameFilterChoices = ({ handleChange }) => {
-  const [options] = useState([]);
-
-  return (
-    <div>
-    <Form.Label htmlFor="game_filter">Select game:</Form.Label>
-    <Form.Control
-      as="select"
-      name="game_filter"
-    >
-      <option value="">--Select game--</option>
- 
-        <option >
-        
-        </option>
- 
-    </Form.Control>
-    </div>
-  );
-
-
-
-
-}
+};

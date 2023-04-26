@@ -11,11 +11,11 @@
 }
 
 .GradHeader {
-    background-image: linear-gradient(260deg, #51a4b9 0%, #6ab7c4 100%);
+    background: linear-gradient(260deg, #51a4b9 0%, #6ab7c4 100%);
 }
 
 .CardFooter {
-    background-image: linear-gradient(260deg, #51a4b9 0%, #6ab7c4 100%);
+    background: linear-gradient(260deg, #51a4b9 0%, #6ab7c4 100%);
     padding: 0.8em;
     border-bottom-right-radius: 0.25rem;
     border-bottom-left-radius: 0.25rem;

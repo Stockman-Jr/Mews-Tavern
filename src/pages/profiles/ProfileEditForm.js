@@ -14,6 +14,8 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/ProfileEditForm.module.css";
 
+import AvatarSelector from "./AvatarSelector";
+
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -25,13 +27,13 @@ const ProfileEditForm = () => {
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
   const history = useHistory();
-
   const [profileData, setProfileData] = useState({
     name: "",
     bio: "",
     avatar: "",
   });
   const { name, bio, avatar } = profileData;
+  const [showAvatarSelector, setShowAvatarSelector] = useState(false);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -56,6 +58,14 @@ const ProfileEditForm = () => {
     setProfileData({
       ...profileData,
       [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSelectAvatar = (src) => {
+    console.log(src);
+    setProfileData({
+      ...profileData,
+      avatar: src,
     });
   };
   
@@ -115,7 +125,36 @@ const ProfileEditForm = () => {
         <Row>
           <Col>
           <Form.Group className="d-flex justify-content-center align-items-center flex-column">
-
+          {showAvatarSelector ? (
+                  <Modal
+                    show={showAvatarSelector}
+                    onHide={() => setShowAvatarSelector(false)}
+                  >
+                    <AvatarSelector
+                      src={avatar}
+                      onSelect={handleSelectAvatar}
+                      setShowAvatarSelector={setShowAvatarSelector}
+                    />
+                  </Modal>
+                ) : (
+                  <>
+                    {avatar && (
+                      <div className={styles.AvatarContainer}>
+                        <figure className={styles.AvatarContainer}>
+                          <Image className={appStyles.Avatar} src={avatar} />
+                        </figure>
+                      </div>
+                    )}
+                  </>
+                )}
+                {!showAvatarSelector && (
+                  <Button
+                    className={`${btnStyles.CommentBtn} ${btnStyles.Dark}`}
+                    onClick={() => setShowAvatarSelector(true)}
+                  >
+                    Select Avatar
+                  </Button>
+                )}
           </Form.Group>
           <div>{formFields}</div>
           </Col>

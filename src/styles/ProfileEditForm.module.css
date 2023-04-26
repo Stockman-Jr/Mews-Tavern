@@ -1,4 +1,9 @@
-
+.ProfileForm {
+    background-color: #dacfc4;
+    padding: 10px;
+    border: solid 5px #977c02;
+    border-radius: 20px;
+}
 
 
 
@@ -11,6 +16,14 @@
     justify-content: space-around;
 }
 
+.AvatarContainer {
+    background-color: rgb(255, 218, 10);
+    box-shadow: inset 0px 0px 40px 40px rgba(0,0,0,0.63);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
 .AvatarSelect {
     cursor: pointer;
     width: 60px;
@@ -18,8 +31,8 @@
 }
 
 .AvatarSelect:focus {
-    background-color: rgba(0, 0, 0, 0.363);
     border: 3px solid #3abecf;
+    opacity: 0.5;
 }
 
 .ModalBody {
@@ -32,7 +45,8 @@
     border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
     border-image-slice: 1;
     width:100%;
-    color: #31241f;
+    color: #4b381c;
+    text-shadow: -1px 1px 2px #abfaf3;
 }
 
 .ModalFooter {
@@ -41,5 +55,4 @@
     border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
     border-image-slice: 1;
     width:100%;
-    color: #29221f;
 }

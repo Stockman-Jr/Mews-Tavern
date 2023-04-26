@@ -34,6 +34,7 @@ const ProfileEditForm = () => {
   });
   const { name, bio, avatar } = profileData;
   const [showAvatarSelector, setShowAvatarSelector] = useState(false);
+  const [ selectedAvatar, setSelectedAvatar ] = useState(null);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -61,14 +62,40 @@ const ProfileEditForm = () => {
     });
   };
 
-  const handleSelectAvatar = (src) => {
-    console.log(src);
+  const handleSelectAvatar = async (src) => {
+    const response = await fetch(src);
+    const blob = await response.blob();
+    const file = new File([blob], 'avatar.png', { type: 'image/png' });
+
+    setSelectedAvatar(file);
     setProfileData({
       ...profileData,
-      avatar: src,
+      avatar:  URL.createObjectURL(blob),
     });
+
   };
-  
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("bio", bio);
+    formData.append("avatar", selectedAvatar);
+
+    try {
+      const { data } = await axiosReq.put(`/profiles/${id}/`, formData);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        profile_avatar: data.avatar,
+      }));
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+      setErrors(err.response?.data);
+    }
+  };
+
+
   const formFields = (
     <div className="text-center">
       <Form.Group>
@@ -121,9 +148,10 @@ const ProfileEditForm = () => {
 
   return (
     <Container className="mt-5">
-      <Form className={` ${appStyles.BeigeBg}`}>
+      <Form className={`${styles.ProfileForm} ${appStyles.BeigeBg}`} onSubmit={handleSubmit}>
         <Row>
-          <Col>
+          <Col lg={8} className="mx-auto">
+          <Container>
           <Form.Group className="d-flex justify-content-center align-items-center flex-column">
           {showAvatarSelector ? (
                   <Modal
@@ -139,8 +167,8 @@ const ProfileEditForm = () => {
                 ) : (
                   <>
                     {avatar && (
-                      <div className={styles.AvatarContainer}>
-                        <figure className={styles.AvatarContainer}>
+                      <div >
+                        <figure >
                           <Image className={appStyles.Avatar} src={avatar} />
                         </figure>
                       </div>
@@ -157,6 +185,7 @@ const ProfileEditForm = () => {
                 )}
           </Form.Group>
           <div>{formFields}</div>
+          </Container>
           </Col>
         </Row>
       </Form>

@@ -33,7 +33,7 @@ const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
   return (
       <>
           <Modal.Header className={styles.ModalHeader} closeButton>
-            <Modal.Title>Choose Avatar</Modal.Title>
+            <h4>Avatars</h4>
           </Modal.Header>
           <Modal.Body className={styles.ModalBody}>
               <div className={styles.AvatarSelector}>
@@ -41,7 +41,7 @@ const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
                 <>
                     <div
                     key={src}
-                    className={`${styles.AvatarContainer} d-flex flex-column`}
+                    className={`${styles.AvatarContainer} d-flex flex-column mb-1`}
                     >
                         <Image
                         src={src}
@@ -51,7 +51,7 @@ const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
                             onSelect(src);
                             }}
                         />
-                            <small className="text-center">{label}</small>
+                            <small className="text-center text-uppercase">{label}</small>
                     </div>
                  </>
                 ))}
@@ -60,14 +60,16 @@ const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
           <Modal.Footer className={styles.ModalFooter}>
             <Button
              className={`${btnStyles.FormBtn} ${btnStyles.Dark}`}
-             onClick={() => setShowAvatarSelector(false)}
+             onClick={() => {
+                onSelect(null);
+                setShowAvatarSelector(false);
+                }}
             >
                 Close
             </Button>
             <Button
              className={`${btnStyles.FormBtn} ${btnStyles.Dark}`}
              onClick={() => {
-                onSelect(null);
                 setShowAvatarSelector(false);
                 }}
             >

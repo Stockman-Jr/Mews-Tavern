@@ -142,113 +142,141 @@ function PokemonBuildCreateForm() {
       <Form onSubmit={handleSubmit}>
         <Row className={appStyles.Row}>
           <Col>
-         <Container>
-            {caughtPokemons.length === 0 ? (
-                  <>
-                    <Alert variant="warning">
-                      You don't have any caught pokemons yet! Please visit the{" "}
-                      <Link className={styles.Link} to="/pokedex/1">
-                        PokeDex page
-                      </Link>{" "}
-                      first to catch some pokemon.
+            <Container>
+              {caughtPokemons.length === 0 ? (
+                <>
+                  <Alert variant="warning">
+                    You don't have any caught pokemons yet! Please visit the{" "}
+                    <Link className={styles.Link} to="/pokedex/1">
+                      PokeDex page
+                    </Link>{" "}
+                    first to catch some pokemon.
+                  </Alert>
+                  <div className="mt-5">
+                    <Link
+                      to="/pokedex/1"
+                      className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2 p-3`}
+                    >
+                      PokeDex &#11166;
+                    </Link>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Form.Group controlId="pokemon-select">
+                    <Form.Label>Select a Pokémon:</Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="pokemon"
+                      value={pokemon}
+                      onChange={(event) => {
+                        handlePokemonSelect(event);
+                        handleChange(event);
+                      }}
+                    >
+                      <option value="">--Select a Pokémon--</option>
+                      {caughtPokemons.map((p) => (
+                        <option key={p.pokemon.id} value={p.id}>
+                          {p.pokemon.name}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+                  {errors.pokemon?.map((message, idx) => (
+                    <Alert key={idx} variant="warning">
+                      {message}
                     </Alert>
-                    <div className="mt-5">
-                      <Link
-                        to="/pokedex/1"
-                        className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2 p-3`}
-                      >
-                        PokeDex &#11166;
-                      </Link>
+                  ))}
+
+                  <Form.Group className={styles.SelectWrapper}>
+                    <div className={styles.SpriteBox}>
+                      {selectedPokemonSprite && (
+                        <>
+                          <Image
+                            src={selectedPokemonSprite}
+                            alt={`${selectedPokemon} sprite`}
+                          />
+                        </>
+                      )}
                     </div>
-                  </>
-                ) : (
-                  <>
-                    <Form.Group controlId="pokemon-select">
-                      <Form.Label>Select a Pokémon:</Form.Label>
-                      <Form.Control
-                        as="select"
-                        name="pokemon"
-                        value={pokemon}
-                        onChange={(event) => {
-                          handlePokemonSelect(event);
-                          handleChange(event);
-                        }}
-                      >
-                        <option value="">--Select a Pokémon--</option>
-                        {caughtPokemons.map((p) => (
-                          <option key={p.pokemon.id} value={p.id}>
-                            {p.pokemon.name}
-                          </option>
-                        ))}
-                      </Form.Control>
-                    </Form.Group>
-                    {errors.pokemon?.map((message, idx) => (
-                      <Alert key={idx} variant="warning">
-                        {message}
-                      </Alert>
-                    ))}
+                    <div className={styles.SelectBox}>
+                      {selectedPokemon && (
+                        <>
+                          <MoveFields
+                            selectedPokemon={selectedPokemon}
+                            setSelectedPokemon={setSelectedPokemon}
+                            handleChange={handleChange}
+                            pokeBuildData={pokeBuildData}
 
-              <Form.Group className={styles.SelectWrapper}>
-                <div className={styles.SpriteBox}>
-                  {selectedPokemonSprite && (
-                    <>
-                      <Image
-                        src={selectedPokemonSprite}
-                        alt={`${selectedPokemon} sprite`}
-                      />
-                    </>
-                  )}
-                </div>
-                <div className={styles.SelectBox}>
-                  {selectedPokemon && (
-                    <>
-                      <MoveFields
-                      selectedPokemon={selectedPokemon}
-                      setSelectedPokemon={setSelectedPokemon}
-                      handleChange={handleChange}
-                      pokeBuildData={pokeBuildData}
+                          />
 
-                      />
+                          <Form.Group>
+                            <EvStatOptions
+                              handleChange={handleChange}
+                              pokeBuildData={pokeBuildData}
+                            />
+                          </Form.Group>
+                        </>
+                      )}
+                    </div>
+                  </Form.Group>
+                  <FormFields
+                    handleChange={handleChange}
+                    pokeBuildData={pokeBuildData}
+                  />
+                  <Form.Group className="mt-2">
+                    <Form.Label htmlFor="game_filter">
+                      Select a game:
+                    </Form.Label>
+                    <Form.Control
+                      as="select"
+                      name="game_filter"
+                      value={game_filter}
+                      onChange={handleChange}
+                    >
+                      <option value="">--Choose game--</option>
+                      {gameFilterChoices.map((choice) => (
+                        <option key={choice.value} value={choice.value}>
+                          {choice.display_name}
+                        </option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+                  {errors.game_filter?.map((message, idx) => (
+                    <Alert key={idx} variant="warning">
+                      {message}
+                    </Alert>
+                  ))}
 
-                      <Form.Group>
-                      <EvStatOptions 
-                      handleChange={handleChange}
-                      pokeBuildData={pokeBuildData}
-                      />
-                      </Form.Group>
-                    </>
-                  )}
-                </div>
-              </Form.Group>
-              <FormFields 
-              handleChange={handleChange}
-              pokeBuildData={pokeBuildData}
-               />
+                  <Form.Group>
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control
+                      as="textarea"
+                      name="content"
+                      value={content}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  {errors.content?.map((message, idx) => (
+                    <Alert key={idx} variant="warning">
+                      {message}
+                    </Alert>
+                  ))}
+                  <div className={appStyles.BtnWrapper}>
+                    <Button
+                      className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+                      type="submit"
+                    >
+                      Share
+                    </Button>
 
-              <Form.Group>
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  name="content"
-                  value={content}
-                  onChange={handleChange}
-                />
-              </Form.Group>
-              <div className={appStyles.BtnWrapper}>
-              <Button
-                className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
-                type="submit"
-              >
-                Share
-              </Button>
-
-              <Button
-                className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
-              >
-                Cancel
-              </Button>
-              </div>
-              </>
+                    <Button
+                      className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+                    >
+                      Cancel
+                    </Button>
+                  </div>
+                </>
               )}
 
             </Container>

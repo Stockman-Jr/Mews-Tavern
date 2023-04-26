@@ -50,14 +50,74 @@ const ProfileEditForm = () => {
       }
     };
     handleMount();
-  }, [currentUser, history, id]); 
+  }, [currentUser, history, id]);
 
+  const handleChange = (event) => {
+    setProfileData({
+      ...profileData,
+      [event.target.name]: event.target.value,
+    });
+  };
   
+  const formFields = (
+    <div className="text-center">
+      <Form.Group>
+        <Form.Label>Bio</Form.Label>
+        <Form.Control
+          as="textarea"
+          name="bio"
+          value={bio}
+          onChange={handleChange}
+          rows={6}
+        />
+      </Form.Group>
+      {errors.bio?.map((message, idx) => (
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
+
+      <Form.Group>
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+        />
+      </Form.Group>
+      {errors.name?.map((message, idx) => (
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
+      <div className={appStyles.BtnWrapper}>
+        <Button
+          className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+          type="submit"
+        >
+          Share
+        </Button>
+        <Button
+          className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+          onClick={() => history.goBack()}
+        >
+          Cancel
+        </Button>
+      </div>
+    </div>
+  );
+
+
   return (
     <Container className="mt-5">
       <Form className={` ${appStyles.BeigeBg}`}>
         <Row>
           <Col>
+          <Form.Group className="d-flex justify-content-center align-items-center flex-column">
+
+          </Form.Group>
+          <div>{formFields}</div>
           </Col>
         </Row>
       </Form>

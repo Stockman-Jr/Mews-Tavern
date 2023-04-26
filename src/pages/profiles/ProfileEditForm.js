@@ -133,7 +133,7 @@ const ProfileEditForm = () => {
           className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
           type="submit"
         >
-          Share
+          Confirm
         </Button>
         <Button
           className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}

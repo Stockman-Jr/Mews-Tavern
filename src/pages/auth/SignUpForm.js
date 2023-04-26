@@ -9,7 +9,7 @@ import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 
 import btnStyles from "../../styles/Buttons.module.css";
-import styles from "../../styles/SignInUpForm.module.css";
+import styles from "../../styles/AuthForms.module.css";
 import appStyles from "../../App.module.css";
 import axios from 'axios';
 

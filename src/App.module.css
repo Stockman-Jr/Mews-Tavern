@@ -26,6 +26,14 @@ a {
   font-weight: 600;
 }
 
+.Avatar {
+  max-height: 100px;
+  max-width: 100%;
+  object-fit: contain;
+  border: 2px solid #ad8105;;
+  border-radius: 50%;
+}
+
 .Image {
   max-height: 40vh;
   max-width: 100%;
@@ -52,19 +60,18 @@ a {
   height:auto; 
 }
 
-.Avatar {
-  max-height: 100px;
-  max-width: 100%;
-  object-fit: contain;
-  border: 2px solid #ad8105;;
-  border-radius: 50%;
-}
 
 .FillerImage {
   object-fit: cover;
   height: 100%;
   width: 100%;
 }
+
+input[type="text"],
+input[type="password"] {
+    border-radius: 20px;
+    padding: 20px 12px;
+  }
 
 input[type="file"] {
   display: none;

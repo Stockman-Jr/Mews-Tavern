@@ -9,16 +9,9 @@
 }
 
 .FormContainer {
-
     margin: 0 auto;
     width: 100%;
 }
-
-input[type="text"],
-input[type="password"] {
-    border-radius: 20px;
-    padding: 20px 12px;
-  }
 
 .AuthForm label {
     font-family: 'Press Start 2P', cursive;

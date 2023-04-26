@@ -13,6 +13,7 @@ import PokemonBuildCreateForm from './pages/posts/PokemonBuildCreateForm';
 import DetailPage from './pages/posts/DetailPage';
 import ProfilePage from './pages/profiles/ProfilePage';
 import ProfileEditForm from './pages/profiles/ProfileEditForm';
+import UserAccountForm from './pages/auth/UserAccountForm';
 
 function App() {
   
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/posts" render={() => <PostFeedPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
+          <Route exact path="/profiles/:id/edit/account" render={() => <UserAccountForm />} />
         </Switch>
       </div>
 

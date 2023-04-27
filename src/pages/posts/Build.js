@@ -56,7 +56,7 @@ const Build = (props) => {
     const cardClassName = buildPage ? styles.DetailCard : styles.Card;
 
     const handleEdit = () => {
-      history.push(`/posts/${id}/edit`)
+      history.push(`/posts/${id}/build/edit`)
     };
 
     const handleDelete = async () => {

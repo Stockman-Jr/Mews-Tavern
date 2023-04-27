@@ -14,6 +14,7 @@ import DetailPage from './pages/posts/DetailPage';
 import ProfilePage from './pages/profiles/ProfilePage';
 import ProfileEditForm from './pages/profiles/ProfileEditForm';
 import UserAccountForm from './pages/auth/UserAccountForm';
+import PokemonBuildEditForm from './pages/posts/PokemonBuildEditForm';
 
 function App() {
   
@@ -31,6 +32,11 @@ function App() {
           <Route exact path="/posts/create/build" render={() => <PokemonBuildCreateForm />} />
           <Route exact path="/posts/:id" render={() => <DetailPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
+          <Route
+            exact
+            path="/posts/:id/build/edit"
+            render={() => <PokemonBuildEditForm />}
+          />
           <Route exact path="/posts" render={() => <PostFeedPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />

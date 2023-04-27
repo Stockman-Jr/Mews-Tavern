@@ -76,8 +76,8 @@ function PokeDexPage() {
   
   const handlePageChange = (selectedPage) => {
     const newPage = selectedPage.selected + 1;
-  setCurrentPage(newPage);
-  history.push(`/pokedex/${newPage}`);
+    setCurrentPage(newPage);
+    history.push(`/pokedex/${newPage}`);
   };
 
   return (

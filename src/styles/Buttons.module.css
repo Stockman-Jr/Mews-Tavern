@@ -49,6 +49,8 @@
     background-color: #463d34;
     cursor: pointer;
     border-color: #68490f;
+    outline: none !important;
+    outline-style: none;
 }
 
 .LoadMoreBtn {

@@ -26,6 +26,12 @@ a {
   font-weight: 600;
 }
 
+a:hover {
+  text-decoration: none;
+  color: #4eb7be;
+
+}
+
 .Avatar {
   max-height: 100px;
   max-width: 100%;

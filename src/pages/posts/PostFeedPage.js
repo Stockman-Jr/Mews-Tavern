@@ -31,7 +31,6 @@ function PostFeedPage() {
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get( `/posts/?search=${query}&${filter}`);
-        console.log(data.results);
         setPosts(data);
         setIsLoaded(true);
       } catch (err) {

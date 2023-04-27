@@ -32,10 +32,10 @@ const avatarOptions = [
 const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
   return (
       <>
-          <Modal.Header className={styles.ModalHeader} closeButton>
-            <h4>Avatars</h4>
-          </Modal.Header>
-          <Modal.Body className={styles.ModalBody}>
+        <Modal.Header className={styles.ModalHeader} closeButton>
+          <h4>Avatars</h4>
+        </Modal.Header>
+        <Modal.Body className={styles.ModalBody}>
               <div className={styles.AvatarSelector}>
                 {avatarOptions.map(({ label, src }) => (
                 <>

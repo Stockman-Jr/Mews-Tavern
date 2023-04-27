@@ -168,17 +168,15 @@ function PostCreateForm() {
   );
 
   return (
-    <Container className="mt-5">
-   
-      <div>
+    <Container className="mt-5"> 
+     <div className="mb-4">
         <Link
           to="/posts/create/build"
-          className={`${btnStyles.FormBtn} ${btnStyles.Dark}`}
+          className={`${btnStyles.FormBtn} ${btnStyles.Dark} p-2`}
         >
-          Create Pokémon Build
+          Pokémon Build &#11166;
         </Link>
       </div>
-
       <Form onSubmit={handleSubmit} className={styles.PostForm}>
         <Row className={styles.FormContent}>
           <Col >

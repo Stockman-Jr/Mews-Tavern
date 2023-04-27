@@ -65,7 +65,7 @@ function DetailPage() {
 
   return (
       <Container className="mt-5">
-          <Row>
+          <Row >
               <Col className={styles.PostContainer} lg={8} md={12}>
                   {post_type === "Game Related" ? (
                       <Post {...post.results[0]} setPosts={setPost} postPage />
@@ -110,7 +110,7 @@ function DetailPage() {
             <p className="text-white text-center mt-1">No comments yet.. </p>
           )}
         </Col>
-              <Container className="mt-3">
+              <Container className="mt-3 mb-3">
                   {currentUser ? (
                       <CommentCreateForm
                         post={id}

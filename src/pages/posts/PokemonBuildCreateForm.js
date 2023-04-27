@@ -145,7 +145,15 @@ function PokemonBuildCreateForm() {
 
 
   return (
-    <>
+    <Container className="mt-5">
+         <div className="mb-4">
+        <Link
+          to="/posts/create"
+          className={`${btnStyles.FormBtn} ${btnStyles.Dark} p-2`}
+        >
+          Back to Post &#11166;
+        </Link>
+      </div>
      {isLoaded ? (
     <div className={`${styles.BuildForm} mt-5 py-4`}>
       <Form onSubmit={handleSubmit}>
@@ -298,7 +306,7 @@ function PokemonBuildCreateForm() {
         <Asset loader />
       </Container>
     )}
-    </>
+    </Container>
   );
 }
 

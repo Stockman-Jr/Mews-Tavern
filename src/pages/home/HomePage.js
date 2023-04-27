@@ -137,7 +137,6 @@ return (
                           ></Image>
                       </div>
                   </Col>
-
               </Row>
           </div>
     </>

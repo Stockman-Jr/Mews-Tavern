@@ -1,8 +1,14 @@
 import React, { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { Media } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+
 import Avatar from "../../components/Avatar";
 import styles from "../../styles/Comment.module.css";
+import CommentEditForm from "./CommentEditForm";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { ConfigDropdown } from "../../components/DropdownMenus";
 
 const Comment = (props) => {
   const {
@@ -11,7 +17,14 @@ const Comment = (props) => {
     owner,
     updated_at,
     content,
+    id,
+    setPost,
+    setComments,
   } = props;
+
+  const [showEditForm, setShowEditForm] = useState(false);
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === owner;
   return (
     <>
       <hr className={styles.CmtHr} />
@@ -27,8 +40,29 @@ const Comment = (props) => {
           <small className={styles.Updated}>{updated_at}</small>
         </span>
         <Media.Body  className={`${styles.CmtContent} ml-2 mb-1 mr-1`}>
-          <p className="ml-1 mr-1">{content}</p>
-        </Media.Body >
+        {showEditForm ? (
+            <Modal show={showEditForm} onHide={() => setShowEditForm(false)}>
+              <CommentEditForm
+                id={id}
+                profile_id={profile_id}
+                content={content}
+                setComments={setComments}
+                setShowEditForm={setShowEditForm}
+              />
+            </Modal>
+          ) : (
+            <p className="ml-1 mr-1">{content}</p>
+          )}
+        </Media.Body>
+        <div className={styles.CmtDropdown}>
+          {is_owner && !showEditForm && (
+            <ConfigDropdown
+              handleEdit={() => setShowEditForm(true)}
+              handleDelete={handleDelete}
+            />
+          )}
+        </div>
+      
       </div>
     </>
   );

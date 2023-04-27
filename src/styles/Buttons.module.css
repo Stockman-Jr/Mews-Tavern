@@ -87,6 +87,14 @@
   border-color: #dad6c7;
 }
 
+.ResetBtn {
+  background-color: rgba(124, 109, 92, 0.952);
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
 .ScrollContainer {
     position: relative;
 }

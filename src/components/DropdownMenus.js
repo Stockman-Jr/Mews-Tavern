@@ -71,31 +71,31 @@ export const ProfileMenuDropdown = ({ id, profileAvatar }) => {
     const history = useHistory();
     return (
       <>
-        <Navbar.Toggle as={AvatarDrop} src={profileAvatar} />
-        <Navbar.Collapse>
-        <Nav className={`${styles.DropMenuProfile} text-center mr-2`}>
-        <NavDropdown drop="down">
+      <Dropdown drop="down">
+        <Dropdown.Toggle as={AvatarDrop} src={profileAvatar} />
+        <Nav className={`text-center mr-2`}>
+        <Dropdown.Menu className={styles.DropMenuProfile}>
           <NavDropdown.Item
             onClick={() => history.push(`/profiles/${id}`)}
             aria-label="edit"
           >
-            <small>Profile</small>
+            <small className="font-weight-bold">Profile</small>
           </NavDropdown.Item>
           <NavDropdown.Item
             onClick={() => history.push(`/profiles/${id}/edit`)}
             aria-label="edit"
           >
-           <small>Edit profile</small>
+           <small className="font-weight-bold">Edit profile</small>
           </NavDropdown.Item>
           <NavDropdown.Item
             onClick={() => history.push(`/profiles/${id}/edit/account`)}
             aria-label="edit-password-username"
           >
-            <small>Account settings</small>
+            <small className="font-weight-bold">Account settings</small>
           </NavDropdown.Item>
-          </NavDropdown>
+          </Dropdown.Menu>
         </Nav>
-        </Navbar.Collapse>
+        </Dropdown>
         </>
       
     );

@@ -99,6 +99,13 @@ function PokeDexPage() {
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Button>
               ))}
+              <Button 
+              variant="dark" 
+              className={btnStyles.ResetBtn}
+              onClick={(e) => {setFilter(" ")}}
+              >
+                &#x2717; Reset
+              </Button>
              </Container>
                 <div className={`${appStyles.PContainer} mt-3`}>
                   {pokemons.results.map((pokemon) => {

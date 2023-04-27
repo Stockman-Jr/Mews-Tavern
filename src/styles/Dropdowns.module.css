@@ -6,10 +6,18 @@
   }
 
   .DropMenuProfile {
-    background: linear-gradient(180deg,rgb(245, 229, 85) 30%,rgb(170, 128, 11) 100%);
-    display: flex;
-    flex-direction: column;
-    margin-right: 5px;
+    background-color: #cebeae;
+    border: 1px solid rgb(170, 128, 11);
+  }
+
+  .DropMenuProfile a {
+    color: #553c1b;
+    margin-bottom: 1px;
+  }
+
+  .DropMenuProfile a:hover {
+    background-color: rgb(221, 210, 195);
+    color: #2b1e13;
   }
   
   .Toggle {

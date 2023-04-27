@@ -28,7 +28,6 @@ function DetailPage() {
     const [post, setPost] = useState({ results: [] });
     const [comments, setComments] = useState({ results: [] });
     const currentUser = useCurrentUser();
-    const profileAvatar = currentUser?.profile_avatar;
 
     useEffect(() => {
         const handleMount = async () => {
@@ -38,7 +37,6 @@ function DetailPage() {
                         axiosReq.get(`/posts/post/${id}/`),
                     ]);
                     setPost({ results: [post] });
-                    console.log(post);
                 } else if (
                     location.state &&
                     location.state.post_type === "Pokémon Build"
@@ -47,7 +45,6 @@ function DetailPage() {
                         axiosReq.get(`/posts/pokebuild/${id}/`),
                     ]);
                     setPost({ results: [post] });
-                    console.log(post);
                 }
                 const [{ data: comments }] = await Promise.all([
                     axiosReq.get(`/comments/?post=${id}`),
@@ -88,8 +85,6 @@ function DetailPage() {
                 children={comments.results.map((comment) => (
                   <Comment
                     key={comment.id}
-                    profile_avatar={profileAvatar}
-                    profile_id={currentUser.profile_id}
                     {...comment}
                     setPost={setPost}
                     setComments={setComments}
@@ -126,7 +121,8 @@ function DetailPage() {
                       <p className="text-white">Log In or Sign Up to leave comments!</p>
                   )}
               </Container>
-          </Row>
+              <hr className={appStyles.HrDeco} />
+          </Row>  
       </Container>
   )
 }

@@ -1,5 +1,8 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import styles from "../styles/Dropdowns.module.css";
 
 import Avatar from "./Avatar";
@@ -39,7 +42,7 @@ const AvatarDrop = React.forwardRef(({ onClick, src }, ref) => (
 
 export const ConfigDropdown = ({handleEdit, handleDelete}) => {
     return (
-        <Dropdown className="ml-auto" drop="left">
+        <Dropdown className="position-static" drop="left">
             <Dropdown.Toggle as={Cog} />
             <Dropdown.Menu
                 className="text-center"
@@ -67,28 +70,33 @@ export const ConfigDropdown = ({handleEdit, handleDelete}) => {
 export const ProfileMenuDropdown = ({ id, profileAvatar }) => {
     const history = useHistory();
     return (
-      <Dropdown className="mr-auto" drop="down">
-        <Dropdown.Toggle as={AvatarDrop} src={profileAvatar} />
-        <Dropdown.Menu className={`${styles.DropMenuProfile} text-center mr-2`}>
-          <Dropdown.Item
+      <>
+        <Navbar.Toggle as={AvatarDrop} src={profileAvatar} />
+        <Navbar.Collapse>
+        <Nav className={`${styles.DropMenuProfile} text-center mr-2`}>
+        <NavDropdown drop="down">
+          <NavDropdown.Item
             onClick={() => history.push(`/profiles/${id}`)}
             aria-label="edit"
           >
             <small>Profile</small>
-          </Dropdown.Item>
-          <Dropdown.Item
+          </NavDropdown.Item>
+          <NavDropdown.Item
             onClick={() => history.push(`/profiles/${id}/edit`)}
             aria-label="edit"
           >
            <small>Edit profile</small>
-          </Dropdown.Item>
-          <Dropdown.Item
+          </NavDropdown.Item>
+          <NavDropdown.Item
             onClick={() => history.push(`/profiles/${id}/edit/account`)}
             aria-label="edit-password-username"
           >
             <small>Account settings</small>
-          </Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+          </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        </Navbar.Collapse>
+        </>
+      
     );
   };

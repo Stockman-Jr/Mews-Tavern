@@ -34,7 +34,6 @@ const Post = (props) => {
       game_filter_display,
       post_type,
       ingame_name,
-      updated_at,
       postPage,
       homePage,
       setPosts,

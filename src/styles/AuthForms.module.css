@@ -21,13 +21,10 @@
     margin-left: 2px;
     color: #50a4aa;
     float: left;
-    clear: both;
 }
 
 .Content {
     background-color: #ece6d6;
-    margin-left: 0;
-    margin-right: 0;
     padding-right: 0;
     padding-left: 0px;
     z-index: -1;

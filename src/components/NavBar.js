@@ -62,21 +62,28 @@ const NavBar = () => {
     </>
   );
 
-
-  return (
-    <div className={styles.NavBar}>
-      <div >
+  const profileNav = (
+    <>
+ 
         {currentUser && (
           <ProfileMenuDropdown
             profileAvatar={profile_avatar}
             id={currentUser.profile_id}
           />
         )}
-      </div>
-    <Navbar expand="md">
-    {currentUser ? "" : logoLink}
+
+     </>
+
+  );
+
+
+  return (
+    <> 
+    <Navbar className={`${styles.NavBar}`} expand="md">
+    {currentUser ? profileNav : logoLink}
+ 
   <Navbar.Toggle aria-controls="basic-navbar-nav ml-auto" />
-  <Navbar.Collapse id="basic-navbar-nav" className="ml-auto">
+  <Navbar.Collapse id="basic-navbar-nav" className="mt-3">
     <Nav className={`${styles.NavLeft} ml-auto`}>
     <NavLink to="/" activeClassName={styles.Active}>
             Home{" "}
@@ -103,7 +110,7 @@ const NavBar = () => {
     </Nav>
   </Navbar.Collapse>
 </Navbar>
-</div>
+</>
   );
 }
 

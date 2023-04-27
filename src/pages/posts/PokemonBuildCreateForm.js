@@ -111,7 +111,6 @@ function PokemonBuildCreateForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     pokeBuildData.pokemon = selectedPokemon.name;
-    console.log("Pokemon Build:", pokeBuildData);
 
     const formData = new FormData();
 
@@ -201,7 +200,6 @@ function PokemonBuildCreateForm() {
                           pokeBuildData={pokeBuildData}
 
                         />
-
                         <Form.Group>
                           <EvStatOptions
                             handleChange={handleChange}
@@ -290,7 +288,6 @@ function PokemonBuildCreateForm() {
                 </div>
               </>
               )}
-
             </Container>
           </Col>
         </Row>

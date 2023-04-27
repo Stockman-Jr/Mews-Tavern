@@ -44,7 +44,7 @@ const SignInForm = () => {
       };
   return (
     <Row className={`${appStyles.Row} ${styles.FormRow}`}>
-    <Col className={` ${styles.FormContainer} my-auto `} md={8}>
+    <Col className={` ${styles.FormContainer} my-auto `} md={8} lg={6}>
       <Container className={styles.Content}>
         <div className={styles.GradHeader}>
           <h4 className={styles.H4Text}>Log In</h4>

@@ -1,3 +1,17 @@
+/*
+.NavBarContainer {
+    display: flex;
+    font-size: 18px;
+    background-image: linear-gradient(260deg, #4892a5 0%, #6ab6c4 100%);
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid transparent;
+    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
+    border-image-slice: 1;
+    padding-bottom: 10px;
+    width: 100%;
+}
+*/
+
 .NavBar {
     font-size: 18px;
     background-image: linear-gradient(260deg, #4892a5 0%, #6ab6c4 100%);
@@ -7,6 +21,19 @@
     border-image-slice: 1;
     padding-bottom: 10px;
     width: 100%;
+}
+
+.NavBarWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+
+.ProfileMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .Logo {

@@ -16,7 +16,6 @@
     text-transform: uppercase;
     text-align: center;
     padding: 5px;
-    color: #48b4c2;
 }
 
 .FormContent {
@@ -24,6 +23,7 @@
     padding: 10px;
     border: solid 5px #977c02;
     border-radius: 20px;
+    color: #35322b;
 }
 
 .FormFieldDiv {

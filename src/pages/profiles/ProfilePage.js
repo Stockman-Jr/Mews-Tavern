@@ -16,12 +16,13 @@ import Post from "../posts/Post";
 import Build from "../posts/Build";
 import Asset from "../../components/Asset";
 import PokeBall from "../../assets/ball-caught.png";
+import { GoArrowSmallRight } from "react-icons/go";
+
 
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { fetchMoreData, getGradientForTypes } from "../../utils/utils";
-import { NavLink } from 'react-router-dom';
 import InfiniteScroll from "react-infinite-scroll-component";
 
 function ProfilePage() {
@@ -52,7 +53,7 @@ function ProfilePage() {
             setProfile(profile);
             setProfilePosts(profilePosts);
             setLikedPosts(likedPosts);
-            console.log(profilePokemons.results);
+
             setIsLoaded(true);
           } catch (err) {
             console.log(err);
@@ -197,22 +198,31 @@ function ProfilePage() {
   return (
     <>
     <header className={`${styles.ProfileHeader} ${appStyles.BeigeBg} ${appStyles.BorderBottom}`}>
+    {isLoaded ? (
+      <div className={styles.HeaderContent}>
     {profile && (
-          <>
+          <div className={styles.ProfileInfo}>
             <Image
               className={`${appStyles.Avatar} mt-4`}
               src={profile.avatar}
               alt="Avatar Image"
             />
             <h4>{profile.owner}</h4>
-            <div>
+            <div className={`${styles.TextInfo} text-center`}>
+              <span className={`${styles.Name}`}>
+              <small className="font-weight-bold">Name: </small>
               <small>{profile.name}</small>
+              </span>
+              <span className="d-flex flex-column">
               <small>{profile.bio}</small>
+              </span>
             </div>
-          </>
+            </div>
         )}
-         <div className={styles.MenuContent}>
-          <Nav className={styles.ProfileMenu}>
+
+     
+         <div className={`${styles.MenuContent} p-0 `}>
+          <Nav className={`${styles.ProfileMenu}`}>
             <Nav.Item className={styles.NavItem} >
               <Nav.Link onClick={() => handleLinkClick("posts")} >
                 Posts
@@ -230,16 +240,18 @@ function ProfilePage() {
             </Nav.Item>
           </Nav>
         </div>
+        </div>
+           ) : (
+            <Asset loader />
+          )}
     </header>
     <div>
         <Container>
-          {isLoaded ? (
-            <>
-            {profile && <Container>{renderProfileContent()}</Container> } 
-             </>
-          ) : (
-            <Asset loader/>
-          )}   
+        {isLoaded && (
+        <>
+          {profile && <Container>{renderProfileContent()}</Container>}
+        </>
+      )}
         </Container>
     </div>
     </>

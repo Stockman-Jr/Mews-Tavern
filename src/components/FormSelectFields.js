@@ -77,7 +77,8 @@ export const MoveFields = ({
               ))}
             </Form.Control>
           </Form.Group>
-
+          
+          <Form.Group>
           <Form.Label htmlFor="abilitiy">Select an ability:</Form.Label>
           <Form.Control
             as="select"
@@ -93,6 +94,7 @@ export const MoveFields = ({
               </option>
             ))}
           </Form.Control>
+          </Form.Group>
         </>
       )}
     </div>
@@ -181,6 +183,7 @@ export const FormFields = ({
 
   return (
     <>
+     <Form.Group>
       <Form.Label htmlFor="nature">Select nature:</Form.Label>
       <Form.Control
         as="select"
@@ -197,7 +200,8 @@ export const FormFields = ({
           </option>
         ))}
       </Form.Control>
-
+      </Form.Group>
+      <Form.Group>
       <Form.Label htmlFor="held_item">Select held item:</Form.Label>
       <Form.Control
         as="select"
@@ -213,6 +217,7 @@ export const FormFields = ({
           </option>
         ))}
       </Form.Control>
+      </Form.Group>
     </>
   );
 };

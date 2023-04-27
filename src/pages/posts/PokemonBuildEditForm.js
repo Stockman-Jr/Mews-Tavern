@@ -218,12 +218,11 @@ function PokemonBuildEditForm() {
 
                         />
 
-                        <Form.Group>
                           <EvStatOptions
                             handleChange={handleChange}
                             pokeBuildData={pokeBuildData}
                           />
-                        </Form.Group>
+
                       </>
                     )}
                   </div>
@@ -285,8 +284,6 @@ function PokemonBuildEditForm() {
                     Cancel
                   </Button>
                 </div>
- 
-
             </Container>
           </Col>
         </Row>

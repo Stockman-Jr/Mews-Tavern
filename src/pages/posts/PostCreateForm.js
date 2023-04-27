@@ -208,6 +208,7 @@ function PostCreateForm() {
                     <Asset
                       src={Upload}
                       message="Click or tap to upload image"
+                      style={{ color: '#35322b'}}
                     />
                   </Form.Label>
                 )}

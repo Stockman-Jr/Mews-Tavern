@@ -80,7 +80,9 @@ const ProfileEditForm = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("bio", bio);
-    formData.append("avatar", selectedAvatar);
+    if (selectedAvatar) {
+      formData.append("avatar", selectedAvatar);
+    }
 
     try {
       const { data } = await axiosReq.put(`/profiles/${id}/`, formData);

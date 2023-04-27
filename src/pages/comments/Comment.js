@@ -9,6 +9,7 @@ import styles from "../../styles/Comment.module.css";
 import CommentEditForm from "./CommentEditForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { ConfigDropdown } from "../../components/DropdownMenus";
+import { axiosRes } from "../../api/axiosDefaults";
 
 const Comment = (props) => {
   const {
@@ -45,7 +46,7 @@ const Comment = (props) => {
       }));
     } catch (err) {}
   };
-  
+
   return (
     <>
       <hr className={styles.CmtHr} />

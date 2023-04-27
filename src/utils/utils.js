@@ -100,3 +100,22 @@ const typeColors = {
       }
     });
   };
+
+  export const fetchBuildSelectData = async () => {
+	try {
+    const natureUrl = "/api/natures/";
+    const heldItemsUrl = "/api/held-items/";
+	  const [natureData, heldItemsData] = await Promise.all([
+        fetchAllData(natureUrl),
+        fetchAllData(heldItemsUrl),
+      ]);
+	
+	    localStorage.setItem("natureData", JSON.stringify(natureData));
+      localStorage.setItem("heldItemsData", JSON.stringify(heldItemsData));
+
+      return { natureData, heldItemsData };
+    } catch (err) {
+      console.log(err);
+    }
+
+ };

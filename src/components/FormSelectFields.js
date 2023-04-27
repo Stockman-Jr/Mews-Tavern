@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
-import { fetchAllData } from "../utils/utils";
+import { fetchAllData, fetchBuildSelectData } from "../utils/utils";
 
 export const MoveFields = ({  
   selectedPokemon,
@@ -159,28 +159,24 @@ export const EvStatOptions = ({handleChange, pokeBuildData}) => {
 
 export const FormFields = ({
   handleChange,
-  nature,
-  held_item,
   pokeBuildData,
-}) => {
+  }) => {
   const [natureList, setNatureList] = useState([]);
   const [heldItemList, setHeldItemList] = useState([]);
 
-  const fetchNatures = async () => {
-    const url = "/api/natures/";
-    const data = await fetchAllData(url);
-    setNatureList(data);
-  };
-
-  const fetchHeldItems = async () => {
-    const url = "/api/held-items/";
-    const data = await fetchAllData(url);
-    setHeldItemList(data);
-  };
   useEffect(() => {
-    fetchHeldItems();
-    fetchNatures();
-    console.log(pokeBuildData.nature);
+    const storedNatures = localStorage.getItem("natureData");
+    const storedItems = localStorage.getItem("heldItemsData");
+
+    if (storedNatures && storedItems) {
+      setNatureList(JSON.parse(storedNatures));
+      setHeldItemList(JSON.parse(storedItems));
+    } else {
+      fetchBuildSelectData().then(data => {
+        setNatureList(data.natureData);
+        setHeldItemList(data.heldItemsData);
+      });
+    }
   }, []);
 
   return (

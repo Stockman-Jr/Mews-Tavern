@@ -69,17 +69,31 @@ Links to the frontend parts of the project can be found in the links below:
 
 # Agile Methodology
 
+An agile approach was implemented for this project with a Github projects kanban board which can be found [here](https://github.com/users/Stockman-Jr/projects/3/views/1?visibleFields=%5B%22Title%22%2C%22Assignees%22%2C%22Status%22%2C%22Labels%22%5D).
+
+An issue template was created for adding User Stories. Each User Story was given a label of priority using the: **Must Have**, **Should Have** or **Could Have**.
+
 ---
 
 ## Design
 
 ### Colour scheme
 
+The colour palette chosen for this project are hues of brown, beige, blue and gold.
+
+![Colour Palette]()
+
+It's a colour palette I'm very fond of, but it was a bit tricky to use in terms of creating contrast and readability.
+
 ### Typography
+
+The main font of the site is a standard font, 'Trebuchet MS'. I also used a Google Font, 'Press 2 Play', which was used as a decorative font, mostly used in headings throughout the application.
 
 ### Imagery
 
 ### Responsive Design
+
+The responsiveness of the site was achieved through the use of bootstrap, flexbox and media queries.
 
 ---
 

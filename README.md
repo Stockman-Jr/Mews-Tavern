@@ -35,6 +35,36 @@ Links to the frontend parts of the project can be found in the links below:
 
 ### User Stories
 
+#### **As a logged out user, I can:**
+
+- Easily navigate around the application to view most content.
+- Register.
+- Log In.
+- View the home page.
+- View the PokeDex page and browse Pokémon.
+- View the post feed page to browse posts.
+- Click on a post or build to view the detail page.
+- View comments in detail page.
+- View users profile pages.
+
+#### **As a logged in user, I can:**
+
+- All things listed above, with the exception of register/log in, as you need to be logged out to access these links.
+- Log Out.
+- Create and share game related posts as well as Pokémon builds by clicking the 'Add Post' link.
+- Like and unlike posts.
+- Comment on posts.
+- Save and delete pokémons I've caught in the PokeDex page by clicking the pokeball.
+
+#### **As the owner/creator of content, I can:**
+
+- All things listed above.
+- Edit and delete posts.
+- Edit and delete comments.
+- See what pokemons are caught or not in the PokeDex page.
+- Update profile information, such as name, bio and avatar.
+- Change username and password.
+
 ---
 
 # Agile Methodology

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
-import { fetchAllData, fetchBuildSelectData } from "../utils/utils";
+import { fetchBuildSelectData } from "../utils/utils";
 
 export const MoveFields = ({  
   selectedPokemon,

@@ -11,18 +11,15 @@ import Alert from "react-bootstrap/Alert";
 import styles from "../../styles/BuildCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import appStyles from "../../App.module.css";
-import Asset from "../../components/Asset";
 
-import { useHistory, Link, useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { MoveFields, EvStatOptions, FormFields } from "../../components/FormSelectFields";
 import { fetchGameFilterChoices } from "../../utils/utils";
 
 
 function PokemonBuildEditForm() {
-    const [caughtPokemons, setCaughtPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState("");
-    const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
     const [gameFilterChoices, setGameFilterChoices] = useState([]);
     const [pokeBuildData, setPokeBuildData] = useState({
       pokemon: "",
@@ -88,7 +85,6 @@ function PokemonBuildEditForm() {
           const caughtPokemon = pokeData.results.find(
             (p) => p.pokemon.id === data.pokemon_id
           );
-          setCaughtPokemons(pokeData.results);
   
           is_owner
             ? setPokeBuildData({

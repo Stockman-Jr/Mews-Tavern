@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styles from "../../styles/PokemonCard.module.css";
-import appStyles from "../../App.module.css";
 import Card from "react-bootstrap/Card";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import ReactPaginate from 'react-paginate';
 import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import Asset from "../../components/Asset";
 import aniStyles from "../../styles/Animations.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function PokemonTypes({ types }) {
     return (

@@ -92,6 +92,7 @@ return (
                       <Build key={post.id} {...post} setPosts={setPosts} />
                     );
                   }
+                  return null;
                 })}
                 dataLength={posts.results.length}
                 loader={<Asset loader />}

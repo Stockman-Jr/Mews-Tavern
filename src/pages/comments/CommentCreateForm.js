@@ -6,9 +6,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 import styles from "../../styles/CommentCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
-import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
-import { Link } from 'react-router-dom';
+
 
 function CommentCreateForm(props) {
     const { post, setPost, setComments } = props;

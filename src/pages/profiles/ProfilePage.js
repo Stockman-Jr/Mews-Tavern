@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Col from "react-bootstrap/Col";
-import Alert from "react-bootstrap/Alert";
-import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Image from "react-bootstrap/Image";
@@ -16,10 +14,8 @@ import Post from "../posts/Post";
 import Build from "../posts/Build";
 import Asset from "../../components/Asset";
 import PokeBall from "../../assets/ball-caught.png";
-import { GoArrowSmallRight } from "react-icons/go";
 
-
-import { axiosReq, axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { fetchMoreData, getGradientForTypes } from "../../utils/utils";
@@ -117,6 +113,7 @@ function ProfilePage() {
                     <Build key={post.id} {...post} setPosts={setProfilePosts} />
                   );
                 }
+                return null;
               })}
               dataLength={profilePosts.results.length}
               loader={<Asset loader />}
@@ -151,6 +148,7 @@ function ProfilePage() {
                     <Build key={post.id} {...post} setPosts={setLikedPosts} />
                   );
                 }
+                return null;
               })}
               dataLength={likedPosts.results.length}
               loader={<Asset loader />}

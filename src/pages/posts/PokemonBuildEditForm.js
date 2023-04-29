@@ -74,9 +74,6 @@ function PokemonBuildEditForm() {
             is_owner,
           } = data;
   
-          console.log(data);
-          console.log(data.pokemon);
-  
           const { data: pokeData } = await axiosReq.get(
             `/api/caught/?owner=${data.profile_id}`
           );
@@ -136,8 +133,6 @@ function PokemonBuildEditForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    pokeBuildData.pokemon = selectedPokemon.name;
-    console.log("Pokemon Build:", pokeBuildData);
 
     const formData = new FormData();
 
@@ -211,12 +206,14 @@ function PokemonBuildEditForm() {
                           setSelectedPokemon={setSelectedPokemon}
                           handleChange={handleChange}
                           pokeBuildData={pokeBuildData}
+                          errors={errors}
 
                         />
 
                           <EvStatOptions
                             handleChange={handleChange}
                             pokeBuildData={pokeBuildData}
+                            errors={errors}
                           />
 
                       </>
@@ -226,6 +223,7 @@ function PokemonBuildEditForm() {
                 <FormFields
                   handleChange={handleChange}
                   pokeBuildData={pokeBuildData}
+                  errors={errors}
                 />
                 <Form.Group className="mt-2">
                   <Form.Label htmlFor="game_filter">

@@ -113,7 +113,6 @@ function PokemonBuildCreateForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    pokeBuildData.pokemon = selectedPokemon.name;
 
     const formData = new FormData();
 
@@ -178,7 +177,7 @@ function PokemonBuildCreateForm() {
                   >
                     <option value="">--Select a Pokémon--</option>
                     {caughtPokemons.map((p) => (
-                      <option key={p.pokemon.id} value={p.id}>
+                      <option key={p.id} value={p.id}>
                         {p.pokemon.name}
                       </option>
                     ))}

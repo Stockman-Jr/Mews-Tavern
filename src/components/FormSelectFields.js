@@ -99,6 +99,11 @@ export const MoveFields = ({
                 </Alert>
               ))}
           </Form.Group>
+          {errors.moves?.map((message, idx) => (
+            <Alert key={idx} variant="warning">
+              {message}
+            </Alert>
+          ))}
           
           <Form.Group>
           <Form.Label htmlFor="abilitiy">Select an ability:</Form.Label>

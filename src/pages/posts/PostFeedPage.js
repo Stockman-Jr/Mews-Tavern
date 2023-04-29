@@ -4,6 +4,8 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import styles from "../../styles/PostFeedPage.module.css";
 
@@ -61,7 +63,11 @@ return (
           onSubmit={(event) => event.preventDefault()}
         >
           <div className="d-flex flex-row">
+          <OverlayTrigger
+            placement="bottom"
+            overlay={<Tooltip>Search by usernames or pokémon games!</Tooltip>}>
             <FcSearch />
+            </OverlayTrigger>
             <Form.Control
               value={query}
               onChange={(event) => setQuery(event.target.value)}

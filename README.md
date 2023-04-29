@@ -116,6 +116,9 @@ Testing documentation can be found [here]()
 - ReactJS
 
 ### Frameworks, Libraries & Programs
+- [Google Fonts](https://fonts.google.com/) - To find and import fonts used on the website
+- [GitHub](https://github.com/) - To save and store files for the website.
+- Git - For version control.
 
 ---
 

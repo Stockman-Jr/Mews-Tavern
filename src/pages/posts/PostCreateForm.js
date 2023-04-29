@@ -18,10 +18,12 @@ import Asset from "../../components/Asset";
 import Upload from "../../assets/upload.png";
 import { axiosReq } from "../../api/axiosDefaults";
 import { fetchGameFilterChoices } from "../../utils/utils";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 
 function PostCreateForm() {
+  useRedirect("loggedOut");
   const [postData, setPostData] = useState({
     title: "",
     content: "",

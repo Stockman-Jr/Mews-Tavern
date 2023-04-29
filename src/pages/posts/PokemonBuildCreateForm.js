@@ -18,9 +18,12 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoveFields, EvStatOptions, FormFields } from "../../components/FormSelectFields";
 import { fetchGameFilterChoices } from "../../utils/utils";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 function PokemonBuildCreateForm() {
+    useRedirect("loggedOut");
+    
     const [caughtPokemons, setCaughtPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState("");
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");

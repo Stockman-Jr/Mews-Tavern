@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { axiosReq } from "../api/axiosDefaults";
 import { fetchBuildSelectData } from "../utils/utils";
+import Alert from "react-bootstrap/Alert";
 
 export const MoveFields = ({  
   selectedPokemon,
   setSelectedPokemon,
   handleChange,
-  pokeBuildData, }) => {
+  pokeBuildData,
+  errors, }) => {
 
     return (
       <div>
@@ -28,6 +30,11 @@ export const MoveFields = ({
                 </option>
               ))}
             </Form.Control>
+              {errors.move_one?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
 
             <Form.Label htmlFor="move_two">Select move 2:</Form.Label>
             <Form.Control
@@ -44,6 +51,11 @@ export const MoveFields = ({
                 </option>
               ))}
             </Form.Control>
+              {errors.move_two?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
 
             <Form.Label htmlFor="move_three">Select move 3:</Form.Label>
             <Form.Control
@@ -60,6 +72,11 @@ export const MoveFields = ({
                 </option>
               ))}
             </Form.Control>
+              {errors.move_three?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
 
             <Form.Label htmlFor="move_four">Select move 4:</Form.Label>
             <Form.Control
@@ -76,6 +93,11 @@ export const MoveFields = ({
                 </option>
               ))}
             </Form.Control>
+              {errors.move_four?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
           </Form.Group>
           
           <Form.Group>
@@ -94,6 +116,11 @@ export const MoveFields = ({
               </option>
             ))}
           </Form.Control>
+              {errors.ability?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
           </Form.Group>
         </>
       )}
@@ -101,7 +128,7 @@ export const MoveFields = ({
       );
 };
 
-export const EvStatOptions = ({handleChange, pokeBuildData}) => {
+export const EvStatOptions = ({handleChange, pokeBuildData, errors}) => {
   const [fieldOptions, setGetFieldOptions] = useState([]);
   const [checkedOptions, setCheckedOptions] = useState([]);
 
@@ -154,6 +181,11 @@ export const EvStatOptions = ({handleChange, pokeBuildData}) => {
         />
       ))}
     </Form.Group>
+      {errors.ev_stats?.map((message, idx) => (
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
   </>
   );
 
@@ -162,6 +194,7 @@ export const EvStatOptions = ({handleChange, pokeBuildData}) => {
 export const FormFields = ({
   handleChange,
   pokeBuildData,
+  errors
   }) => {
   const [natureList, setNatureList] = useState([]);
   const [heldItemList, setHeldItemList] = useState([]);
@@ -201,6 +234,11 @@ export const FormFields = ({
         ))}
       </Form.Control>
       </Form.Group>
+      {errors.nature?.map((message, idx) => (
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
       <Form.Label htmlFor="held_item">Select held item:</Form.Label>
       <Form.Control
@@ -218,6 +256,11 @@ export const FormFields = ({
         ))}
       </Form.Control>
       </Form.Group>
+      {errors.held_item?.map((message, idx) => (
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
     </>
   );
 };

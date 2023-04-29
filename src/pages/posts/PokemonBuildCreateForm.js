@@ -209,12 +209,14 @@ function PokemonBuildCreateForm() {
                           setSelectedPokemon={setSelectedPokemon}
                           handleChange={handleChange}
                           pokeBuildData={pokeBuildData}
+                          errors={errors}
 
                         />
                         <Form.Group>
                           <EvStatOptions
                             handleChange={handleChange}
                             pokeBuildData={pokeBuildData}
+                            errors={errors}
                           />
                         </Form.Group>
                       </>
@@ -224,6 +226,7 @@ function PokemonBuildCreateForm() {
                 <FormFields
                   handleChange={handleChange}
                   pokeBuildData={pokeBuildData}
+                  errors={errors}
                 />
                 <Form.Group className="mt-2">
                   <Form.Label htmlFor="game_filter">

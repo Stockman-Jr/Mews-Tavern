@@ -11,6 +11,7 @@ import Post from "./Post";
 import Build from "./Build";
 import ArrowUp from "../../components/ArrowUp";
 import Asset from "../../components/Asset";
+import NoResults from "../../assets/no-results.png";
 import { FcSearch } from "react-icons/fc";
 
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -100,7 +101,10 @@ return (
                 next={() => fetchMoreData(posts, setPosts)}
               />
             ) : (
-              <Container>No posts...</Container>
+              <Container>
+                 <Asset src={NoResults}
+                message="Aww, no results found! Adjust the search keyword and try again!" />
+              </Container>
             )}
           </>
             ) : (

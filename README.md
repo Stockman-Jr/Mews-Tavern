@@ -99,6 +99,8 @@ The responsiveness of the site was achieved through the use of bootstrap, flexbo
 
 ## Features
 
+Read all about the features in this application ![here]()
+
 --- 
 
 ## Testing
@@ -117,8 +119,13 @@ Testing documentation can be found [here]()
 
 ### Frameworks, Libraries & Programs
 - [Google Fonts](https://fonts.google.com/) - To find and import fonts used on the website
+- [React Bootstrap 4](https://react-bootstrap-v4.netlify.app/) - Bootstrap components were applied to create a more responsive application. 
 - [GitHub](https://github.com/) - To save and store files for the website.
 - Git - For version control.
+- [React Icons](https://react-icons.github.io/react-icons/) - Npm package used to add icons
+- [Heroku](https://www.heroku.com/) - For deploying the project
+- [ElephantSQL]() - Was used as the database for this project
+- [Cloudinary](https://cloudinary.com/) - For hosting media files
 
 ---
 
@@ -127,5 +134,6 @@ Testing documentation can be found [here]()
 ---
 
 ## Credits
+- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - The Code Institutes Moments walkthrough project was referenced as a base setup for this project, some parts have been reused but I have customised as much code as possible. 
 
 ### Code

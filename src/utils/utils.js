@@ -1,4 +1,5 @@
 import { axiosReq } from "../api/axiosDefaults";
+import jwtDecode from "jwt-decode";
 
 const typeColors = {
     normal: "#ACA498",
@@ -51,11 +52,11 @@ const typeColors = {
       const gradient = `linear-gradient(to bottom right, ${typeColors[type1]}, ${typeColors[type2]})`;
       return gradient;
     }
-  }
+  };
   
   export function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
-  }
+  };
 
 
   /* Data fetching */
@@ -117,5 +118,17 @@ const typeColors = {
     } catch (err) {
       console.log(err);
     }
-
  };
+
+ export const setTokenTimestamp = (data) => {
+  const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+  localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+};
+
+export const shouldRefreshToken = () => {
+  return !!localStorage.getItem("refreshTokenTimestamp");
+};
+
+export const removeTokenTimestamp = () => {
+  localStorage.removeItem("refreshTokenTimestamp");
+};

@@ -94,13 +94,55 @@
 
 ### **Add Post Page**
 
----
+| **Element**         | **Action**    | **Expected Result**                                                                                                           | **Pass/Fail** |
+| ------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| **Add Post Page**   | Display/Click | Will display "Game Related" post form on entering page,<br>but user can switch between form pages by clicking the button link | Pass          |
+| Add Post form pages | Redirect      | Will redirect to homepage if a logged out user tries to access any of the form pages                                          | Pass          |
+| Submit button       | Click         | Both forms will redirect to the created posts detail page upon successful form submit                                         | Pass          |
+| Submit button       | Click         | Both forms will display error messages in bootstrap alerts if any input is invalid                                            | Pass          |
+| Cancel button       | Click         | Both forms will redirect to the previous page the user was on                                                                 | Pass          |
 
-### **Comments**
+**Create and edit forms**
+
+| **Element**                   | **Action**     | **Expected Result**                                                                                                   | **Pass/Fail** |
+| ----------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------- | ------------- |
+| **Post Create Form**          |                |                                                                                                                       |               |
+| Upload image field text/icon  | Click          | Will open users file explorer to select an image                                                                      | Pass          |
+| Upload image field            | Display/Click  | Will display a preview of the selected image and render a clickable label that allows the<br>user to change the image | Pass          |
+| Submit button                 | Click          | Both forms will display error messages in bootstrap alerts if any form field is invalid                               | Pass          |
+| **Post Edit Form**            | Redirect       | Will redirect to homepage if anyone that is not the owner tries to access it                                          | Pass          |
+| Post Edit Form Fields         | Display        | All form fields will be prefilled with existing form data upon entering the page                                      | Pass          |
+| Submit & Cancel buttons       | Click          | Expected results are the same as in Add Post Page table, and form data updates successfully on submit                 | Pass          |
+| **Pokemon Build Create Form** |                |                                                                                                                       |               |
+| Pokemon select field          | Display        | Will display a list of the current users caught pokemons                                                              | Pass          |
+| Pokemon select field          | Select/Display | Will display the selected pokemons image sprite along with all move fields and ability field                          | Pass          |
+| Move select fields            | Display        | All four move fields contains the correct move data for the selected pokemon                                          | Pass          |
+| Ability select field          | Display        | Contains the correct ability data for the selected pokemon                                                            | Pass          |
+| **Pokemon Build Edit Form**   | Redirect       | Will redirect to homepage if anyone that is not the owner tries to access it                                          | Pass          |
+| Pokemon build form fields     | Display        | All form fields will be prefilled with existing form data upon entering the page                                      | Pass          |
+| Submit & Cancel buttons       | Click          | Expected results are the same as in Add Post Page table, and form data updates successfully on submit                 | Pass          |
+
 
 ---
 
 ### **PokeDex Page & Caught Pokémons**
+
+| **Element**             | **Action**          | **Expected Result**                                                                                                            | **Pass/Fail** |
+| ----------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| **PokeDex Page**        | Display             | Display list of pokemons ordered by pokedex entry(id)                                                                          | Pass          |
+| Loader                  | Display             | Show animated loader until data is fetched                                                                                     | Pass          |
+| Pokemon Card            | Display             | Show correct name, sprite an types for each pokemon                                                                            | Pass          |
+| Pokemon Card            | Display             | Background circle behind pokemon sprite to render colours <br>that matches each pokemon's types                                | Pass          |
+| Pagination              | Display/Click       | Page number updates correctly when using pagination controls,<br>and each page display 15 pokemons                             | Pass          |
+| Type filter buttons     | Click/Display       | Filter and display pokemons that have the selected type                                                                        | Pass          |
+| Reset button            | Click/Display       | Reset the currently selected type filter and revert back to the<br>original pokedex entry order                                | Pass          |
+| **Pokeball button**     |                     |                                                                                                                                |               |
+| Pokeball                | Display             | Will render as a closed pokeball on all pokemons that the current logged in user<br>have caught/is the owner of                | Pass          |
+| Pokeball                | Display             | Will render as an open pokeball on all pokemons that the current logged in user<br>haven't caught/is not the owner of          | Pass          |
+| Pokeball                | Display/Hover       | Will render as an open pokeball on all pokemons for logged out users,<br>and show tooltip message that prompts log in on hover | Pass          |
+| Caught(closed) Pokeball | Hover/Click/Display | Shows tooltip message "Release?" on hover, deletes the pokemon on click<br>and renders an open pokeball                        | Pass          |
+| Uncaught(open) Pokeball | Hover/Click/Display | Shows tooltip message "Catch?" on hover, saves the pokemon on click<br>and renders a closed pokeball                           | Pass          |
+
 
 ---
 

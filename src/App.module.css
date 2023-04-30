@@ -66,13 +66,6 @@ a:hover {
   height:auto; 
 }
 
-
-.FillerImage {
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-}
-
 input[type="text"],
 input[type="password"] {
     border-radius: 20px;
@@ -94,22 +87,15 @@ figure {
 }
 
 .Badge {
-  background: linear-gradient(180deg,rgb(243, 201, 63) 0%,rgb(228, 193, 99) 49%,rgb(153, 112, 9) 51%,rgb(158, 125, 35) 100%);
-  padding: 5px;
+  background: linear-gradient(180deg,rgb(232 221 54) 0%,rgb(223 210 84) 49%,rgb(179 128 34) 100%);
+  padding: 4px;
   margin: 5px;
   font-size: 13px;
   border-bottom: 2px solid rgb(104, 58, 5);
   border-right: 2px solid rgb(143, 84, 8);
-  color: #3a2402;
-  font-weight: 900;
-  text-shadow:
-  0.07em 0 rgb(248, 221, 133),
-  0 0.07em rgb(248, 221, 133),
-  -0.07em 0 rgb(248, 221, 133),
-  0 -0.07em rgb(248, 221, 133);
+  color: #180e01;
   float: right;
 }
-
 
 .HrDeco {
   height: 55px;

@@ -169,7 +169,7 @@ const Post = (props) => {
             {game_filter_display}
           </Badge>
           <Badge className={`${appStyles.Badge} ml-auto`}>
-            <strong>{post_type}</strong>
+          {post_type}
           </Badge>
         </div>
       </Card>

@@ -12,13 +12,15 @@ import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/AuthForms.module.css";
 import appStyles from "../../App.module.css";
 import axios from 'axios';
+import { useRedirect } from '../../hooks/useRedirect';
 
 
 const SignUpForm = () => {
+    useRedirect("loggedIn");
     const [signUpData, setSignUpData] = useState({
-        username: '',
-        password1: '',
-        password2: ''
+          username: '',
+          password1: '',
+          password2: ''
     });
 
     const {username, password1, password2} = signUpData;
@@ -26,10 +28,10 @@ const SignUpForm = () => {
     const history = useHistory();
 
     const handleChange = (event) => {
-        setSignUpData({
-            ...signUpData,
-            [event.target.name]: event.target.value
-        });
+          setSignUpData({
+              ...signUpData,
+              [event.target.name]: event.target.value
+          });
     };
 
     const handleSubmit = async (event) => {

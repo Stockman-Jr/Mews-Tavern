@@ -42,7 +42,6 @@ const Build = (props) => {
       ev_stats,
       content,
       post_type,
-      updated_at,
       buildPage,
       homePage,
       game_filter_display,
@@ -139,6 +138,7 @@ return (
                     fluid
                     className={styles.SpriteImg}
                     src={pokemon_sprite}
+                    alt={pokemon}
                   />
                 </Link>
               </div>

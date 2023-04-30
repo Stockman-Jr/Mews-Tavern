@@ -13,8 +13,10 @@ import styles from "../../styles/AuthForms.module.css";
 import appStyles from "../../App.module.css";
 import axios from 'axios';
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from '../../hooks/useRedirect';
 
 const SignInForm = () => {
+    useRedirect("loggedIn");
     const setCurrentUser = useSetCurrentUser();
     const [signInData, setSignInData] = useState({
         username: '',

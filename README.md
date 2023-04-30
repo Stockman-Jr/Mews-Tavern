@@ -99,12 +99,80 @@ The responsiveness of the site was achieved through the use of bootstrap, flexbo
 
 ## Features
 
-Read all about the features in this application ![here]()
+### Existing Features
+
+#### Landing Page
+
+Home is the landing page of the application, it's content is available to all users and features the following:
+
+- A decorative banner featuring the name of the app.
+- A carousel featuring the 5 most liked posts.
+- A user can click on a featured post to see the detail page of the post.
+- A Latest News section that features some info about the upcoming updates and events of the current pokémon games,
+  as well as a link to the official site, that opens in a new tab when clicked.
+
+#### Navigation
+
+The navbar features conditional rendering based on current user status, and is available on all pages.
+For logged out users, the navbar renders the links to:
+
+- Home
+- Sign Up
+- Log In
+- PokeDex
+- Feed
+
+![Logged out Nav]()
+
+For logged in users the navbar renders the links to:
+
+- Home
+- Log Out
+- Feed
+- PokeDex
+- Add Post
+
+The logged in user also have their avatar displayed in the left corner of the navbar, which will toggle a dropdown menu with links to:
+
+- Profile - Redirects to current users profile page
+- Edit profile - Form where user can update avatar, bio and name
+- Account settings - Two forms where user can change either username or password
+
+![Logged in Nav]()
+
+### Posts
+
+#### Post Feed Page
+
+The post feed page will display all posts created by users, sorted by most recent.
+Users can use the search bar to search for posts by username or game, or use the filtering to filter by all posts, only Game Related or only Pokémon Build posts.
+
+![Search and filter]()
+
+Both types of posts have the same features, but renders different content.
+The features are:
+
+- An interactive like button to like/unlike posts, including a like counter
+- Comments counter
+- Badges that displays what type of post it is, and what game it is related to if any
+- Clickable avatar and username which redirects to the profile of the user that created the post
+- The main content of the posts is clickable and will redirect the user to the detail page
+
+The like button also have tooltips that will display when hovered, if the user is either the owner of the content or if the user is logged out.
+
+![Owner]()
+![Logged Out]()
+
+![Game Related Post]()
+
+![Pokémon Build Post]()
+
+
 
 --- 
 
 ## Testing
-Testing documentation can be found [here]()
+Testing documentation can be found [here](https://github.com/Stockman-Jr/mews-tavern/blob/main/MANUAL-TESTS.md)
 
 ---
 

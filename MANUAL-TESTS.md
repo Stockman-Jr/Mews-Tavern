@@ -1,4 +1,4 @@
-  - [Manual Testing](#manual-testing)
+# Manual Testing
 
 
 ---

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
@@ -167,10 +168,11 @@ function ProfilePage() {
           return (
             <>
             <div className={`${appStyles.CornerBox} `}></div>
-            <Col className={appStyles.PContainer} lg={12}>
+            <Row className=" d-flex justify-content-center m-0">
+              <Col lg={10} md={12} sm={12}>
             {profilePokemons.results.length ? (
               <InfiniteScroll
-            
+              className={appStyles.PContainer}
               dataLength={profilePokemons.results.length}
               loader={<Asset loader />}
               hasMore={!!profilePokemons.next}
@@ -188,7 +190,8 @@ function ProfilePage() {
                 message={`Aww, ${profile?.owner} has not caught any pokémon yet! `}
                 />
               )}    
-              </Col>      
+              </Col>
+              </Row>      
             </>
           );
       }
@@ -244,13 +247,13 @@ function ProfilePage() {
           )}
     </header>
     <div>
-        <Container>
+
         {isLoaded && (
         <>
-          {profile && <Container>{renderProfileContent()}</Container>}
+          {profile && <Container fluid className="mt-3">{renderProfileContent()}</Container>}
         </>
       )}
-        </Container>
+
     </div>
     </>
   )

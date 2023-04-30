@@ -140,6 +140,8 @@ The logged in user also have their avatar displayed in the left corner of the na
 
 ![Logged in Nav]()
 
+---
+
 ### Posts
 
 #### Post Feed Page
@@ -166,6 +168,122 @@ The like button also have tooltips that will display when hovered, if the user i
 ![Game Related Post]()
 
 ![Pokémon Build Post]()
+
+---
+
+#### Detail Page & Comments
+
+The detail page is accessed by clicking on a post, where the user can view comments or create comments provided that they are logged in.
+
+![Detail Page]()
+
+- If the user is the owner of the post, a dropdown menu will be available with options to go to the edit form or delete their post.
+
+![Comment Container]()
+
+- If the user is the owner of any of the comments, a dropdown menu will be available with options to edit or delete their comment.
+
+### PokeDex Page
+
+The PokeDex page is literally a simplified version of a pokedex which contains all 1008 currently existing Pokémon _(actually there are two missing, the new ones you can see in the Home page news section)_.
+This page is browsable with pagination, and displays 15 pokemons per page.
+![Pagination]()
+
+All pokemons are displayed in cards and features the pokemons sprite image, name and types. The little background circle behind the sprite render different colors based on the pokemons types.
+
+![Pokemon cards]()
+
+**Filtering**
+
+The PokeDex page also features filtering, in the form of 19 interactive buttons.
+One button for each of the 18 pokemon types, and one reset button.
+Clicking on a type will display all pokemons of that type, and clicking on the reset button will revert to the normal ordering, which is by pokedex entry(id).
+
+![Type filters]()
+
+**Catching and releasing pokemons**
+
+The pokemon cards also features an interactive pokeball, which basically have the same functionality of a like button. The main purpose of this was to create a fun way for users to keep track of their own pokemon collection and view other users collections.
+
+- Logged in users can 'catch' and 'release' pokemons by clicking on it.
+- The pokeballs will render differently and have different hover effects depending on if the current user has caught it or not, allowing the user to easily keep track of caught and uncaught.
+
+![Caught Pokemon]() ![Uncaught Pokemon]()
+
+- Logged out users will see a tooltip on hover
+
+![Logged out Pokeball tooltip]()
+
+---
+
+### Creating Content
+
+This app features two types of shareable posts:
+
+- "Game Related" post, which essentialy is meant to be like a typical social media post, where users can share something pokemon related _(screenshots, fanart etc.)_.
+- "Pokémon Build" post, where can create builds from the pokemons they've caught.
+
+Clicking on the "Add Post" in the navigation will redirect the user to the game related post form, but can go to the pokemon build form by clicking the button on top. Each form page features a link button to the other form, so users can easily switch between them.
+
+**Game Related post form**
+
+Features form fields for title, description, image upload, ingame name and a game select field.
+
+![Game Related Form]()
+
+- Users can click the upload image or text, then the user will be able to preview selected image, or click the "Change the image" to choose another one.
+- Ingame name and game select was added with the purpose of allowing some more interaction between users. For example if users wants to trade pokemons, or find users to play co-op with.
+
+**Pokémon Build post form**
+
+Features form fields for pokemon, moves, ability, EV stats, nature and held item.
+Also contains description and game select.
+
+![Pokemon Build Form]()
+
+- The pokemon select field will only contain pokemon the user have caught.
+- Once a pokemon is selected the sprite image will display along with four move select fields and an ability field, containing moves and abilities that the selected pokemon can have.
+- EV stats are checkboxes that are limited to two choices.
+
+![Selected Pokemon Build Form]()
+
+---
+
+### Profiles
+
+#### The Profile Page
+
+Features a header containing the users avatar, profile info and three links that will display different content.
+
+- Posts - will display all posts created by the user
+- Liked - will display all posts that are liked by the user
+- Pokémons - will display all pokémons caught by the user
+
+#### Profile Edit Form
+
+The profile edit form is accessed through the link in the profile dropdown menu located in the navbar.
+The form allows the user to add a name, bio and change their avatar.
+
+![Profile Edit Form]()
+
+- Users can interact with the 'Select Avatar' button to display a modal containing a range of preselected avatars to choose from. The chosen avatar will be previewed in the form once selected.
+
+![Avatar Selection]()
+
+#### Account Settings Form
+
+The account settings form is also accessed through the link in the profile dropdown menu located in the navbar.
+
+This page features two different forms, one for changing username and one for changing password.
+
+![User Account Forms]()
+
+The username form is shown by default when entering the page, but can switch between the two forms by clicking the tabs.
+
+### Future Features
+
+
+
 
 
 

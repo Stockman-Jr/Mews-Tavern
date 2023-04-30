@@ -27,7 +27,7 @@ function ProfilePage() {
     const [profile, setProfile] = useState({ results: [] });
     const [profilePosts, setProfilePosts] = useState({ results: [] });
     const [likedPosts, setLikedPosts] = useState({ results: [] });
-    const [profilePokemons, setProfilePokemons] = useState({ results: [] });
+    const [profilePokemon, setProfilePokemon] = useState({ results: [] });
     const [activeLink, setActiveLink] = useState("posts");
     const currentUser = useCurrentUser();
     const { id } = useParams();
@@ -38,7 +38,7 @@ function ProfilePage() {
             const [
               { data: profile },
               { data: profilePosts },
-              { data: profilePokemons },
+              { data: profilePokemon },
               { data: likedPosts },
             ] = await Promise.all([
               axiosReq.get(`/profiles/${id}/`),
@@ -46,7 +46,7 @@ function ProfilePage() {
               axiosReq.get(`/api/caught/?owner__trainerprofile=${id}`),
               axiosReq.get(`/posts/?likes__owner__trainerprofile=${id}`),
             ]);
-            setProfilePokemons(profilePokemons);
+            setProfilePokemon(profilePokemon);
             setProfile(profile);
             setProfilePosts(profilePosts);
             setLikedPosts(likedPosts);
@@ -164,21 +164,21 @@ function ProfilePage() {
 
             </>
           );
-      } else if (activeLink === "pokemons") {
+      } else if (activeLink === "pokemon") {
           return (
             <>
             <div className={`${appStyles.CornerBox} `}></div>
             <Row className=" d-flex justify-content-center m-0">
               <Col lg={10} md={12} sm={12}>
-            {profilePokemons.results.length ? (
+            {profilePokemon.results.length ? (
               <InfiniteScroll
               className={appStyles.PContainer}
-              dataLength={profilePokemons.results.length}
+              dataLength={profilePokemon.results.length}
               loader={<Asset loader />}
-              hasMore={!!profilePokemons.next}
-              next={() => fetchMoreData(profilePokemons, setProfilePokemons)}
+              hasMore={!!profilePokemon.next}
+              next={() => fetchMoreData(profilePokemon, setProfilePokemon)}
               >
-                 {profilePokemons.results.map((pokemon) => {
+                 {profilePokemon.results.map((pokemon) => {
                 const types = pokemon.pokemon.types.map((type) =>
                 type.toLowerCase()
               );
@@ -235,8 +235,8 @@ function ProfilePage() {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item className={styles.NavItem}>
-              <Nav.Link onClick={() => handleLinkClick("pokemons")}>
-                Pokémons
+              <Nav.Link onClick={() => handleLinkClick("pokemon")}>
+                Pokémon
               </Nav.Link>
             </Nav.Item>
           </Nav>

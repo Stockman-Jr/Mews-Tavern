@@ -23,8 +23,8 @@
 
 # Project Links
 
-This project was created with two repositories, the separate being the backend.
-Links to the frontend parts of the project can be found in the links below:
+This project was created with two repositories, the backend being separate.
+Links to the backend parts of the project can be found in the links below:
 
 - [Backend Repo](https://github.com/Stockman-Jr/project5-rest-api)
 - [Live Link](https://pokeproject-api.herokuapp.com/)
@@ -54,14 +54,14 @@ Links to the frontend parts of the project can be found in the links below:
 - Create and share game related posts as well as Pokémon builds by clicking the 'Add Post' link.
 - Like and unlike posts.
 - Comment on posts.
-- Save and delete pokémons I've caught in the PokeDex page by clicking the pokeball.
+- Save and delete pokémon I've caught in the PokeDex page by clicking the pokeball.
 
 #### **As the owner/creator of content, I can:**
 
 - All things listed above.
 - Edit and delete posts.
 - Edit and delete comments.
-- See what pokemons are caught or not in the PokeDex page.
+- See what pokemon are caught or not in the PokeDex page.
 - Update profile information, such as name, bio and avatar.
 - Change username and password.
 
@@ -103,12 +103,12 @@ The responsiveness of the site was achieved through the use of bootstrap, flexbo
 
 #### Landing Page
 
-Home is the landing page of the application, it's content is available to all users and features the following:
+Home is the landing page of the application. The content is available to all users and features the following:
 
 - A decorative banner featuring the name of the app.
 - A carousel featuring the 5 most liked posts.
-- A user can click on a featured post to see the detail page of the post, or the avatar to see their profile page.
-- A Latest News section that features some info about the upcoming updates and events of the current pokémon games, as well as a link to the official site, that opens in a new tab when clicked.
+- A user can click on a featured post to see the detail page of the post, or click the avatar to see their profile page.
+- A Latest News section that features some info about the upcoming updates and events of the current pokémon games, as well as a link to the official site which opens in a new tab when clicked.
 
 ![Banner and Carousel](/readme-assets/home-carousel.png)
 
@@ -161,7 +161,7 @@ The features are:
 
 - An interactive like button to like/unlike posts, including a like counter
 - Comments counter
-- Badges that displays what type of post it is, and what game it is related to if any
+- Badges that displays what type of post it is, and which game it is related to if any
 - Clickable avatar and username which redirects to the profile of the user that created the post
 - The main content of the posts is clickable and will redirect the user to the detail page
 
@@ -191,9 +191,9 @@ The detail page is accessed by clicking on a post, where the user can view comme
 ### PokeDex Page
 
 The PokeDex page is literally a simplified version of a pokedex which contains all 1008 currently existing Pokémon _(actually there are two missing, the new ones you can see in the Home page news section)_.
-This page is browsable with pagination, and displays 15 pokemons per page.
+This page is browsable with pagination, and displays 15 pokémon per page.
 
-All pokemons are displayed in cards and features the pokemons sprite image, name and types. The little background circle behind the sprite render different colors based on the pokemons types.
+All pokemon are displayed in cards and features the pokemons sprite image, name and types. The little background circle behind the sprite render different colors based on the pokemon types.
 
 ![Pokemon cards](/readme-assets/pokemon-cards.png)
 
@@ -201,7 +201,7 @@ All pokemons are displayed in cards and features the pokemons sprite image, name
 
 The PokeDex page also features filtering, in the form of 19 interactive buttons.
 One button for each of the 18 pokemon types, and one reset button.
-Clicking on a type will display all pokemons of that type, and clicking on the reset button will revert to the normal ordering, which is by pokedex entry(id).
+Clicking on a type will display all pokemon of that type, and clicking on the reset button will revert to the normal ordering, which is by pokedex entry(id).
 
 ![Type filters](/readme-assets/type-filter-btns.png)
 
@@ -209,8 +209,8 @@ Clicking on a type will display all pokemons of that type, and clicking on the r
 
 The pokemon cards also features an interactive pokeball, which basically have the same functionality of a like button. The main purpose of this was to create a fun way for users to keep track of their own pokemon collection and view other users collections.
 
-- Logged in users can 'catch' and 'release' pokemons by clicking on it.
-- The pokeballs will render differently and have different hover effects depending on if the current user has caught it or not, allowing the user to easily keep track of their caught pokemons.
+- Logged in users can 'catch' and 'release' pokemon by clicking on it.
+- The pokeballs will render differently and have different hover effects depending on if the current user has caught it or not, allowing the user to easily keep track of their caught pokemon.
 
 ![Caught Pokemons](/readme-assets/caught-uncaught.png)
 
@@ -263,7 +263,7 @@ Features a header containing the users avatar, profile info and three links that
 
 - Posts - will display all posts created by the user
 - Liked - will display all posts that are liked by the user
-- Pokémons - will display all pokémons caught by the user
+- Pokémon - will display all pokémons caught by the user
 
 #### Profile Edit Form
 

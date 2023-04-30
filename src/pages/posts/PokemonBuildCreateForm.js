@@ -285,11 +285,11 @@ function PokemonBuildCreateForm() {
               ) : (
                 <>
                 <Alert variant="warning">
-                  You don't have any caught pokemons yet! Please visit the{" "}
+                  You haven't caught any pokémon yet! Please visit the{" "}
                   <Link className={styles.Link} to="/pokedex/1">
                     PokeDex page
                   </Link>{" "}
-                  first to catch some pokemon.
+                  first to catch some pokémon.
                 </Alert>
                 <div className="mt-5">
                   <Link

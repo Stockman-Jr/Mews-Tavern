@@ -1,5 +1,5 @@
 # Manual Testing
-
+The tables below will show all manual testing that has been done, for different pages and components.
 
 ---
 
@@ -31,9 +31,7 @@
 | **User profile menu**   | Display/Click | The logo will be replaced by the current user avatar and toggles a dropdown menu on click             | Pass          |
 | Profile link            | Click         | Will direct to current user Profile page                                                              | Pass          |
 | Edit profile link       | Click         | Will direct to profile edit form page                                                                 | Pass          |
-| Edit profile link       | Input         | Will redirect to homepage if anyone else but the profile owner tries to access page through url input | Pass          |
 | Account Settings link   | Click         | Will direct to account settings page                                                                  | Pass          |
-| Account Settings link   | Input         | Will redirect to homepage if anyone else but the profile owner tries to access page through url input | Pass          |
 
 ---
 
@@ -58,7 +56,7 @@
 | ------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | **Feed Page**             | Display        | Displays all posts, sorted by most recent                                                                                                         | Pass          |
 | Loader                    | Display        | Displays animated loader until data is fetched                                                                                                    | Pass          |
-| Posts                     | Scroll         | Will fetch and display next 10 posts on scroll when scrolling past 10 posts                                                                       | Pass          |
+| Infinite scroll           | Scroll/Display | Will fetch and display 10 posts by default, then fetch and display the next set of posts<br>as user scrolls to the bottom of the page             | Pass          |
 | Searchbar                 | Input/Display  | Enables user to search for username or pokemon game,<br>displays correct results if there is a match on input                                     | Pass          |
 | Searchbar                 | Display        | If the keyword input does not have any matching results,<br>display a no results message with a prompt to adjust keyword                          | Pass          |
 | Filter select field       | Select/Display | Will display correct post type when selecting "Pokémon Builds" or "Game Related",<br>selecting "All posts" will reset filter to display all posts | Pass          |
@@ -146,6 +144,32 @@
 
 ---
 
-### **User Profiles**
+### **Profile Pages**
+
+| **Element**                    | **Action**    | **Expected Result**                                                                                                                      | **Pass/Fail** |
+| ------------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| **Profile Page**               |               |                                                                                                                                          |               |
+| Loader                         | Display       | Show animated loader until profile data is fetched                                                                                       | Pass          |
+| Profile header                 | Display       | Only show profile name and/or bio if it exists                                                                                           | Pass          |
+| Profile anchor links           | Hover/Display | Links will expand in width and link text will show on hover                                                                              | Pass          |
+| Posts link                     | Click/Display | Fetch and display profile owner's created posts                                                                                          | Pass          |
+| Liked link                     | Click/Display | Fetch and display profile owner's liked posts                                                                                            | Pass          |
+| Pokémon link                   | Click/Display | Fetch and display profile owner's caught pokemon                                                                                         | Pass          |
+| Posts/Liked/Pokémon links      | Display       | If the user does not have any of the corresponding content yet,<br>display an image and a no results message                             | Pass          |
+| Infinite scroll                | Scroll/Display| Will fetch and display more content(if there is any) as user scrolls to<br>the bottom of the page when visiting any of the three links   | Pass          |
+| **Edit profile page**          | Redirect      | Will redirect to homepage if anyone who doesn't match the profile id<br>tries to access the page                                         | Pass          |
+| Select avatar button           | Display/Click | Will show modal containing a range of avatars to choose from                                                                             | Pass          |
+| Avatar modal select button     | Display/Click | Closes modal and previews the newly selected avatar in the edit profile form                                                             | Pass          |
+| Avatar modal close buttons     | Click         | Closes modal and cancels any selection without making any changes<br>to user's current avatar                                            | Pass          |
+| Form "Confirm" submit button   | Click         | Successfully updates profile data and redirects user to previous page on submit,<br>any changes made are visible immediately             | Pass          |
+| Form "Cancel" button           | Click         | Cancels any input or changes user has made, then directs user to previous page                                                           | Pass          |
+| **Account settings page**      | Redirect      | Will redirect to homepage if anyone who doesn't match the profile id<br>tries to access the page                                         | Pass          |
+| Change username form           | Display       | Will display by default when entering page                                                                                               | Pass          |
+| Form headers(accordion toggle) | Click/Display | Toggles between username form and password form on click                                                                                 | Pass          |
+| Username input field           | Display       | Users current username will be prefilled in the form field                                                                               | Pass          |
+| "Confirm" submit button        | Click         | Successfully updates the user's username or password and redirects user to previous page on submit                                       | Pass          |
+| "Confirm" submit button        | Click/Display | All fields in both forms have error mapping, and will display error messages in bootstrap alerts<br>for any invalid form input on submit | Pass          |
+| "Cancel" button                | Click         | Cancels any input or changes user has made, then directs user to previous page in both forms                                             | Pass          |
+
 
 ---

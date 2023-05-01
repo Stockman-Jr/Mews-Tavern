@@ -167,8 +167,8 @@ The features are:
 
 The like button also have tooltips that will display on hover, if the user is either the owner or if the user is logged out.
 
-![Owner]()
-![Logged Out]()
+![Owner](/readme-assets/likebtn-owner-tooltip.png)
+![Logged Out](/readme-assets/likebtn-loggedout-tooltip.png)
 
 ![Game Related Post](/readme-assets/post-card.png)
 
@@ -275,8 +275,11 @@ The form allows the user to add a name, bio and change their avatar.
 ![Profile Edit Form](/readme-assets/edit-profile-form.png)
 
 - Users can interact with the 'Select Avatar' button to display a modal containing a range of preselected avatars to choose from. The chosen avatar will be previewed in the form once selected.
+- A focus effect is displayed on click so the user can see what avatar is currently selected.
 
-![Avatar Selection]()
+![Avatar Selection](/readme-assets/avatar-selection.png)
+
+_The user here have Pikachu avatar selected, it has a blue border and a dark overlay effect_
 
 #### Account Settings Form
 
@@ -329,6 +332,17 @@ Testing documentation can be found [here](https://github.com/Stockman-Jr/mews-ta
 ---
 
 ## Credits
-- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - The Code Institutes Moments walkthrough project was referenced as a base setup for this project, some parts have been reused but I have customised as much code as possible. 
+- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - The Code Institutes Moments walkthrough project was referenced as a base setup for this project, some parts have been reused but I have customised as much code as possible.
+
+- [Icons8](https://icons8.com/) - Quite alot of images/icons/svgs from icons8 was used in the application, including the:
+    * Favicon
+    * Hamburger menu
+    * Pokeball used for the loader
+    * Arrow user in the ArrowUp component
+    * Carousel indicatiors
+
+- [emoji.gg](https://emoji.gg/emojis/pokemon) & [Discadia](https://discadia.com/emojis/?q=pokemon) - The avatars and the no results image was actually found on these discord emoji sites. I just added border and background colors to them. Credits to the people who created them!
+
+- [Pokéball button](https://www.pokecommunity.com/showpost.php?p=9938453&postcount=4) - The pokéball used in the pokemon cards was extracted from this spritesheet created by WolfPP on the pokecommunity site.
 
 ### Code

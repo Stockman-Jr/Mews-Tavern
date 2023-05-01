@@ -22,6 +22,7 @@ import { useParams } from "react-router";
 import { fetchMoreData, getGradientForTypes } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CornerDecorations from "../../components/CornerDecorations";
+import ArrowUp from "../../components/ArrowUp";
 
 function ProfilePage() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -237,9 +238,7 @@ function ProfilePage() {
               )}
             </div>
             </div>
-        )}
-
-     
+        )}   
          <div className={`${styles.MenuContent} p-0 `}>
           <Nav className={`${styles.ProfileMenu}`}>
             <Nav.Item className={styles.NavItem} >
@@ -265,13 +264,12 @@ function ProfilePage() {
           )}
     </header>
     <div>
-
         {isLoaded && (
         <>
           {profile && <Container fluid className="mt-0 p-0">{renderProfileContent()}</Container>}
         </>
       )}
-
+      <ArrowUp />
     </div>
     </>
   )

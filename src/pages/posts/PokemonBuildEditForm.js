@@ -95,8 +95,7 @@ function PokemonBuildEditForm() {
                 game_filter,
                 post_type,
               })
-            : history.push("/");
-  
+            : history.push("/");  
           setSelectedPokemon(caughtPokemon.pokemon);
         } catch (err) {
           console.log(err);

@@ -261,6 +261,8 @@ Also contains description and game select.
 
 Features a header containing the users avatar, profile info and three links that will display different content.
 
+![Profile Header](/readme-assets/profile-page-header.png)
+
 - Posts - will display all posts created by the user
 - Liked - will display all posts that are liked by the user
 - Pokémon - will display all pokémons caught by the user

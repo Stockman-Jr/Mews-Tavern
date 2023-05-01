@@ -15,6 +15,7 @@ import ProfilePage from './pages/profiles/ProfilePage';
 import ProfileEditForm from './pages/profiles/ProfileEditForm';
 import UserAccountForm from './pages/auth/UserAccountForm';
 import PokemonBuildEditForm from './pages/posts/PokemonBuildEditForm';
+import PageNotFound from './components/PageNotFound';
 
 function App() {
   
@@ -41,6 +42,8 @@ function App() {
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
           <Route exact path="/profiles/:id/edit/account" render={() => <UserAccountForm />} />
+
+          <Route render={() => <PageNotFound />} />
         </Switch>
       </div>
 

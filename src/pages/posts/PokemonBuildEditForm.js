@@ -58,7 +58,6 @@ function PokemonBuildEditForm() {
         try {
           const { data } = await axiosReq.get(`/posts/pokebuild/${id}`);
           const {
-            pokemon,
             move_one,
             move_two,
             move_three,
@@ -70,7 +69,6 @@ function PokemonBuildEditForm() {
             content,
             game_filter,
             post_type,
-            caught_id,
             is_owner,
           } = data;
   
@@ -78,7 +76,6 @@ function PokemonBuildEditForm() {
             `/api/caught/?owner=${data.profile_id}`
           );
   
-          console.log(pokeData.results);
           const caughtPokemon = pokeData.results.find(
             (p) => p.pokemon.id === data.pokemon_id
           );

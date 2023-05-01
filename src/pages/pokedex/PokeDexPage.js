@@ -23,7 +23,6 @@ import { useParams } from 'react-router-dom';
 function PokeDexPage() {
   const [pokemons, setPokemons] = useState({ results: [] });
   const [caughtPokemons, setCaughtPokemons] = useState({ results: [] });
-  const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(15);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -35,48 +34,40 @@ function PokeDexPage() {
   const currentUser = useCurrentUser();
   const owner = currentUser;
 
-  const fetchPokemonData = async () => {
-    try {
-      const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`);
-      setPokemons(data);
-      setTotalPages(Math.ceil(data.count / pokemonsPerPage));
-      setIsLoaded(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchCaughtPokemons = async () => {
-    try{
-      const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
-      setCaughtPokemons(data);       
-    }catch(err) {
-      console.log(err);
-    }
-  };
-
   const handleTypeFilter = (type) => {
-    if (type === "") {
-      setFilter("");
-    } else {
-      setFilter(`types__name=${type}`);
-    }
-    setCurrentPage(1);
+    setFilter(`types__name=${type}`);
   };
 
   useEffect(() => {
-    setCurrentPage(page);
+    const fetchPokemonData = async () => {
+      try {
+        const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`);
+        setPokemons(data);
+        setTotalPages(Math.ceil(data.count / pokemonsPerPage));
+        setIsLoaded(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    const fetchCaughtPokemons = async () => {
+      try{
+        const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
+        setCaughtPokemons(data);       
+      }catch(err) {
+        console.log(err);
+      }
+    };
     setIsLoaded(false);
     fetchPokemonData();
     if (currentUser) {
       fetchCaughtPokemons();
     }
-  }, [page, pokemonsPerPage, owner, filter]);
+  }, [page, pokemonsPerPage, owner, currentUser, filter]);
 
   
   const handlePageChange = (selectedPage) => {
     const newPage = selectedPage.selected + 1;
-    setCurrentPage(newPage);
     history.push(`/pokedex/${newPage}`);
   };
 
@@ -122,9 +113,7 @@ function PokeDexPage() {
                       />
                     );
                   })}
-                </div>
-   
-          
+                </div>        
         </Col>
         <ArrowUp />
         <Col>

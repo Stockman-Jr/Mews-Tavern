@@ -162,10 +162,10 @@ The features are:
 - An interactive like button to like/unlike posts, including a like counter
 - Comments counter
 - Badges that displays what type of post it is, and which game it is related to if any
-- Clickable avatar and username which redirects to the profile of the user that created the post
-- The main content of the posts is clickable and will redirect the user to the detail page
+- Clickable avatar and username which directs to the profile page of the user that created the post
+- The main content of the posts is clickable and will redirect the user to the post's detail page
 
-The like button also have tooltips that will display on hover, if the user is either the owner of the content or if the user is logged out.
+The like button also have tooltips that will display on hover, if the user is either the owner or if the user is logged out.
 
 ![Owner]()
 ![Logged Out]()

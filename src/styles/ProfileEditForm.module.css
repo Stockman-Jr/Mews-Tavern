@@ -6,7 +6,6 @@
 }
 
 
-
 /* AVATAR SELECTOR MODAL*/
 
 .AvatarSelector {
@@ -14,6 +13,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .AvatarContainer {
@@ -44,9 +45,7 @@
     border-bottom: 2px solid transparent;
     border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
     border-image-slice: 1;
-    width:100%;
-    color: #4b381c;
-    text-shadow: -1px 1px 2px #abfaf3;
+    color: #3b2516;
 }
 
 .ModalFooter {
@@ -54,5 +53,4 @@
     border-top: 2px solid transparent;
     border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
     border-image-slice: 1;
-    width:100%;
 }

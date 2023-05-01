@@ -21,6 +21,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { fetchMoreData, getGradientForTypes } from "../../utils/utils";
 import InfiniteScroll from "react-infinite-scroll-component";
+import CornerDecorations from "../../components/CornerDecorations";
 
 function ProfilePage() {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -96,7 +97,11 @@ function ProfilePage() {
       if (activeLink === "posts") {
           return (
             <>
-            <div className={`${appStyles.CornerBox} mt-4`}></div>
+            <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom} ${styles.ContentHeading} mb-4`}>
+              <CornerDecorations />
+              <h5>{profile.owner}'s Posts</h5>
+              <span>Posts: {profile.posts_count}</span>
+            </div>
             {profilePosts.results.length ? (
               <InfiniteScroll
               children={profilePosts.results.map((post) => {
@@ -131,7 +136,10 @@ function ProfilePage() {
       } else if (activeLink === "liked") {
           return(
             <>
-            <div className={`${appStyles.CornerBox} mt-4`}></div>
+              <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom} ${styles.ContentHeading} mb-4`}>
+              <CornerDecorations />
+              <h5>{profile.owner}'s Liked Posts</h5>
+            </div>
             {likedPosts.results.length ? (
               <InfiniteScroll
               children={likedPosts.results.map((post) => {
@@ -167,7 +175,11 @@ function ProfilePage() {
       } else if (activeLink === "pokemon") {
           return (
             <>
-            <div className={`${appStyles.CornerBox} `}></div>
+              <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom} ${styles.ContentHeading} mb-4`}>
+                <CornerDecorations />
+                <h5>{profile.owner}'s Pokémon</h5>
+                <span>PokéDex: {profile.pokemons_count}</span>
+              </div>
             <Row className=" d-flex justify-content-center m-0">
               <Col lg={10} md={12} sm={12}>
             {profilePokemon.results.length ? (
@@ -208,15 +220,21 @@ function ProfilePage() {
               src={profile.avatar}
               alt="Avatar Image"
             />
+            
             <h4>{profile.owner}</h4>
             <div className={`${styles.TextInfo} text-center`}>
-              <span className={`${styles.Name}`}>
-              <small className="font-weight-bold">Name: </small>
-              <small>{profile.name}</small>
-              </span>
+             {profile.name && (
+               <span className={`${styles.Name}`}>
+               <small className="font-weight-bold">Name: </small>
+               <small>{profile.name}</small>
+               </span>
+
+             )}
+                  {profile.bio && (
               <span className="d-flex flex-column">
               <small>{profile.bio}</small>
               </span>
+              )}
             </div>
             </div>
         )}
@@ -250,7 +268,7 @@ function ProfilePage() {
 
         {isLoaded && (
         <>
-          {profile && <Container fluid className="mt-3">{renderProfileContent()}</Container>}
+          {profile && <Container fluid className="mt-0 p-0">{renderProfileContent()}</Container>}
         </>
       )}
 

@@ -82,6 +82,19 @@
     opacity: 1;
 }
 
+.ContentHeading {
+    height: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.ContentHeading h5, .ContentHeading span {
+   color: #e4e0d4;
+}
+
 /* CAUGHT POKEMON CARD */
 
 .CaughtPokemon {

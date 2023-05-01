@@ -10,6 +10,9 @@
   - [Imagery](#imagery)
 - [Features](#features)
 - [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+  - [Bugs](#bugs)
+  - [Unsolved Bugs](#unsolved-bugs)
 - [Technologies Used](#technologies-used)
   - [Main Languages](#main-languages)
   - [Frameworks, Libraries & Programs](#frameworks-libraries--programs)
@@ -152,7 +155,7 @@ The logged in user also have their avatar displayed in the left corner of the na
 #### Post Feed Page
 
 The post feed page will display all posts created by users, sorted by most recent.
-Users can use the search bar to search for posts by username or game, or use the filtering to filter by all posts, only Game Related or only Pokémon Build posts.
+Users can use the search bar to search for posts by username or game, or use the select field to filter posts by post type.
 
 ![Search and filter](/readme-assets/posts-filter-search.png)
 
@@ -178,15 +181,18 @@ The like button also have tooltips that will display on hover, if the user is ei
 
 #### Detail Page & Comments
 
-The detail page is accessed by clicking on a post, where the user can view comments or create comments provided that they are logged in.
+The detail page is accessed by clicking on a post, where the users can view comments, or create comments if they are logged in.
 
-![Detail Page]()
+![Detail Page](/readme-assets/detail-page.png)
 
-- If the user is the owner of the post, a dropdown menu will be available with options to go to the edit form or delete their post.
+- If the user is the owner of the post, a cog icon will display which toggles a dropdown menu on click with the options to edit or delete their post.
+
+![Post Owner Dropdown](/readme-assets/owner-dropdown.png)
 
 ![Comment Container](/readme-assets/comments.png)
 
-- If the user is the owner of any of the comments, a dropdown menu will be available with options to edit or delete their comment.
+- If the user is the owner of any of the comments, a cog icon will display which toggles a dropdown menu on click with the options to edit or delete their comment.
+![Comment Owner Dropdown](/readme-assets/comment-owner-dropdown.png)
 
 ### PokeDex Page
 
@@ -216,7 +222,9 @@ The pokemon cards also features an interactive pokeball, which basically have th
 
 ![Caught Pokemon](/readme-assets/caught-pokeball.png) ![Uncaught Pokemon](/readme-assets/uncaught-pokeball.png)
 
-- Logged out users will see a tooltip message on hover which prompts the user to log in in order to save caught pokemons
+- Logged out users will see a tooltip message on hover which prompts the user to log in in order to save caught pokemon
+
+![Pokeball logged out tooltip](/readme-assets/pokeball-loggedout-tooltip.png)
 
 ---
 
@@ -225,11 +233,15 @@ The pokemon cards also features an interactive pokeball, which basically have th
 This app features two types of shareable posts:
 
 - "Game Related" post, which essentialy is meant to be like a typical social media post, where users can share something pokemon related _(screenshots, fanart etc.)_.
-- "Pokémon Build" post, where can create builds from the pokemons they've caught.
+- "Pokémon Build" post, where can create builds from the pokemon they've caught.
 
 Clicking on the "Add Post" in the navigation will redirect the user to the game related post form, but can go to the pokemon build form by clicking the button on top. Each form page features a link button to the other form, so users can easily switch between them.
 
-**Game Related post form**
+- Users can delete and edit their created content as they wish, provided that they are the owner.
+- The edit forms of both post types are identical to their create form, with the exception that all fields are filled in with the post's current data.
+- Users can update all fields in the "Game Related" form, and all fields but the pokemon can be updated in the "Pokémon Build" form. 
+
+**Game Related post create form**
 
 Features form fields for title, description, image upload, ingame name and a game select field.
 
@@ -240,7 +252,7 @@ Features form fields for title, description, image upload, ingame name and a gam
 
 ![Game Related Form](/readme-assets/post-create-form.png)
 
-**Pokémon Build post form**
+**Pokémon Build post create form**
 
 Features form fields for pokemon, moves, ability, EV stats, nature and held item.
 Also contains description and game select.
@@ -292,17 +304,50 @@ This page features two different forms, one for changing username and one for ch
 
 The username form is shown by default when entering the page, but can switch between the two forms by clicking the tabs.
 
+### Other
+There are a couple of components that are frequently used throughout the site which will be brought up in this section.
+
+**Infinite Scrolling**
+
+Infinite scrolling is applied to the Feed and Profile pages, as well as the comments container using the [react-infinite-scroll-component](https://github.com/ankeetmaini/react-infinite-scroll-component) npm package.
+
+
+**The arrow up component:**
+
+![Arrow Up](/readme-assets/arrow-up.png)
+
+- This component is present in the PokeDex, Feed and Profile pages and was created for these pages as they could be scroll 'heavy' pages.
+- The arrow will show up in the bottom right corner after the user has scrolled down a certain height, and cliking it will take the user back to the top of the page.
+
+**Owner Dropdown Menus**
+
+These dropdown menus will show up in the detail page of a post or beside a comment in the comments section.
+
+
+
 ### Future Features
-
-
-
 
 
 
 --- 
 
 ## Testing
-Testing documentation can be found [here](https://github.com/Stockman-Jr/mews-tavern/blob/main/MANUAL-TESTS.md)
+
+#### Manual Testing
+Manual testing documentation can be found [here](https://github.com/Stockman-Jr/mews-tavern/blob/main/MANUAL-TESTS.md)
+
+---
+
+### Bugs
+
+#### Bug
+
+- **Expected** - for the selected pokemon in the pokemon build create form to keep it's selected field value when am invalid form submit has been made
+- **Testing** -
+- **Result** -
+- **Fix** -
+
+### Unsolved bugs
 
 ---
 
@@ -332,7 +377,8 @@ Testing documentation can be found [here](https://github.com/Stockman-Jr/mews-ta
 ---
 
 ## Credits
-- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - The Code Institutes Moments walkthrough project was referenced as a base setup for this project, some parts have been reused but I have customised as much code as possible.
+
+### Resources
 
 - [Icons8](https://icons8.com/) - Quite alot of images/icons/svgs from icons8 was used in the application, including the:
     * Favicon
@@ -346,3 +392,5 @@ Testing documentation can be found [here](https://github.com/Stockman-Jr/mews-ta
 - [Pokéball button](https://www.pokecommunity.com/showpost.php?p=9938453&postcount=4) - The pokéball used in the pokemon cards was extracted from this spritesheet created by WolfPP on the pokecommunity site.
 
 ### Code
+
+- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - The Code Institutes Moments walkthrough project was referenced as a base setup for this project, some parts have been reused but I have customised as much code as possible.

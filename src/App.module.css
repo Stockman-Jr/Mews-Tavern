@@ -137,4 +137,21 @@ h1 {
   width:100%;
 }
 
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #726565;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #4892a5;
+  border-radius: 10px;
+}
+
 

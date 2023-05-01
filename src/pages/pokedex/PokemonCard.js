@@ -110,7 +110,7 @@ Are you sure you want to continue?`
         ) : (
           <OverlayTrigger
             placement="bottom"
-            overlay={<Tooltip>Log in to save caught pokemons!</Tooltip>}
+            overlay={<Tooltip>Log in to save caught pokémon!</Tooltip>}
           >
             <div className={aniStyles.UnCaught}></div>
           </OverlayTrigger>

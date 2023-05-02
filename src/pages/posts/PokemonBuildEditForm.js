@@ -76,9 +76,8 @@ function PokemonBuildEditForm() {
             `/api/caught/?owner=${data.profile_id}`
           );
   
-          const caughtPokemon = pokeData.results.find(
-            (p) => p.pokemon.id === data.pokemon_id
-          );
+          const caughtPokemon =
+          pokeData.pokemon.id === data.pokemon_id ? pokeData.pokemon : null;
   
           is_owner
             ? setPokeBuildData({
@@ -96,7 +95,7 @@ function PokemonBuildEditForm() {
                 post_type,
               })
             : history.push("/");  
-          setSelectedPokemon(caughtPokemon.pokemon);
+          setSelectedPokemon(caughtPokemon);
         } catch (err) {
           console.log(err);
         }

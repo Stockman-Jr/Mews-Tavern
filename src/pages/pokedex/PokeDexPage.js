@@ -32,38 +32,39 @@ function PokeDexPage() {
   const { page } = useParams();
   const history = useHistory();
   const currentUser = useCurrentUser();
-  const owner = currentUser;
+  const owner = currentUser?.profile_id;
 
   const handleTypeFilter = (type) => {
     setFilter(`types__name=${type}`);
   };
+  const fetchPokemonData = async () => {
+    try {
+      const { data } = await axiosReq.get(
+        `/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`
+      );
+      setPokemons(data);
+
+      const caughtPokemonIds = data.results.map((pokemon) => pokemon.id);
+      const caughtPokemonIdsString = caughtPokemonIds.join("&pokemon__id__in=");
+      
+      if(currentUser){
+        const { data: caughtData } = await axiosReq.get(
+          `/api/caught/?owner=${owner}&${caughtPokemonIdsString}`
+        );
+        setCaughtPokemons(caughtData);
+      }
+
+      setTotalPages(Math.ceil(data.count / pokemonsPerPage));
+      setIsLoaded(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchPokemonData = async () => {
-      try {
-        const { data } = await axiosReq.get(`/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`);
-        setPokemons(data);
-        setTotalPages(Math.ceil(data.count / pokemonsPerPage));
-        setIsLoaded(true);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
-    const fetchCaughtPokemons = async () => {
-      try{
-        const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
-        setCaughtPokemons(data);       
-      }catch(err) {
-        console.log(err);
-      }
-    };
     setIsLoaded(false);
     fetchPokemonData();
-    if (currentUser) {
-      fetchCaughtPokemons();
-    }
-  }, [page, pokemonsPerPage, owner, currentUser, filter]);
+  }, [currentUser, page, pokemonsPerPage, owner, filter]);
 
   
   const handlePageChange = (selectedPage) => {

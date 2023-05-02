@@ -12,19 +12,20 @@ import styles from "../../styles/BuildCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
+import Select from "react-select";
 
 import { useHistory, Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoveFields, EvStatOptions, FormFields } from "../../components/FormSelectFields";
-import { fetchGameFilterChoices } from "../../utils/utils";
+import { fetchGameFilterChoices, fetchMoreData } from "../../utils/utils";
 import { useRedirect } from "../../hooks/useRedirect";
 
 
 function PokemonBuildCreateForm() {
     useRedirect("loggedOut");
     
-    const [caughtPokemons, setCaughtPokemons] = useState([]);
+    const [caughtPokemons, setCaughtPokemons] = useState({ results: [] });
     const [selectedPokemon, setSelectedPokemon] = useState("");
     const [selectedPokemonSprite, setSelectedPokemonSprite] = useState("");
     const [gameFilterChoices, setGameFilterChoices] = useState([]);
@@ -65,8 +66,11 @@ function PokemonBuildCreateForm() {
     useEffect(() => {
       const fetchCaughtPokemons = async () => {
         try {
-          const { data } = await axiosReq.get(`/api/caught/?owner=${owner.pk}`);
-          setCaughtPokemons(data.results);
+          const [{ data: caughtPokemons }] = await Promise.all([
+            await axiosReq.get(`/api/caught/?owner=${owner.pk}`),
+          ]);
+          console.log(caughtPokemons);
+          setCaughtPokemons(caughtPokemons);
           setIsLoaded(true);
         } catch (err) {
           console.log(err);
@@ -79,18 +83,13 @@ function PokemonBuildCreateForm() {
         fetchGameFilterChoices().then(setGameFilterChoices);
       }
       setIsLoaded(false);
-      const timer = setTimeout(() => {
       fetchCaughtPokemons();
-      }, 1000);
-
-    return () => {
-      clearTimeout(timer);
-    };
     }, [owner]);
 
-  const handlePokemonSelect = async (event) => {
-    const id = event.target.value;
-    const { data } = await axiosReq.get(`/api/caught/${id}/`);
+  const handlePokemonSelect = async (selectedOption) => {
+    const id = selectedOption.value;
+    console.log(id);
+    const { data } = await axiosReq.get(`/api/caught/${id}`);
     setSelectedPokemon(data.pokemon);
     setSelectedPokemonSprite(data.pokemon.sprite);
   };
@@ -166,22 +165,29 @@ function PokemonBuildCreateForm() {
                 <>
                 <Form.Group controlId="pokemon-select">
                   <Form.Label>Select a Pokémon:</Form.Label>
-                  <Form.Control
-                    as="select"
-                    name="pokemon"
-                    value={pokemon}
-                    onChange={(event) => {
-                      handlePokemonSelect(event);
-                      handleChange(event);
-                    }}
-                  >
-                    <option value="">--Select a Pokémon--</option>
-                    {caughtPokemons.map((p) => (
-                      <option key={p.id} value={p.id}>
-                        {p.pokemon.name}
-                      </option>
-                    ))}
-                  </Form.Control>
+                  <Select
+                        name="pokemon"
+                        placeholder="Select or search pokémon.."
+                        options={caughtPokemons.results.map((p) => ({
+                          value: p.id,
+                          label: p.pokemon.name,
+                        }))}
+                        value={pokemon}
+                        onChange={(selectedOption) => {
+                          handlePokemonSelect(selectedOption);
+                          handleChange({
+                            target: {
+                              name: "pokemon",
+                              value: selectedOption.value,
+                            },
+                          });
+                        }}
+                        onMenuScrollToBottom={() => {
+                          if (caughtPokemons.next) {
+                            fetchMoreData(caughtPokemons, setCaughtPokemons);
+                          }
+                        }}
+                      />
                 </Form.Group>
                 {errors.pokemon?.map((message, idx) => (
                   <Alert key={idx} variant="warning">

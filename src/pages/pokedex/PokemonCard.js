@@ -41,8 +41,10 @@ const PokemonCard = (props) => {
         console.log(error);
       }
     };
-    fetchUserPokemonBuilds();
-  }, [owner]);
+    if (currentUser) {
+      fetchUserPokemonBuilds();
+    }
+  }, [owner, currentUser]);
 
 
   const handleCatch = async () => {

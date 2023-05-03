@@ -21,6 +21,7 @@ Users can edit and delete their created content as well.
   - [Imagery](#imagery)
 - [Features](#features)
 - [Testing](#testing)
+  - [Validator Testing](#validator-testing)
   - [Manual Testing](#manual-testing)
   - [Bugs](#bugs)
   - [Unsolved Bugs](#unsolved-bugs)
@@ -203,6 +204,7 @@ The detail page is accessed by clicking on a post, where the users can view comm
 ![Comment Container](/readme-assets/comments.png)
 
 - If the user is the owner of any of the comments, a cog icon will display which toggles a dropdown menu on click with the options to edit or delete their comment.
+
 ![Comment Owner Dropdown](/readme-assets/comment-owner-dropdown.png)
 
 ### PokeDex Page
@@ -353,16 +355,42 @@ There is a lot of features that could be added or improved for this app, if prov
 
 ## Testing
 
+### Validator Testing
+
 #### Lighthouse
 
-I have checked each page on the site with Lighthouse, and although the accessibility, best practices and SEO got a high score overall, the performance score is not great.
+I have checked each page on the site with Lighthouse, and although the accessibility, best practices and SEO got a high score overall, but the performance score could be improved.
 
-![Lighthouse](/readme-assets/lighthouse.png)
-This is the average score for each page in the site. Performance ranges from 50-60, best practices between 83-90, while the rest of the scores are quite consistent throughout.
+**Homepage**
 
-If I have more time I absolutely have tried to improve the performance, and I could probably improve some performance by managing the requests and data fetching better. But I also confess that the size of this project was probably a little too data heavy for a first project given the little experience I have.
+![Lighthouse Home](/readme-assets/lighthouse-home.png)
 
-#### Manual Testing
+**Feed Page**
+
+![Lighthouse Feed](/readme-assets/lighthouse-feed.png)
+
+**PokéDex Page**
+
+![Lighthouse PokéDex](/readme-assets/lighthouse-pokedex.png)
+
+**Post Forms**
+
+![Lighthouse Post](/readme-assets/lighthouse-postform.png)
+
+![Lighthouse Build](/readme-assets/lighthouse-buildform.png)
+
+**Profile Page**
+
+![Lighthouse Profile Page](/readme-assets/lighthouse-profile.pngprofile.png)
+
+**Sign up/Sign in**
+
+![Lighthouse Sign In/Sign Up](/readme-assets/lighthouse-signupin.png)
+
+
+#### CSS 
+
+### Manual Testing
 Manual testing documentation can be found [here](https://github.com/Stockman-Jr/mews-tavern/blob/main/MANUAL-TESTS.md)
 
 ---
@@ -385,9 +413,9 @@ tried moving the dropdown component outside the navbar, as well as other placeme
 - **Result** - got some varied results, dropdown would not toggle at all, it would toggle on but not off, or it would toggle but mess up the elements in the navbar
 - **Fix** - adding a Nav and replacing the Dropdown.Item with NavDropdown.Item inside the Dropdown fixed all issues
 
-#### **Fetching user caught pokémons**
+#### **Fetching user caught pokémon**
 
-It came to my attention that in the two places where I don't use InfiniteScroll to get the data, I was only fetching the first page(10 results) in PokeDexPage and in the PokemonBuildCreateForm. I noticed this as I was testing the site and had caught a bit more than 10 pokemon with this user account. The fixes I came up with might not be optimal, but it does work as intended now.
+It came to my attention that in the two places where I don't use InfiniteScroll to get the data, I was only fetching the first page(10 results) in PokeDexPage and in the PokemonBuildCreateForm. I noticed this as I was testing the site and using an account that had more than 10 pokemon. The fixes I came up with might not be optimal, but it does work as intended now.
 
 - **Displaying users caught pokemons in PokeDex page**
   - **Expected** - for pokeballs to be rendered as a closed pokeball for all caught pokemon the current user has
@@ -429,6 +457,34 @@ It came to my attention that in the two places where I don't use InfiniteScroll 
 ---
 
 ## Deployment
+
+
+This project was deployed using heroku, steps to deployment are as follows:
+  * Sign up to heroku if you haven't, then check for a button labelled "New" at the top right of the dashboard.
+    * Click that button to display a dropdown menu and select "Create New App".
+    * This will take you to a new page, where you can enter your region and choose a name for your new app, which must be unique. Then click "Create App"
+
+  * Navigate to the "Deploy" tab.
+    * Here you'll have some options for deployment, I used github for this.
+    * Once you've clicked on the Github button you will be able to search for your Github repository and connect to it.
+    * Once connected, it's time to deploy. You can choose to deploy automatically or manually, I chose automatic deploys for this project.
+
+### Forking and cloning
+
+If you'd want to experiment and work on this code you can fork or clone this project.
+This will allow you do whatever you want without altering the original.
+
+#### Steps to forking:
+
+- In the repository, navigate to the "Fork" button which is located in the top-right of the page, next to "Star".
+- Simply click on this button and a copy of this repository will be added to yours.
+
+#### Cloning:
+
+- Navigate to the top right of this repository and find the button labelled "Code", and click to display a dropdown menu.
+- Here you can either:
+  - Choose the option "Download as ZIP" which will download all files and save a copy locally.
+  - Choose the option "Open with Github Desktop" and work from there.
 
 ---
 

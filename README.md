@@ -1,3 +1,14 @@
+# Mew's Tavern
+
+Mew's Tavern is a social gathering hub for people who loves Pokémon, which should be a franchise known to most(__I hope__).
+The big idea and goal for this project was to create a platform for users to share their Pokémon knowledge, 
+ingame accomplishments or maybe find some new friends to play with. 
+Users can browse the PokéDex and save pokémon they've caught as a way to keep track of their collection or show or view others collection by visiting each others profile pages. Other user intercations include liking posts, commenting, searching and filtering.
+
+Users can edit and delete their created content as well.
+
+---
+
 ## Table of Contents
 
 - [Project Links](#project-links)
@@ -327,6 +338,21 @@ These dropdown menus will show up in the detail page of a post or beside a comme
 
 ### Future Features
 
+There is a lot of features that could be added or improved for this app, if provided more time.
+
+* More alerts and notifications. 
+  Is something that is lacking as it is now, as I would have wanted more feedback for user actions.
+
+* Making the pokémon 'collecting' more fun and personal, as there are many different traits and forms a pokémon could have.
+    * For example adding a radio button the user can check if the pokémon is shiny, which would add a sparkle icon to the pokémon cards in the profile page.
+
+* Better ways for users to view their pokémon collection.
+    * Adding a separate page where the user can go through their own personal collection, where they could add different traits or release pokémon.
+    * Or instead of creating separate page for the users pokémon collection would be to add more filters to the PokeDex page which could filter pokémons by 'Caught' or 'Uncaught'. I tried to implement something like this during the project, but it didn't work quite as expected so I had to move on.
+
+* Have a larger news and events section.
+  
+* Some kind of a direct messaging system would be a nice feature to have, if users want to trade ingame, play co-op or something like that.
 
 
 --- 
@@ -342,7 +368,7 @@ Manual testing documentation can be found [here](https://github.com/Stockman-Jr/
 
 #### Bug
 
-- **Expected** - for the selected pokemon in the pokemon build create form to keep it's selected field value when am invalid form submit has been made
+- **Expected** - for the selected pokemon in the pokemon build create form to keep it's selected field value when an invalid form submit has been made
 - **Testing** -
 - **Result** -
 - **Fix** -
@@ -378,6 +404,17 @@ Manual testing documentation can be found [here](https://github.com/Stockman-Jr/
 
 ## Credits
 
+### Code
+
+- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - Code Institutes Moments walkthrough project was referenced as a base setup for this project, where some parts have been reused like for example:
+  - currentUserContext.js
+  - axiosDefault.js
+  - Asset.js (with a small modification)
+  - useRedirect.js
+
+Other parts of the code are similar too, but I have tried to customize as much as possible wherever possible. 
+  
+
 ### Resources
 
 - [Icons8](https://icons8.com/) - Quite alot of images/icons/svgs from icons8 was used in the application, including the:
@@ -390,7 +427,3 @@ Manual testing documentation can be found [here](https://github.com/Stockman-Jr/
 - [emoji.gg](https://emoji.gg/emojis/pokemon) & [Discadia](https://discadia.com/emojis/?q=pokemon) - The avatars and the no results image was actually found on these discord emoji sites. I just added border and background colors to them. Credits to the people who created them!
 
 - [Pokéball button](https://www.pokecommunity.com/showpost.php?p=9938453&postcount=4) - The pokéball used in the pokemon cards was extracted from this spritesheet created by WolfPP on the pokecommunity site.
-
-### Code
-
-- [Code Institute](https://github.com/Code-Institute-Solutions/moments/tree/bb6657e265fb18360b841e10d9d633dad06f4e5c) - The Code Institutes Moments walkthrough project was referenced as a base setup for this project, some parts have been reused but I have customised as much code as possible.

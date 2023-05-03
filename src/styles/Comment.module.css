@@ -20,18 +20,6 @@
     font-size: 14px;
 }
 
-.CmtDropdown svg {
-    font-size: 30px;
-    vertical-align: top;
-    color: rgb(241, 228, 211);;
-    padding: 4px;
-}
-
-.CmtDropdown svg:hover {
-    color: rgb(136, 94, 5);
-    transition: ease 0.5s;
-}
-
 .CmtHr {
     background-color: #a0900449;
     margin-top: 0.8rem;

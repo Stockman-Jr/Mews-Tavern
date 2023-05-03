@@ -76,7 +76,7 @@ const Comment = (props) => {
             <p className="ml-1 mr-1">{content}</p>
           )}
         </Media.Body>
-        <div className={styles.CmtDropdown}>
+        <div>
           {is_owner && !showEditForm && (
             <ConfigDropdown
               handleEdit={() => setShowEditForm(true)}

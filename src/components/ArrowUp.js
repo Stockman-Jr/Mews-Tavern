@@ -21,7 +21,6 @@ const ArrowUp = () => {
   
     return (
       <div className={btnStyles.ScrollContainer}>
-        {" "}
         {showTopBtn && (
           <img
             onClick={handleScrollToTop}
@@ -29,7 +28,7 @@ const ArrowUp = () => {
             src={Arrow}
             alt="scrollToTop"
           ></img>
-        )}{" "}
+        )}
       </div>
     );
   };

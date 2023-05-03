@@ -154,11 +154,10 @@ function PostCreateForm() {
         </Form.Control>
       </Form.Group>
       {errors.game_filter?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
+      ))}
       <Button
         className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
         type="submit"
@@ -211,7 +210,6 @@ function PostCreateForm() {
                     />
                   </Form.Label>
                 )}
-
                 <Form.Control
                   id="image-upload"
                   type="file"
@@ -229,8 +227,7 @@ function PostCreateForm() {
                 {formFields}
               </div>
             </Container>
-          </Col>
-          
+          </Col>        
           <Col md={5} lg={4} className="d-none d-lg-block p-0 p-md-2">
             <Container className={` ${styles.FormFieldDiv} `}>
               {formFields}
@@ -238,8 +235,8 @@ function PostCreateForm() {
           </Col>
         </Row>
       </Form>
-      </Container>
-  )
+    </Container>
+  );
 }
 
 export default PostCreateForm;

@@ -106,6 +106,7 @@ return (
                           <Image
                               fluid
                               src="https://scarletviolet.pokemon.com/_images/news/feb_27/teal_mask_art.jpg"
+                              alt="Art for Scarlet/Violet upcoming DLC"
                           ></Image>
                       </div>
                   </Col>
@@ -134,6 +135,7 @@ return (
                           <Image
                               fluid
                               src="https://staticc.sportskeeda.com/editor/2023/02/c9525-16775679439066-1920.jpg"
+                              alt="New Pokémon Walking Wake and Iron Leaves"
                           ></Image>
                       </div>
                   </Col>

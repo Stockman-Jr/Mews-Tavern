@@ -34,35 +34,38 @@ function PokeDexPage() {
   const currentUser = useCurrentUser();
   const owner = currentUser?.profile_id;
 
-  const handleTypeFilter = (type) => {
-    setFilter(`types__name=${type}`);
-  };
-  const fetchPokemonData = async () => {
-    try {
-      const { data } = await axiosReq.get(
-        `/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`
-      );
-      setPokemons(data);
-
-      const caughtPokemonIds = data.results.map((pokemon) => pokemon.id);
-
-      const { data: caughtData } = await axiosReq.get(
-        `/api/caught/?owner=${owner}&pokemon_ids=${caughtPokemonIds.join(",")}`
-      );
-      setCaughtPokemons(caughtData);
-      setTotalPages(Math.ceil(data.count / pokemonsPerPage));
-      setIsLoaded(true);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
+    const fetchPokemonData = async () => {
+      try {
+        const { data } = await axiosReq.get(
+          `/api/pokemons/?page=${page}&page_size=${pokemonsPerPage}&${filter}`
+        );
+        setPokemons(data);
+        
+        //Get the pokemon ids of the current page, then fetch any caught pokemon
+        //the user has caught that match the ids
+        const caughtPokemonIds = data.results.map((pokemon) => pokemon.id);
+        if(currentUser) {
+          const { data: caughtData } = await axiosReq.get(
+            `/api/caught/?owner=${owner}&pokemon_ids=${caughtPokemonIds.join(",")}`
+          );
+          setCaughtPokemons(caughtData);
+        }  
+        setTotalPages(Math.ceil(data.count / pokemonsPerPage));
+        setIsLoaded(true);
+      } catch (error) {
+        console.log(error);
+      }
+    };
     setIsLoaded(false);
     fetchPokemonData();
   }, [currentUser, page, pokemonsPerPage, owner, filter]);
 
-  
+  const handleTypeFilter = (type) => {
+    setFilter(`types__name=${type}`);
+    history.push("/pokedex/1");
+  };
+
   const handlePageChange = (selectedPage) => {
     const newPage = selectedPage.selected + 1;
     history.push(`/pokedex/${newPage}`);
@@ -70,11 +73,11 @@ function PokeDexPage() {
 
   return (
     <div className="mt-5">
-          {isLoaded ? (
-      <Row className='m-0' >
-        <Col lg={12}>
-          <Container className={appStyles.BtnWrapper}>
-          {pokeTypes.map((type) => (
+      {isLoaded ? (
+        <Row className='m-0' >
+          <Col lg={12}>
+            <Container className={appStyles.BtnWrapper}>
+              {pokeTypes.map((type) => (
                 <Button
                   key={type}
                   variant="dark"
@@ -87,33 +90,33 @@ function PokeDexPage() {
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                 </Button>
               ))}
-              <Button 
-              variant="dark" 
-              className={btnStyles.ResetBtn}
-              onClick={(e) => {setFilter(" ")}}
+              <Button
+                variant="dark"
+                className={btnStyles.ResetBtn}
+                onClick={(e) => { setFilter(" ") }}
               >
                 &#x2717; Reset
               </Button>
-             </Container>
-                <div className={`${appStyles.PContainer} mt-3`}>
-                  {pokemons.results.map((pokemon) => {
-                    const caughtPokemon = caughtPokemons.results.find(
-                      (caught) => caught.pokemon.id === pokemon.id
-                    );
-                    const id = caughtPokemon?.id;
-                    return (
-                      <PokemonCard
-                        key={pokemon.id}
-                        pokemon={pokemon}
-                        id={id}
-                        setCaughtPokemons={setCaughtPokemons}
-                      />
-                    );
-                  })}
-                </div>        
-        </Col>
-        <ArrowUp />
-        <Col>
+            </Container>
+            <div className={`${appStyles.PContainer} mt-3`}>
+              {pokemons.results.map((pokemon) => {
+                const caughtPokemon = caughtPokemons.results.find(
+                  (caught) => caught.pokemon.id === pokemon.id
+                );
+                const id = caughtPokemon?.id;
+                return (
+                  <PokemonCard
+                    key={pokemon.id}
+                    pokemon={pokemon}
+                    id={id}
+                    setCaughtPokemons={setCaughtPokemons}
+                  />
+                );
+              })}
+            </div>
+          </Col>
+          <ArrowUp />
+          <Col>
             <ReactPaginate
               pageCount={totalPages}
               pageRangeDisplayed={5}
@@ -131,7 +134,7 @@ function PokeDexPage() {
               forcePage={page - 1}
             />
           </Col>
-      </Row>
+        </Row>
       ) : (
         <Asset loader />
       )}

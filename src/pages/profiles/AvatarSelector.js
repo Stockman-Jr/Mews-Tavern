@@ -2,7 +2,9 @@ import React from 'react';
 import Image from "react-bootstrap/Image";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+
 import styles from "../../styles/ProfileEditForm.module.css";
+import modalStyles from "../../styles/Modals.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 
@@ -44,10 +46,10 @@ const avatarOptions = [
 const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
   return (
       <>
-        <Modal.Header className={styles.ModalHeader} closeButton>
+        <Modal.Header className={modalStyles.ModalHeader} closeButton>
           <h4>Avatars</h4>
         </Modal.Header>
-        <Modal.Body className={styles.ModalBody}>
+        <Modal.Body className={modalStyles.ModalBody}>
             <div className={styles.AvatarSelector}>
             {avatarOptions.map(({ label, src }) => (
               <>
@@ -69,11 +71,10 @@ const AvatarSelector = ({ onSelect, setShowAvatarSelector }) => {
             ))}
             </div>
           </Modal.Body>
-          <Modal.Footer className={styles.ModalFooter}>
+          <Modal.Footer className={modalStyles.ModalFooter}>
             <Button
              className={`${btnStyles.FormBtn} ${btnStyles.Dark}`}
              onClick={() => {
-                onSelect(null);
                 setShowAvatarSelector(false);
                 }}
             >

@@ -35,22 +35,3 @@
     border: 3px solid #3abecf;
     opacity: 0.5;
 }
-
-.ModalBody {
-    background-color: rgb(231, 222, 211);
-}
-
-.ModalHeader {
-    background: linear-gradient(90deg, rgba(72,146,165,1) 0%, rgba(113,196,212,1) 50%, rgba(72,146,165,1) 100%);
-    border-bottom: 2px solid transparent;
-    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
-    border-image-slice: 1;
-    color: #3b2516;
-}
-
-.ModalFooter {
-    background: linear-gradient(90deg, rgba(72,146,165,1) 0%, rgba(113,196,212,1) 50%, rgba(72,146,165,1) 100%);
-    border-top: 2px solid transparent;
-    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
-    border-image-slice: 1;
-}

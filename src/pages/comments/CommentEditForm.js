@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+
 import btnStyles from "../../styles/Buttons.module.css";
-import styles from "../../styles/CommentCreateEditForm.module.css";
+import modalStyles from "../../styles/Modals.module.css";
+
 import { axiosRes } from "../../api/axiosDefaults";
 
 function CommentEditForm(props) {
@@ -41,10 +43,10 @@ function CommentEditForm(props) {
   return (
     <>
     <Form onSubmit={handleSubmit}>
-      <Modal.Header closeButton className={styles.ModalHeader}>
+      <Modal.Header closeButton className={modalStyles.ModalHeader}>
         <Modal.Title>Edit Comment</Modal.Title>
       </Modal.Header>
-      <Modal.Body className={styles.ModalBody}>
+      <Modal.Body className={modalStyles.ModalBody}>
         <Form.Group className="pr-1">
           <Form.Control
             as="textarea"
@@ -54,7 +56,7 @@ function CommentEditForm(props) {
           />
         </Form.Group>
       </Modal.Body>
-      <Modal.Footer className={styles.ModalFooter}>
+      <Modal.Footer className={modalStyles.ModalFooter}>
         <Button
           className={`${btnStyles.FormBtn} ${btnStyles.Dark}`}
           onClick={() => setShowEditForm(false)}

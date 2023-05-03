@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
-import styles from "../../styles/PokemonCard.module.css";
+import React, { useState } from "react";
+
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+
+import styles from "../../styles/PokemonCard.module.css";
+import aniStyles from "../../styles/Animations.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
+import modalStyles from "../../styles/Modals.module.css";
+
 import { getGradientForTypes, capitalizeFirstLetter } from "../../utils/utils";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
-import aniStyles from "../../styles/Animations.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PokemonTypes({ types }) {
@@ -26,26 +33,12 @@ function PokemonTypes({ types }) {
 
 const PokemonCard = (props) => {
   const { id, pokemon, setCaughtPokemons } = props;
-  const [userPokemonBuilds, setUserPokemonBuilds] = useState({ results: [] });
+  const [showModal, setShowModal] = useState(false);
   const currentUser = useCurrentUser();
-  const owner = currentUser?.profile_id;
 
-  useEffect(() => {
-    const fetchUserPokemonBuilds = async () => {
-      try {
-        const { data } = await axiosReq.get(
-          `/posts/pokebuild/?owner__trainerprofile=${owner}`
-        );
-        setUserPokemonBuilds(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    if (currentUser) {
-      fetchUserPokemonBuilds();
-    }
-  }, [owner, currentUser]);
-
+  const handleShowModal = () => {
+    setShowModal(true);
+  };
 
   const handleCatch = async () => {
     try {
@@ -65,19 +58,6 @@ const PokemonCard = (props) => {
   };
 
   const handleRelease = async () => {
-    const isAssociatedWithBuild = userPokemonBuilds.results.some(
-      (build) => build.caught_id === id
-    );
-
-    if (isAssociatedWithBuild) {
-      const confirmed = window.confirm(
-        `Warning! \nYou have created a Pokémon Build with ${capitalizeFirstLetter(pokemon.name)}, releasing it will also delete your build. You can catch this Pokémon again to create a new build. \n
-Are you sure you want to continue?`
-      );
-      if (!confirmed) {
-        return;
-      }
-    }
     try {
       await axiosRes.delete(`/api/caught/${id}/`);
       setCaughtPokemons((prevCaughtPokemons) => ({
@@ -91,6 +71,39 @@ Are you sure you want to continue?`
     }
   };
 
+  const modalWarning = (
+    <>
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header className={modalStyles.ModalHeader} closeButton>
+          <Modal.Title>Confirm Release</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className={modalStyles.ModalBody}>
+          <p>
+            Are you sure you want to release{" "}
+            {capitalizeFirstLetter(pokemon.name)}
+            ? <br /> If you have any Pokémon builds created with it, they will
+            be deleted too. You can create a new build with this pokémon if you
+            catch it again.
+          </p>
+        </Modal.Body>
+        <Modal.Footer className={modalStyles.ModalFooter}>
+          <Button
+            className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+            onClick={() => setShowModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            className={`${btnStyles.FormBtn} ${btnStyles.Dark} mt-2`}
+            onClick={handleRelease}
+          >
+            Release
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+
 
   const pokeBall = (
     <>
@@ -100,7 +113,7 @@ Are you sure you want to continue?`
             placement="bottom"
             overlay={<Tooltip>Release?</Tooltip>}
           >
-            <div className={aniStyles.Caught} onClick={handleRelease}></div>
+            <div className={aniStyles.Caught} onClick={handleShowModal}></div>
           </OverlayTrigger>
         ) : currentUser ? (
           <OverlayTrigger
@@ -139,6 +152,7 @@ Are you sure you want to continue?`
                 {pokemon.types.join("/")}
               </Card.Text>
               {pokeBall}
+              {modalWarning}
             </Card.Body>
           </div>
         </Card>

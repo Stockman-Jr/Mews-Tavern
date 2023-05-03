@@ -1,0 +1,25 @@
+.ModalHeader {
+    background: linear-gradient(90deg, rgba(72,146,165,1) 0%, rgba(113,196,212,1) 50%, rgba(72,146,165,1) 100%);
+    border-bottom: 2px solid transparent;
+    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
+    border-image-slice: 1;
+    color: #31241f;
+}
+
+.ModalBody {
+    background-color: rgb(231, 222, 211);
+}
+
+.ModalBody p {
+   color: #362c28;
+   font-weight: 600;
+}
+
+.ModalFooter {
+    background: linear-gradient(90deg, rgba(72,146,165,1) 0%, rgba(113,196,212,1) 50%, rgba(72,146,165,1) 100%);
+    border-top: 2px solid transparent;
+    border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
+    border-image-slice: 1;
+    width:100%;
+    color: #29221f;
+}

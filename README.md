@@ -352,7 +352,7 @@ There is a lot of features that could be added or improved for this app, if prov
 
 * Have a larger news and events section.
   
-* Some kind of a direct messaging system would be a nice feature to have, if users want to trade ingame, play co-op or something like that.
+* Some kind of a direct messaging system would be a nice feature to have, if users want to trade ingame, plan a co-op or something like that.
 
 
 --- 
@@ -366,12 +366,39 @@ Manual testing documentation can be found [here](https://github.com/Stockman-Jr/
 
 ### Bugs
 
-#### Bug
+#### **Pokémon select field reset**
 
 - **Expected** - for the selected pokemon in the pokemon build create form to keep it's selected field value when an invalid form submit has been made
-- **Testing** -
-- **Result** -
-- **Fix** -
+- **Testing** - tried logging different values and variables to the console in order to see what was causing the field to reset, as well as checking the code to see if I could find any variables that might need to be removed or updated as I had made a few changes to the api
+- **Result** - found a line in handleSubmit that was causing the field reset 
+- **Fix** - pokeBuildData.pokemon = selectedPokemon.name; in handleSubmit was an old attempt of trying to save the pokemon's name instead of the pk value my backend required, but I had found a solution to this by adjusting the backend instead, so removing that line fixed it
+
+
+#### **Profile Menu Dropdown won't toggle**
+
+- **Expected** - for the profile menu to appear inside the navbar when a user logs in, and toggle a dropdown menu
+- **Testing** - opened chrome dev tools and tested adding different styles to see if there was anything there that prevented it from toggling. 
+tried moving the dropdown component outside the navbar, as well as other placements
+- **Result** - got some varied results, dropdown would not toggle at all, it would toggle on but not off, or it would toggle but mess up the elements in the navbar
+- **Fix** - adding a Nav and replacing the Dropdown.Item with NavDropdown.Item inside the Dropdown fixed all issues
+
+#### **Fetching user caught pokémons**
+
+I felt a bit stupid for noticing this so late in the project(two days before deadline), but it came to my attention that in the two places where I don't use InfiniteScroll to get the data, I was only fetching the first page(10 results) in PokeDexPage and in the PokemonBuildCreateForm. I noticed this as I was testing the site and had caught a bit more than 10 pokemon with this user account. The fixes I came up with might not be optimal, but it does work as intended now.
+
+- **Displaying users caught pokemons in PokeDex page**
+  - **Expected** - for pokeballs to be rendered as a closed pokeball for all caught pokemon the current user has
+  - **Testing** - console logging, using utils function to fetch all caught pokemon data for the current user, testing different endpoints added to the backend, also tested a different approach by adding a similar functionality as the like button using a caught_id
+  - **Result** - fetching all data from the endpoint was a no go, and the resources fetched for every page took a big toll in terms of performance. 
+  a similar approach to the like button would probably have been a better solution as I would only need to fetch data from one endpoint, but I couldn't make it work as I wanted to, and I didn't have enough time.
+  - **Fix** - along with a new queryset filter that takes a list of pokemon ids, I extracted the pokemon ids and put them in an array called caughtPokemonIds, passed it as a query parameter to the endpoint, which would match any pokemon ids in the current pokedex page to any caught pokemons with the same id.
+
+
+- **PokemonBuildCreateForm select pokemon field**
+  - **Expected** - for all of the users caught pokemon to be available in the pokemon select field in PokemonBuildCreateForm, same kind of issue as above
+  - **Testing** - I knew fetching all data would not be a good option, since this page is already making too much requests, and I tested it before. I tried to play around with infinite scrolling and exploring the option of using a search query instead
+  - **Result** - infinite scroll was a no go, maybe I did it wrong or the component is not too compatible with a select field, and I wasn't entirely pleased with the search option so I looked into other solutions
+  - **Fix** - I ended up using a Select component from the npm package react-select. I knew about this component as I had heard and read about it, and seems like a popular choice for many. I was a bit hesitant to use it since I'd heard it can be a bit complex to use. however I managed to make it work with barely any changes made to the current code I had.
 
 ### Unsolved bugs
 

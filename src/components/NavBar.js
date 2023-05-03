@@ -57,7 +57,7 @@ const NavBar = () => {
   const logoLink = (
     <>
       <NavLink to="/">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <img className={styles.Logo} src={logo} alt="logo" />
         </Navbar.Brand>
       </NavLink>

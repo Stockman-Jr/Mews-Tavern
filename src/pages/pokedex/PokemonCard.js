@@ -68,6 +68,8 @@ const PokemonCard = (props) => {
       }));
     } catch (error) {
       console.log(error);
+    } finally {
+      setShowModal(false);
     }
   };
 

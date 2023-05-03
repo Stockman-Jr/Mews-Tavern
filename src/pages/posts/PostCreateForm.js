@@ -69,7 +69,6 @@ function PostCreateForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Post:", postData);
     const formData = new FormData();
 
     formData.append("title", title);

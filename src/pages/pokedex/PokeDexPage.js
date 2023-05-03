@@ -23,7 +23,7 @@ import { useParams } from 'react-router-dom';
 function PokeDexPage() {
   const [pokemons, setPokemons] = useState({ results: [] });
   const [caughtPokemons, setCaughtPokemons] = useState({ results: [] });
-  const [pokemonsPerPage] = useState(15);
+  const [pokemonsPerPage] = useState(12);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const [filter, setFilter] = useState("");
@@ -45,14 +45,11 @@ function PokeDexPage() {
       setPokemons(data);
 
       const caughtPokemonIds = data.results.map((pokemon) => pokemon.id);
-      const caughtPokemonIdsString = caughtPokemonIds.join("&pokemon__id__in=");
-      
-        const { data: caughtData } = await axiosReq.get(
-          `/api/caught/?owner=${owner}&${caughtPokemonIdsString}`
-        );
-        console.log(caughtData);
-        setCaughtPokemons(caughtData);
 
+      const { data: caughtData } = await axiosReq.get(
+        `/api/caught/?owner=${owner}&pokemon_ids=${caughtPokemonIds.join(",")}`
+      );
+      setCaughtPokemons(caughtData);
       setTotalPages(Math.ceil(data.count / pokemonsPerPage));
       setIsLoaded(true);
     } catch (error) {

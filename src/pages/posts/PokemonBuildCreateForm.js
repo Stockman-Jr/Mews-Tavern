@@ -69,7 +69,6 @@ function PokemonBuildCreateForm() {
           const [{ data: caughtPokemons }] = await Promise.all([
             await axiosReq.get(`/api/caught/?owner=${owner.pk}`),
           ]);
-          console.log(caughtPokemons);
           setCaughtPokemons(caughtPokemons);
           setIsLoaded(true);
         } catch (err) {
@@ -88,7 +87,6 @@ function PokemonBuildCreateForm() {
 
   const handlePokemonSelect = async (selectedOption) => {
     const id = selectedOption.value;
-    console.log(id);
     const { data } = await axiosReq.get(`/api/caught/${id}`);
     setSelectedPokemon(data.pokemon);
     setSelectedPokemonSprite(data.pokemon.sprite);

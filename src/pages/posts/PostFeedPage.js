@@ -37,7 +37,7 @@ function PostFeedPage() {
         setPosts(data);
         setIsLoaded(true);
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
     setIsLoaded(false);

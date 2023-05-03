@@ -41,7 +41,7 @@ function PostEditForm() {
       
               is_owner ? setPostData({ title, content, game_filter, image, post_type, ingame_name }) : history.push("/");
             } catch (err) {
-              console.log(err);
+              //console.log(err);
             }
           };
     
@@ -95,7 +95,7 @@ function PostEditForm() {
               state: { post_type: post_type },
             });
         } catch (err) {
-          console.log(err);
+          //console.log(err);
           if (err.response?.status !== 401) {
             setErrors(err.response?.data);
           }

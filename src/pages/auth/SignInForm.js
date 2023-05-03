@@ -42,8 +42,8 @@ const SignInForm = () => {
         setCurrentUser(data.user);
         setTokenTimestamp(data);
         history.push('/');
-        }catch(err){
-            setErrors(err.response?.data);
+        } catch(err){
+          setErrors(err.response?.data);
         }
       };
   return (

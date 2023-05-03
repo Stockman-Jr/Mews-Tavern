@@ -54,7 +54,7 @@ function PokeDexPage() {
         setTotalPages(Math.ceil(data.count / pokemonsPerPage));
         setIsLoaded(true);
       } catch (error) {
-        console.log(error);
+        //console.log(error);
       }
     };
     setIsLoaded(false);

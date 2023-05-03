@@ -52,7 +52,7 @@ function DetailPage() {
           
                   setComments(comments);
             } catch (err) {
-                console.log(err);
+                //console.log(err);
             }
         };
         handleMount();

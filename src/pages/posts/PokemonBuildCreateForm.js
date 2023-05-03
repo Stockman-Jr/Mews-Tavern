@@ -72,7 +72,7 @@ function PokemonBuildCreateForm() {
           setCaughtPokemons(caughtPokemons);
           setIsLoaded(true);
         } catch (err) {
-          console.log(err);
+          //console.log(err);
         }
       };
       const choices = JSON.parse(localStorage.getItem("gameFilterChoices"));
@@ -135,7 +135,7 @@ function PokemonBuildCreateForm() {
         state: { post_type: post_type },
       });
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

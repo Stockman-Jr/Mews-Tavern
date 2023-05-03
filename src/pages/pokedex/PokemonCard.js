@@ -52,8 +52,8 @@ const PokemonCard = (props) => {
           { id: data.id, pokemon: { id: pokemon.id }  },
         ],
       }));
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -66,8 +66,8 @@ const PokemonCard = (props) => {
           (caught) => caught.id !== id
         ),
       }));
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      //console.log(err);
     } finally {
       setShowModal(false);
     }

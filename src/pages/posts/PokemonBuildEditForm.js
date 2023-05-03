@@ -97,7 +97,7 @@ function PokemonBuildEditForm() {
             : history.push("/");  
           setSelectedPokemon(caughtPokemon);
         } catch (err) {
-          console.log(err);
+          //console.log(err);
         }
       };
       const choices = JSON.parse(localStorage.getItem("gameFilterChoices"));
@@ -152,7 +152,7 @@ function PokemonBuildEditForm() {
         state: { post_type: post_type },
       });
     } catch (err) {
-      console.log(err);
+      //console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

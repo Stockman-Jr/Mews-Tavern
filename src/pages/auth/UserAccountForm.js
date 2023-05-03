@@ -60,7 +60,7 @@ const UserAccountForm = () => {
           }));
           history.goBack();
         } catch (err) {
-          console.log(err);
+          //console.log(err);
           setErrors(err.response?.data);
         }
       };
@@ -71,7 +71,7 @@ const UserAccountForm = () => {
           await axiosRes.post("/dj-rest-auth/password/change/", newPassword);
           history.goBack();
         } catch (err) {
-          console.log(err);
+          //console.log(err);
           setErrors(err.response?.data);
         }
       };

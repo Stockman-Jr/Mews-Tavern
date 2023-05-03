@@ -55,7 +55,7 @@ function ProfilePage() {
 
             setIsLoaded(true);
           } catch (err) {
-            console.log(err);
+            //console.log(err);
           }
         };
         fetchData();
@@ -170,7 +170,6 @@ function ProfilePage() {
                 message={`Aww, ${profile?.owner} has not liked any content yet! `}
                 />
               )}
-
             </>
           );
       } else if (activeLink === "pokemon") {

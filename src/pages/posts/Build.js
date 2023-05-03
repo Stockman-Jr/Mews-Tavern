@@ -63,7 +63,7 @@ const Build = (props) => {
         await axiosRes.delete(`/posts/pokebuild/${id}/`);
         history.goBack();
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
 
@@ -80,7 +80,7 @@ const Build = (props) => {
           }),
         }));
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
   
@@ -96,7 +96,7 @@ const Build = (props) => {
           }),
         }));
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       }
     };
 

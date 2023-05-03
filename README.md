@@ -3,7 +3,7 @@
 Mew's Tavern is a social gathering hub for people who loves Pokémon, which should be a franchise known to most(__I hope__).
 The big idea and goal for this project was to create a platform for users to share their Pokémon knowledge, 
 ingame accomplishments or maybe find some new friends to play with. 
-Users can browse the PokéDex and save pokémon they've caught as a way to keep track of their collection or show or view others collection by visiting each others profile pages. Other user intercations include liking posts, commenting, searching and filtering.
+Users can browse the PokéDex and save pokémon they've caught as a way to keep track of their collection or view other users collections by visiting their profile pages. Other user interactions include liking posts, commenting, searching and filtering.
 
 Users can edit and delete their created content as well.
 
@@ -330,12 +330,6 @@ Infinite scrolling is applied to the Feed and Profile pages, as well as the comm
 - This component is present in the PokeDex, Feed and Profile pages and was created for these pages as they could be scroll 'heavy' pages.
 - The arrow will show up in the bottom right corner after the user has scrolled down a certain height, and cliking it will take the user back to the top of the page.
 
-**Owner Dropdown Menus**
-
-These dropdown menus will show up in the detail page of a post or beside a comment in the comments section.
-
-
-
 ### Future Features
 
 There is a lot of features that could be added or improved for this app, if provided more time.
@@ -358,6 +352,15 @@ There is a lot of features that could be added or improved for this app, if prov
 --- 
 
 ## Testing
+
+#### Lighthouse
+
+I have checked each page on the site with Lighthouse, and although the accessibility, best practices and SEO got a high score overall, the performance score is not great.
+
+![Lighthouse](/readme-assets/lighthouse.png)
+This is the average score for each page in the site. Performance ranges from 50-60, best practices between 83-90, while the rest of the scores are quite consistent throughout.
+
+If I have more time I absolutely have tried to improve the performance, and I could probably improve some performance by managing the requests and data fetching better. But I also confess that the size of this project was probably a little too data heavy for a first project given the little experience I have.
 
 #### Manual Testing
 Manual testing documentation can be found [here](https://github.com/Stockman-Jr/mews-tavern/blob/main/MANUAL-TESTS.md)
@@ -384,7 +387,7 @@ tried moving the dropdown component outside the navbar, as well as other placeme
 
 #### **Fetching user caught pokémons**
 
-I felt a bit stupid for noticing this so late in the project(two days before deadline), but it came to my attention that in the two places where I don't use InfiniteScroll to get the data, I was only fetching the first page(10 results) in PokeDexPage and in the PokemonBuildCreateForm. I noticed this as I was testing the site and had caught a bit more than 10 pokemon with this user account. The fixes I came up with might not be optimal, but it does work as intended now.
+It came to my attention that in the two places where I don't use InfiniteScroll to get the data, I was only fetching the first page(10 results) in PokeDexPage and in the PokemonBuildCreateForm. I noticed this as I was testing the site and had caught a bit more than 10 pokemon with this user account. The fixes I came up with might not be optimal, but it does work as intended now.
 
 - **Displaying users caught pokemons in PokeDex page**
   - **Expected** - for pokeballs to be rendered as a closed pokeball for all caught pokemon the current user has
@@ -396,7 +399,7 @@ I felt a bit stupid for noticing this so late in the project(two days before dea
 
 - **PokemonBuildCreateForm select pokemon field**
   - **Expected** - for all of the users caught pokemon to be available in the pokemon select field in PokemonBuildCreateForm, same kind of issue as above
-  - **Testing** - I knew fetching all data would not be a good option, since this page is already making too much requests, and I tested it before. I tried to play around with infinite scrolling and exploring the option of using a search query instead
+  - **Testing** - I knew fetching all data would not be a good option, since this page is already making too many requests, and I'd tested it before. I tried to play around with infinite scrolling and exploring the option of using a search query instead
   - **Result** - infinite scroll was a no go, maybe I did it wrong or the component is not too compatible with a select field, and I wasn't entirely pleased with the search option so I looked into other solutions
   - **Fix** - I ended up using a Select component from the npm package react-select. I knew about this component as I had heard and read about it, and seems like a popular choice for many. I was a bit hesitant to use it since I'd heard it can be a bit complex to use. however I managed to make it work with barely any changes made to the current code I had.
 
@@ -441,7 +444,6 @@ I felt a bit stupid for noticing this so late in the project(two days before dea
 
 Other parts of the code are similar too, but I have tried to customize as much as possible wherever possible. 
   
-
 ### Resources
 
 - [Icons8](https://icons8.com/) - Quite alot of images/icons/svgs from icons8 was used in the application, including the:

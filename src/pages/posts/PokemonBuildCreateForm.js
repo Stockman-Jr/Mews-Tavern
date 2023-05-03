@@ -161,7 +161,7 @@ function PokemonBuildCreateForm() {
         <Row className={appStyles.Row}>
           <Col>
             <Container>
-              {caughtPokemons.length ? (
+              {caughtPokemons.results.length ? (
                 <>
                 <Form.Group controlId="pokemon-select">
                   <Form.Label>Select a Pokémon:</Form.Label>

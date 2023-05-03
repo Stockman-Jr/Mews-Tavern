@@ -47,12 +47,11 @@ function PokeDexPage() {
       const caughtPokemonIds = data.results.map((pokemon) => pokemon.id);
       const caughtPokemonIdsString = caughtPokemonIds.join("&pokemon__id__in=");
       
-      if(currentUser){
         const { data: caughtData } = await axiosReq.get(
           `/api/caught/?owner=${owner}&${caughtPokemonIdsString}`
         );
+        console.log(caughtData);
         setCaughtPokemons(caughtData);
-      }
 
       setTotalPages(Math.ceil(data.count / pokemonsPerPage));
       setIsLoaded(true);

@@ -73,7 +73,7 @@ function PokemonBuildEditForm() {
           } = data;
   
           const { data: pokeData } = await axiosReq.get(
-            `/api/caught/?owner=${data.profile_id}`
+            `/api/caught/${data.caught_id}`
           );
   
           const caughtPokemon =

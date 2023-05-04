@@ -6,18 +6,25 @@ const ArrowUp = () => {
     const [showTopBtn, setShowTopBtn] = useState(false);
   
     useEffect(() => {
-      window.addEventListener("scroll", () => {
-        if (window.scrollY > 300) {
-          setShowTopBtn(true);
-        } else {
-          setShowTopBtn(false);
-        }
-      });
+      checkShowScroll();
+      return () => {
+        setShowTopBtn({});
+      };
     }, []);
+
+  const  checkShowScroll = () => {
+      if (window.scrollY > 300) {
+        setShowTopBtn(true);
+      } else {
+        setShowTopBtn(false);
+      }
+    }
   
     const handleScrollToTop = () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     };
+
+    window.addEventListener("scroll", checkShowScroll);
   
     return (
       <div className={btnStyles.ScrollContainer}>

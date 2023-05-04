@@ -116,11 +116,11 @@ function PokeDexPage() {
             </div>
           </Col>
           <ArrowUp />
-          <Col>
+          <Col >
             <ReactPaginate
               pageCount={totalPages}
               pageRangeDisplayed={4}
-              marginPagesDisplayed={1}
+              marginPagesDisplayed={2}
               onPageChange={handlePageChange}
               containerClassName={"pagination justify-content-center"}
               breakClassName={pageStyles.BreakLink}

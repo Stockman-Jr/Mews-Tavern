@@ -1,4 +1,4 @@
-.PageItem {
+.PageItem, .NextPage, .PrevPage {
     background-color: rgba(0, 255, 255, 0);
     padding: 8px 10px 8px 10px;
     margin-left: 3px;
@@ -7,14 +7,7 @@
     border-radius: 20px;
    }
 
-   .NextPage, .PrevPage {
-    background-color: rgba(0, 255, 255, 0);
-    padding: 8px 10px 8px 10px;
-    margin-left: 3px;
-    margin-right: 3px;
-    border: 2px solid rgb(170,140,51);
-    border-radius: 20px;
-   }
+
    
    .BreakLink {
        color: #ece6d6;
@@ -33,7 +26,7 @@
 
 
    @media screen and (max-width: 510px) {
-    .PageItem {
+    .PageItem, .NextPage, .PrevPage {
         background-color: rgba(0, 255, 255, 0);
         padding: 10px;
         margin: 0px;

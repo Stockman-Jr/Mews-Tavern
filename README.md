@@ -37,6 +37,7 @@ Live link [here](https://mews-tavern.herokuapp.com/)
   - [Code](#code)
   - [Content](#content)
   - [Media](#media)
+- [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -55,7 +56,7 @@ Links to the backend parts of the project can be found in the links below:
 ### Project Goals
 - Build a project for pokémon players and fans to connect
 - Create a theme and design that fits the project and promotes a positive and fun user experience
-- Ensure users don't have access or control of other users content but their own
+- Ensure users can't manage anyones created content but their own
 - Ensure users can access pages, create content and interact with content that has the right permissions, and vice versa
 - Implement a functionality that allows the users to create their own pokédex
 - Give users the ability to filter pokémon by type
@@ -106,6 +107,9 @@ An issue template was created for adding User Stories. Each User Story was given
 ---
 
 ## Design
+
+When I decided to this project I had a vision in my head of the design I wanted.
+I looked at available resources to use, other pokémon sites and pokémon projects created by github users for inspiration.
 
 ### Colour scheme
 
@@ -330,7 +334,7 @@ This page features two different forms, one for changing username and one for ch
 
 The username form is shown by default when entering the page, but can switch between the two forms by clicking the tabs.
 
-### Other
+### Other/Components
 There are a couple of components that are frequently used throughout the site which will be brought up in this section.
 
 **Infinite Scrolling**
@@ -344,6 +348,13 @@ Infinite scrolling is applied to the Feed and Profile pages, as well as the comm
 
 - This component is present in the PokeDex, Feed and Profile pages and was created for these pages as they could be scroll 'heavy' pages.
 - The arrow will show up in the bottom right corner after the user has scrolled down a certain height, and cliking it will take the user back to the top of the page.
+
+**Corner Decorations**
+- Is a purely decorative component which contain the golden pixelated corners that are found in the Hompage, Profile pages, and in the Pokémon Build posts.
+
+**Form Fields**
+- As the pokémon build forms(edit and create) contained a lot of form fields and were quite code heavy I added this as a component to contain some of the fields and functionality in order to declutter.
+- I created the fields and functionality to work for both the create and edit form pages.
 
 ### Future Features
 
@@ -553,3 +564,5 @@ Since this is my last Project I just wanted to give a shout out and say thanks t
 * Thanks to the Tutor Support team, Student Care team and all the other staff at CI for your support and assistance!
 
 * Thanks to my mentor Mitko for all the patience, support and great feedback I've been given throughout this course.
+
+Big thanks!

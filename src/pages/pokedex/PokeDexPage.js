@@ -119,18 +119,20 @@ function PokeDexPage() {
           <Col>
             <ReactPaginate
               pageCount={totalPages}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={2}
+              pageRangeDisplayed={4}
+              marginPagesDisplayed={1}
               onPageChange={handlePageChange}
               containerClassName={"pagination justify-content-center"}
               breakClassName={pageStyles.BreakLink}
               pageClassName={pageStyles.PageItem}
               pageLinkClassName={pageStyles.PageLink}
               activeLinkClassName={pageStyles.ActivePage}
-              previousClassName={pageStyles.PageItem}
-              nextClassName={pageStyles.PageItem}
+              previousClassName={pageStyles.PrevPage}
+              nextClassName={pageStyles.NextPage}
               previousLinkClassName={pageStyles.PageLink}
               nextLinkClassName={pageStyles.PageLink}
+              previousLabel={"<"}
+              nextLabel={">"}
               forcePage={page - 1}
             />
           </Col>

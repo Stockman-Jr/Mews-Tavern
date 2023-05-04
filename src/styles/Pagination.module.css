@@ -5,7 +5,15 @@
     margin-right: 3px;
     border: 2px solid rgb(170,140,51);
     border-radius: 20px;
-   
+   }
+
+   .NextPage, .PrevPage {
+    background-color: rgba(0, 255, 255, 0);
+    padding: 8px 10px 8px 10px;
+    margin-left: 3px;
+    margin-right: 3px;
+    border: 2px solid rgb(170,140,51);
+    border-radius: 20px;
    }
    
    .BreakLink {
@@ -22,3 +30,33 @@
    .ActivePage {
     color:  #69cae2;;
    }
+
+
+   @media screen and (max-width: 510px) {
+    .PageItem {
+        background-color: rgba(0, 255, 255, 0);
+        padding: 10px;
+        margin: 0px;
+        border: 1px solid rgb(170,140,51);
+        border-radius: 0px;
+        font-size: 13px;
+       }
+    }
+
+   @media screen and (max-width: 380px) {
+    .PageItem, .BreakLink {
+        display: none;
+       }
+
+       .NextPage, .PrevPage {
+        background-color: rgba(0, 255, 255, 0);
+        padding: 0px 10px 0px 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        border: 2px solid rgb(170,140,51);
+        border-radius: 50%;
+        font-size: 28px;
+        font-weight: 900;
+       }
+
+    }

@@ -3,6 +3,15 @@
     color: #645841;
 }
 
+h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-weight: 900;
+    color: #47390ac2;
+    text-shadow: 1px 1px 2px rgb(255, 208, 0), 0 0 1px rgb(202, 195, 165), 0 0 0.2em rgb(255, 230, 0);
+    text-transform: uppercase;
+  }
+  
+
 .LeftCol, .RightCol {
     margin: 10px;
     border-radius: 10px;
@@ -80,8 +89,8 @@
 }
 
 
-
 /* MEDIA QUERIES */
+
 @media screen and (max-width: 992px) {
     .LeftInfo h4 {
         font-size: 120%;
@@ -89,65 +98,68 @@
 
     .GameUpdates, .GameEvents, .SiteLink {
         font-size: 15px;
-        line-height: 1.5em;
-    
+        line-height: 1.5em;   
     } 
     }
 
-    @media screen and (max-width: 830px) {
-        .LeftInfo h4 {
-            font-size: 110%;
-         }
-    
-        .GameUpdates, .GameEvents, .SiteLink {
-            font-size: 15px;
-            line-height: 1.3em;
-        
-        } 
+@media screen and (max-width: 830px) {
+    .LeftInfo h4 {
+        font-size: 110%;
+    }
 
-        .LeftCol, .RightCol {
+    .GameUpdates,
+    .GameEvents,
+    .SiteLink {
+        font-size: 15px;
+        line-height: 1.3em;
 
-            max-height: 320px;
-        }
-        }
+    }
 
-        @media screen and (max-width: 660px) {
-            .LeftInfo h4 {
-                font-size: 100%;
-             }
-        
-            .GameUpdates, .GameEvents, .SiteLink {
-                font-size: 15px;
-                line-height: 1.2em;
-            
-            }
+    .LeftCol,
+    .RightCol {
+        max-height: 320px;
+    }
+}
 
+@media screen and (max-width: 660px) {
+    .LeftInfo h4 {
+        font-size: 100%;
+    }
 
-            }
+    .GameUpdates,
+    .GameEvents,
+    .SiteLink {
+        font-size: 15px;
+        line-height: 1.2em;
 
-    @media screen and (max-width: 600px) {
-        .GameUpdates, .GameEvents, .SiteLink {
-            font-size: 15px;
-            line-height: 1.5em;
-        
-        } 
-        .LeftInfo h4 {
-           font-size: 100%;
-        }
+    }
+}
 
-        .RightImg {
-            display: none;
-            visibility: hidden;
-            width: 0px;
-        }
+@media screen and (max-width: 600px) {
 
-        .LeftInfo {
-            border: none;
-            padding: 12px;
-            max-width: 100%;
-        }
+    .GameUpdates,
+    .GameEvents,
+    .SiteLink {
+        font-size: 15px;
+    }
 
-        h1 {
-            font-size: 180%;
-        }
-        }
+    .LeftInfo h4 {
+        font-size: 100%;
+    }
+
+    .RightImg {
+        display: none;
+        visibility: hidden;
+        width: 0px;
+    }
+
+    .LeftInfo {
+        border: none;
+        padding: 12px;
+        max-width: 100%;
+    }
+
+    h1 {
+        font-size: 160%;
+    }
+}

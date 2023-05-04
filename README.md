@@ -7,6 +7,8 @@ Users can browse the PokéDex and save pokémon they've caught as a way to keep 
 
 Users can edit and delete their created content as well.
 
+Live link to site ![here](https://mews-tavern.herokuapp.com/)
+
 ---
 
 ## Table of Contents
@@ -361,6 +363,9 @@ There is a lot of features that could be added or improved for this app, if prov
 
 I have checked each page on the site with Lighthouse, and although the accessibility, best practices and SEO got a high score overall, but the performance score could be improved.
 
+<details>
+<summary>Click to for results</summary>
+
 **Homepage**
 
 ![Lighthouse Home](/readme-assets/lighthouse-home.png)
@@ -381,11 +386,13 @@ I have checked each page on the site with Lighthouse, and although the accessibi
 
 **Profile Page**
 
-![Lighthouse Profile Page](/readme-assets/lighthouse-profile.pngprofile.png)
+![Lighthouse Profile Page](/readme-assets/lighthouse-profile.png)
 
 **Sign up/Sign in**
 
 ![Lighthouse Sign In/Sign Up](/readme-assets/lighthouse-signupin.png)
+
+</details>
 
 
 #### CSS 

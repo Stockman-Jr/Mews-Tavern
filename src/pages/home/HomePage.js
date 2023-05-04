@@ -53,7 +53,7 @@ return (
     <>
     <div className={`${appStyles.CornerBox} ${appStyles.BorderBottom} `}>
         <CornerDecorations />
-        <h1 className="mt-4 mb-4 text-center">Mew's Tavern</h1>
+        <h1 className="my-5 my-md-4 text-center">Mew's Tavern</h1>
     </div>
         <div className={`${appStyles.BorderBottom} ${appStyles.BeigeBg}`}>
         <h2 className={`${styles.Popular} text-center`}>Popular Posts</h2>

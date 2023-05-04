@@ -105,15 +105,6 @@ figure {
   border: none;
 }
 
-
-h1 {
-  font-family: 'Press Start 2P', cursive;
-  font-weight: 900;
-  color: #47390ac2;
-  text-shadow: 1px 1px 2px rgb(255, 208, 0), 0 0 1px rgb(202, 195, 165), 0 0 0.2em rgb(255, 230, 0);
-  text-transform: uppercase;
-}
-
 .BorderTop {
   border-top: 4px solid transparent;
   border-image: radial-gradient(circle, rgb(238, 231, 42) 0%, rgba(170,140,51,1) 100%);
